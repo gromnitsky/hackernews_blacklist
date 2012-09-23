@@ -1,0 +1,37 @@
+-*-org-*-
+
+* Overview
+
+When user visits HN page, in omnibar appears an icon, which displays how
+many links were filtered.
+
+User sets black lists in options page.
+
+| BL Type    | Match Modes |        |
+|            |             |        |
+|            | Exact       | Regexp |
+|------------+-------------+--------|
+| Domain     | *           |        |
+| Link title |             | *      |
+| User name  | *           |        |
+
+Every BL is a (big) string where entries are separated by newlines.
+
+Visually filtering is done by replacing a 'tr' element with a [+] link
+which expands previously saved content of 'tr' element.
+
+* 0.0.1
+
+- [ ] black list
+
+* 0.1.x
+
+- [ ] collapse threads
+- [ ] collapse read comments
+
+* later
+
+- [ ] popup window like in g+
+- [ ] keyboard shortcuts (hjkl, 'mark as read', collapse, etc)
+- [ ] white list: highlight white-listed users
+- [ ] inline reply
