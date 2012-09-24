@@ -1,6 +1,7 @@
 CS := coffee
 MOCHA := node_modules/.bin/mocha
 
+OPTS :=
 out := lib
 
 all: test
@@ -15,7 +16,7 @@ node_modules: package.json
 	touch $@
 
 test: compile
-	$(MOCHA) --compilers coffee:coffee-script -u tdd
+	$(MOCHA) --compilers coffee:coffee-script -u tdd $(OPTS)
 
 compile: node_modules
 	$(MAKE) -C src

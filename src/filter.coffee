@@ -1,7 +1,9 @@
-class Filter
+root = exports ? this
+
+class root.Filter
     constructor: (@type, @useWhite = true) ->
-        if (@type != 'exact' || @type != 'regexp')
-            throw new Error "must be 'exact' or 'regexp'"
+        if @type != 'exact' && @type != 'regexp'
+            throw new Error "type must be 'exact' or 'regexp'"
 
         @blacklist = []
         @whitelist = []
@@ -17,16 +19,14 @@ class Filter
 
     # override while-list
     whiteSet: (str) ->
-        r = @parseRawData str
-        @whitelist = r if r.length != 0
+        @whitelist = @parseRawData str
 
     whiteGet: ->
         @whitelist.join "\n"
 
     # override black-list
     blackSet: (str) ->
-        r = @parseRawData str
-        @blacklist = r if r.length != 0
+        @blacklist = @parseRawData str
 
     blackGet: ->
         @blacklist.join "\n"
