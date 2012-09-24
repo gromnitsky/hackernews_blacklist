@@ -6,7 +6,10 @@
 	"icons": {
 		"128": "icons/128.png"
 	},
-	"background": { "scripts": ["lib/background.js"] },
+	"background": { "scripts": [
+		"lib/extstorage.js",
+		"lib/background.js"
+	] },
 	"page_action": {
 		"default_icon": "icons/19.png"
 	},
