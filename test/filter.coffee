@@ -17,10 +17,10 @@ suite 'Filter', ->
 
     test 'parse raw data', ->
         data = '  foo\n bar\n\n\n'
-        assert.equal 'foo|bar', (@fe.parseRawData data).join '|'
-        assert.equal '', (@fe.parseRawData '').join '|'
-        assert.equal '', (@fe.parseRawData '  ').join '|'
-        assert.equal '', (@fe.parseRawData '  \n ').join '|'
+        assert.equal 'foo|bar', (filter.Filter.parseRawData data).join '|'
+        assert.equal '', (filter.Filter.parseRawData '').join '|'
+        assert.equal '', (filter.Filter.parseRawData '  ').join '|'
+        assert.equal '', (filter.Filter.parseRawData '  \n ').join '|'
 
     test 'white set/get', ->
         data = '  foo\n bar\n\n\n'

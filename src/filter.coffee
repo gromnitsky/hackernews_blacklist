@@ -9,7 +9,7 @@ class root.Filter
         @whitelist = []
 
     # return an array from a string str
-    parseRawData: (str) ->
+    @parseRawData: (str) ->
         arr = str.split "\n"
         r = []
         for idx in arr
@@ -19,14 +19,14 @@ class root.Filter
 
     # override while-list
     whiteSet: (str) ->
-        @whitelist = @parseRawData str
+        @whitelist = Filter.parseRawData str
 
     whiteGet: ->
         @whitelist.join "\n"
 
     # override black-list
     blackSet: (str) ->
-        @blacklist = @parseRawData str
+        @blacklist = Filter.parseRawData str
 
     blackGet: ->
         @blacklist.join "\n"
