@@ -1,20 +1,4 @@
 class Options
-    @defaults =
-        'Filters':
-            'domain' : ['huffingtonpost.com']
-            'username' : []
-            'linktitle-bl' : [
-                '\\bApple\\b'
-                '\\bIOS\\b'
-                'Iphone'
-                '\\bIp[ao]d'
-                '\\bMac\\b'
-                '\\b(Mac\s+)?OS(\\s+)?X\\b'
-                'Python'
-                'Java\\b'
-                ]
-            'linktitle-wl' : ['ruby']
-
     constructor: ->
         @btnSave = document.querySelector "[id='save']"
         @btnDefaults = document.querySelector "[id='defaults']"
@@ -26,6 +10,7 @@ class Options
         @filters = [@taDomain, @taUsername, @taLinktitleBl, @taLinktitleWl]
         @gui = [@btnDefaults, @btnSave].concat @filters
 
+    # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->
         state = to || true
         state = false if @btnDefaults.disabled && !to
@@ -36,25 +21,24 @@ class Options
     # Use default values for unmodified settings.
     loadOpt: (element) ->
         val = ExtStorage.Get 'Filters', element.name
-        element.value = (val || Options.defaults['Filters'][element.name]).join "\n"
+        element.value = (val || Conf.defaults['Filters'][element.name]).join "\n"
         
     loadSettings: ->
         @say 'Loading settings...', =>
             @loadOpt idx for idx in @filters
 
-        @btnSave.disabled = true
-
     guiBind: ->
         # default button
         @btnDefaults.addEventListener 'click', =>
             for idx in @filters
-                idx.value = Options.defaults['Filters'][idx.name].join "\n"
+                idx.value = Conf.defaults['Filters'][idx.name].join "\n"
             @btnSave.disabled = false
         , false
 
         # save button
         @btnSave.addEventListener 'click', =>
             @saveSettings()
+            @btnSave.disabled = true
         , false
 
         # all lists

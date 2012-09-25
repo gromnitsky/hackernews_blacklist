@@ -27,6 +27,5 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
         when 'extStorage.getGroup' then sendRes ExtStorage.GetGroup req.data.group
         else new Error("unknown message name: #{req.msg}")
 
-ExtStorage.Set 'test', 'foo', "foo's value!"
-ExtStorage.Set 'test', 'bar', "bar's value!"
+Conf.loadSettings()
 console.log 'bg: loaded'

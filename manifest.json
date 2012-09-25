@@ -8,6 +8,7 @@
 	},
 	"background": { "scripts": [
 		"lib/extstorage.js",
+		"lib/defaults.js",
 		"lib/background.js"
 	] },
 	"page_action": {

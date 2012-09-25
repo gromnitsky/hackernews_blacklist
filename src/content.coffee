@@ -1,4 +1,5 @@
-document.querySelector('body').style.background = 'yellow'
+# FIXME: remove
+document.querySelector('body').style.background = 'gray'
 
 class Message
     constructor: (@name) ->
@@ -16,8 +17,6 @@ extStorageMsgGet = (group, name) ->
 extStorageMsgGetGroup = (group) ->
     Message.Creat 'extStorage.getGroup', {'group': group}
 
-chrome.extension.sendMessage extStorageMsgGet('test', 'foo'), (res) ->
-    console.log res
-
-chrome.extension.sendMessage extStorageMsgGetGroup('test'), (res) ->
+# Main
+chrome.extension.sendMessage extStorageMsgGetGroup('Filters'), (res) ->
     console.log res
