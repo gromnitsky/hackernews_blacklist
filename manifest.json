@@ -13,6 +13,7 @@
 	"page_action": {
 		"default_icon": "icons/19.png"
 	},
+	"options_page": "lib/options.html",
 	"permissions": [
 		"*://news.ycombinator.com/*",
 		"file://*/**",

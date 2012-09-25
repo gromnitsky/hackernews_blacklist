@@ -1,8 +1,13 @@
 CS := coffee
+JADE := ../node_modules/.bin/jade
 
 out := ../lib
+
 coffee := $(wildcard *.coffee)
 js := $(patsubst %.coffee,$(out)/%.js,$(coffee))
+
+jade := $(wildcard *.jade)
+html := $(patsubst %.jade,$(out)/%.html,$(jade))
 
 .PHONY: compile clean
 
@@ -12,10 +17,14 @@ $(out)/%.js: %.coffee
 	@mkdir -p `dirname $@`
 	$(CS) -cp $< > $@
 
-compile: $(js)
+$(out)/%.html: %.jade
+	@mkdir -p `dirname $@`
+	$(JADE) -P < $< > $@
+
+compile: $(js) $(html)
 
 clean:
-	rm -rf $(js)
+	rm -rf $(js) $(html)
 
 # Debug. Use 'gmake p-obj' to print $(obj) variable.
 p-%:

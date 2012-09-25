@@ -1,0 +1,61 @@
+!!! 5
+html
+  head
+    title hackernews_blacklist Options
+    script(src='options.js')
+    style(type='text/css')
+      #linktitle-bl, #domain {
+        float: left;
+        padding-right: 10px;
+      }
+      #linktitle-wl, #username {
+        float: left;
+      }
+      #linktitle, #blacks {
+        display: table;
+      }
+
+  body
+
+    #linktitle
+      h2 Link Title
+      form#linktitle-bl
+        | Black-list (regexp)
+        br
+        textarea(cols='32', rows='5')
+
+      form#linktitle-wl
+        | White-list (regexp)
+        br
+        textarea(cols='32', rows='5')
+
+    #blacks
+      #domain
+        h2 Domain
+        form
+          | Black-list (exact match)
+          br
+          textarea(cols='32', rows='5')
+
+      #username
+        h2 User Name
+        form
+          | Black-list (exact match)
+          br
+          textarea(cols='32', rows='5')
+
+    #footer
+      hr
+      button#save Save
+      button#defaults Defaults
+
+      #help
+        p
+          | Every list is a string where entries are separated by newlines.
+          | Regexp-based lists are slower that exact match lists.
+          | Regexp lists are case insensitive, exact match lists are.
+
+        p
+          | <em>Link Title</em> white-list takes precedence above all
+          | other lists.
+
