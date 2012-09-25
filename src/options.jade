@@ -2,6 +2,8 @@
 html
   head
     title hackernews_blacklist Options
+    script(src='extstorage.js')
+    script(src='filter.js')
     script(src='options.js')
     style(type='text/css')
       #linktitle-bl, #domain {
@@ -17,32 +19,32 @@ html
 
   body
 
-    #linktitle
-      h2 Link Title
-      form#linktitle-bl
-        | Black-list (regexp)
-        br
-        textarea(cols='32', rows='5')
-
-      form#linktitle-wl
-        | White-list (regexp)
-        br
-        textarea(cols='32', rows='5')
-
     #blacks
       #domain
         h2 Domain
         form
           | Black-list (exact match)
           br
-          textarea(cols='32', rows='5')
+          textarea(name='domain', cols='32', rows='5')
 
       #username
         h2 User Name
         form
           | Black-list (exact match)
           br
-          textarea(cols='32', rows='5')
+          textarea(name='username', cols='32', rows='5')
+
+    #linktitle
+      h2 Link Title
+      form#linktitle-bl
+        | Black-list (regexp)
+        br
+        textarea(name='linktitle-bl', cols='32', rows='5')
+
+      form#linktitle-wl
+        | White-list (regexp)
+        br
+        textarea(name='linktitle-wl', cols='32', rows='5')
 
     #footer
       hr
@@ -54,8 +56,4 @@ html
           | Every list is a string where entries are separated by newlines.
           | Regexp-based lists are slower that exact match lists.
           | Regexp lists are case insensitive, exact match lists are.
-
-        p
-          | <em>Link Title</em> white-list takes precedence above all
-          | other lists.
 
