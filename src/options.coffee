@@ -36,7 +36,6 @@ class Options
     # Use default values for unmodified settings.
     loadOpt: (element) ->
         val = ExtStorage.Get 'Filters', element.name
-        console.log val
         element.value = (val || Options.defaults['Filters'][element.name]).join "\n"
         
     loadSettings: ->
@@ -67,7 +66,7 @@ class Options
     saveSettings: ->
         @say 'Saving...', =>
             for idx in @filters
-                ExtStorage.Set 'Filters', idx.name, (Filter.parseRawData idx.value)
+                ExtStorage.Set 'Filters', idx.name, (parseRawData idx.value)
 
     say: (msg, callback) ->
         orig = @btnSave.innerText

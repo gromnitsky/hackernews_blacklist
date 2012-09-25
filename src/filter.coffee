@@ -1,46 +1,65 @@
 root = exports ? this
+mixin = require?('./mixins') || root
 
-class root.Filter
-    constructor: (@type, @useWhite = true) ->
-        if @type != 'exact' && @type != 'regexp'
-            throw new Error "type must be 'exact' or 'regexp'"
+# Return an array from a string str.
+root.parseRawData = (str) ->
+    arr = str.split "\n"
+    r = []
+    for idx in arr
+        v = idx.trim()
+        r.push v if v.length != 0
+    r
 
+FilterInterface = 
+    whiteSet: (str) ->
+        @whitelist = @listSet str
+
+    whiteGet: ->
+        @listGet @whitelist
+
+    blackSet: (str) ->
+        @blacklist = @listSet str
+
+    blackGet: ->
+        @listGet @blacklist
+
+    match: (val) ->
+        return false if @useWhite && @matchInList(val, @whitelist)
+        @matchInList val, @blacklist
+
+class root.FilterRegexp extends mixin.Module
+    @include FilterInterface
+    
+    constructor: (@useWhite = true) ->
         @blacklist = []
         @whitelist = []
 
-    # return an array from a string str
-    @parseRawData: (str) ->
-        arr = str.split "\n"
-        r = []
-        for idx in arr
-            v = idx.trim()
-            r.push v if v.length != 0
-        r
-
-    # override while-list
-    whiteSet: (str) ->
-        @whitelist = Filter.parseRawData str
-
-    whiteGet: ->
-        @whitelist.join "\n"
-
-    # override black-list
-    blackSet: (str) ->
-        @blacklist = Filter.parseRawData str
-
-    blackGet: ->
-        @blacklist.join "\n"
-
-    _matchInList: (val, inList) ->
-        (return true if @_matchVal idx, val) for idx in inList
+    matchInList: (val, inList) ->
+        (return true if val.match idx) for idx in inList
         false
 
-    _matchVal: (pattern, val) ->
-        if @type == 'regexp'
-            val.match pattern
-        else
-            val == pattern
+    listSet: (str) ->
+        root.parseRawData str
 
-    match: (val) ->
-        return false if @useWhite && @_matchInList(val, @whitelist)
-        @_matchInList val, @blacklist
+    listGet: (list) ->
+        list.join "\n"
+
+class root.FilterExact extends mixin.Module
+    @include FilterInterface
+    
+    constructor: (@useWhite = true) ->
+        @blacklist = {}
+        @whitelist = {}
+
+    matchInList: (val, inList) ->
+        val of inList
+
+    listSet: (str) ->
+        r = {}
+        r[idx] = 1 for idx in (root.parseRawData str)
+        r
+
+    listGet: (list) ->
+        r = []
+        r.push key for key, val of list
+        r.join "\n"
