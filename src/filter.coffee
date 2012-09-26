@@ -35,7 +35,9 @@ class root.FilterRegexp extends mixin.Module
         @whitelist = []
 
     matchInList: (val, inList) ->
-        (return true if val.match idx) for idx in inList
+        for idx in inList
+            re = new RegExp idx, 'i'
+            return true if val.match re
         false
 
     listSet: (str) ->

@@ -13,10 +13,11 @@ class root.Conf
                 '\\bIOS\\b'
                 'Iphone'
                 '\\bIp[ao]d'
-                '\\bMac\\b'
-                '\\b(Mac\s+)?OS(\\s+)?X\\b'
+                '\\bMac(book)?\\b'
+                '\\b(Mac\\s+)?OS(\\s+)?X\\b'
                 'Python'
-                'Java\\b'
+                '\\bRetina\\b'
+                'Typography'
                 ]
             'linktitle-wl' : ['ruby']
 
