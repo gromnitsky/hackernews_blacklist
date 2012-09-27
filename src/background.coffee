@@ -1,5 +1,7 @@
-# perfect name, xoxo
+# A perfect name, xoxo.
 class Manager
+    @tab = null
+    
     @permissions = ["^https?://news.ycombinator.com/(x\\?fnid=.+|newest|ask|jobs)?$",
         "^file://.+/hackernews_blacklist/test/data/news\\.ycombinator\\.com/index\\.html$"]
 
@@ -9,6 +11,7 @@ class Manager
 
     @onUpdatedCallback: (tabId, changeInfo, tab) ->
         return unless changeInfo.status != 'complete'
+        Manager.tab = tabId # save this for later use outside of this callback
 
         if Manager.isUrlValid(tab.url)
             chrome.pageAction.show(tabId)
@@ -23,9 +26,16 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
     return unless req.msg
 
     switch req.msg
-        when 'extStorage.get' then sendRes ExtStorage.Get req.data.group, req.data.name
-        when 'extStorage.getGroup' then sendRes ExtStorage.GetGroup req.data.group
-        else new Error("unknown message name: #{req.msg}")
+        when 'extStorage.get'
+            sendRes ExtStorage.Get req.data.group, req.data.name
+        when 'extStorage.getGroup'
+            sendRes ExtStorage.GetGroup req.data.group
+        when 'stat'
+            chrome.pageAction.setTitle
+                'tabId': Manager.tab
+                'title': "#{req.data.filtered} links filtered"
+        else
+            new Error("unknown message name: #{req.msg}")
 
 Conf.loadSettings()
 console.log 'bg: loaded'
