@@ -2,8 +2,8 @@
 
 * Overview
 
-When user visits HN page, in omnibar appears an icon, which displays how
-many links were filtered.
+When user visits HN page, in omnibar appears an icon, a title of which
+shows how many links were filtered.
 
 User sets black lists in options page.
 
@@ -17,12 +17,9 @@ User sets black lists in options page.
 
 Every BL is a (big) string where entries are separated by newlines.
 
-Visually filtering is done by replacing a 'tr' element with a [+] link
-which expands previously saved content of 'tr' element.
-
 * 0.0.1
 
-- [ ] black list
+- [X] black list
 
 * 0.1.x
 
