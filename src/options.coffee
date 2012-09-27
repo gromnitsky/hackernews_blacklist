@@ -2,12 +2,12 @@ class Options
     constructor: ->
         @btnSave = document.querySelector "[id='save']"
         @btnDefaults = document.querySelector "[id='defaults']"
-        @taDomain = document.querySelector '#domain form textarea'
+        @taHostname = document.querySelector '#hostname form textarea'
         @taUsername = document.querySelector '#username form textarea'
         @taLinktitleBl = document.querySelector '#linktitle-bl textarea'
         @taLinktitleWl = document.querySelector '#linktitle-wl textarea'
 
-        @filters = [@taDomain, @taUsername, @taLinktitleBl, @taLinktitleWl]
+        @filters = [@taHostname, @taUsername, @taLinktitleBl, @taLinktitleWl]
         @gui = [@btnDefaults, @btnSave].concat @filters
 
     # 'toggleGui true' forces to disable gui elements

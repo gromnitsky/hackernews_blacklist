@@ -1,3 +1,5 @@
+root = exports ? this
+
 class Message
     constructor: (@name) ->
 
@@ -14,13 +16,13 @@ extStorageMsgGet = (group, name) ->
 extStorageMsgGetGroup = (group) ->
     Message.Creat 'extStorage.getGroup', {'group': group}
 
-class Sub
+class root.Sub
     # rank -- a dom element (tr) that represents a sub 'anchor'
     constructor: (@rank) ->
         @row1 = @rank.parentNode
         @row2 = @row1.nextSibling
 
-    getTitleLink: ->
+    getLinkTitle: ->
         @row1.querySelectorAll('a')[1].innerText
 
     getHostname: ->
@@ -40,21 +42,30 @@ class Sub
             idx.style.display = '' for idx in row1nodes
             @row2.style.display = ''
 
-            @rank.innerText = '[-]'
+            @rank.innerText = "[-]"
             @rank.style.cursor = '-webkit-zoom-out'
         else
             # collapse this item
             idx.style.display = 'none' for idx in row1nodes
             @row2.style.display = 'none'
 
-            @rank.innerText = '[+]'
+            @rank.innerText = "[+]"
             @rank.style.cursor = '-webkit-zoom-in'
 
-class HN
+class root.HN
     @warningThreshold = 10
     
-    constructor: ->
+    constructor: (@settings) ->
         @home = document.querySelector '.pagetop a'
+
+        @fHostname = new FilterExact false
+        @fUserName = new FilterExact false
+        @fLinkTitle = new FilterRegexp()
+
+        @fHostname.blackSet @settings['hostname'].join "\n"
+        @fUserName.blackSet @settings['username'].join "\n"
+        @fLinkTitle.blackSet @settings['linktitle-bl'].join "\n"
+        @fLinkTitle.whiteSet @settings['linktitle-wl'].join "\n"
 
     # Return an array of Sub objects
     getSubs: ->
@@ -64,39 +75,50 @@ class HN
         r
 
     filter: ->
-        for idx, count in @getSubs()
-            console.log "#{idx.getTitleLink()}, #{idx.getHostname()}, #{idx.getUserName()}"
-            @toggleItem idx
-            idx.toggleCollapse()
+        count = 0
+        for idx in @getSubs()
+#            console.log "#{idx.getLinkTitle()}, #{idx.getHostname()}, #{idx.getUserName()}"
+            if @fHostname.match idx.getHostname()
+                @addEL idx
+                idx.toggleCollapse()
+                count += 1
+                idx.rank.title = 'Host name'
+
+            if @fUserName.match idx.getUserName()
+                @addEL idx
+                idx.toggleCollapse()
+                count += 1
+                idx.rank.title = 'User name'
+
+            if @fLinkTitle.match idx.getLinkTitle()
+                @addEL idx
+                idx.toggleCollapse()
+                count += 1
+                idx.rank.title = 'Link title'
 
         @warning count if count >= HN.warningThreshold
+        # ask background.js to update page icon title
         chrome.extension.sendMessage Message.Creat('stat', {'filtered': count})
 
     warning: (linksFiltered) ->
         t = [
             "Could it be, could it be that you're joking with me?"
-            "Due to lack of interest tomorrow is canceled."
             "A harsh day, dude?"
             "The filter goes wild."
             "Relax, dude."
             "Take a break, dude."
             "Dude, this is ridiculous."
-            "C'mon dude, that's not possible."
+            "C'mon, dude."
             "Bwaa!"
             "I don't know, dude."
             "Get up your sorry ass, dude."
             "In good old days HN wasn't so bad."
             "Has somebody died again?"
-            "Who got hit and who hit first?"
-            "Who was bad and who got worse?"
-            "Who got caught up in the life?"
-            "Who went down and who got higher?"
-            "Who went left and who was right?"
-            "Who went out on a mischief night?"
+            ""
             ]
         @home.innerText = "#{linksFiltered} filtered links? #{t[Math.floor Math.random()*(t.length)]}"
 
-    toggleItem: (element) ->
+    addEL: (element) ->
         element.rank.addEventListener 'click', ->
             element.toggleCollapse()
         , false
@@ -104,6 +126,6 @@ class HN
 
 # Main
 chrome.extension.sendMessage extStorageMsgGetGroup('Filters'), (res) ->
-    hn = new HN()
+#    console.log res
+    hn = new HN res
     hn.filter()
-    console.log res

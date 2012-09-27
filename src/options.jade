@@ -10,7 +10,7 @@ html
     script(src='options.js')
     
     style(type='text/css')
-      #linktitle-bl, #domain {
+      #linktitle-bl, #hostname {
         float: left;
         padding-right: 10px;
       }
@@ -24,12 +24,12 @@ html
   body
 
     #blacks
-      #domain
-        h2 Domain
+      #hostname
+        h2 Hostname
         form
           | Black-list (exact match)
           br
-          textarea(name='domain', cols='32', rows='5')
+          textarea(name='hostname', cols='32', rows='5')
 
       #username
         h2 User Name

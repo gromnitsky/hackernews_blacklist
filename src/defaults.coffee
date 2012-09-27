@@ -6,7 +6,7 @@ root = exports ? this
 class root.Conf
     @defaults =
         'Filters':
-            'domain' : ['huffingtonpost.com']
+            'hostname' : ['huffingtonpost.com']
             'username' : []
             'linktitle-bl' : [
                 '\\bApple\\b'
