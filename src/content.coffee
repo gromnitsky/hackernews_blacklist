@@ -81,23 +81,27 @@ class root.HN
         count = 0
         for idx in @getSubs()
             console.log "#{idx.getLinkTitle()}, #{idx.getHostname()}, #{idx.getUserName()}"
+
             if @fHostname.match idx.getHostname()
                 @addEL idx
                 idx.toggleCollapse()
                 count += 1
                 idx.rank.title = 'Host name'
+                continue
 
             if @fUserName.match idx.getUserName()
                 @addEL idx
                 idx.toggleCollapse()
                 count += 1
                 idx.rank.title = 'User name'
+                continue
 
             if @fLinkTitle.match idx.getLinkTitle()
                 @addEL idx
                 idx.toggleCollapse()
                 count += 1
                 idx.rank.title = 'Link title'
+                continue
 
         @warning count if count >= HN.warningThreshold
         # ask background.js to update page icon title
