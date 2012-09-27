@@ -22,15 +22,18 @@ class root.Sub
         @row1 = @rank.parentNode
         @row2 = @row1.nextSibling
 
+    getLink: ->
+        @row1.querySelectorAll('a')[1] || @row1.querySelector('a')
+
     getLinkTitle: ->
-        @row1.querySelectorAll('a')[1].innerText
+        @getLink().innerText
 
     getHostname: ->
         # bwaa! no need for uri parsing!
-        @row1.querySelectorAll('a')[1].hostname
+        @getLink().hostname
                 
     getUserName: ->
-        @row2.querySelector('a').innerText
+        @row2.querySelector('a')?.innerText || ''
 
     # replace rank with '[-]' or '[+]' & toggle
     toggleCollapse: ->
@@ -77,7 +80,7 @@ class root.HN
     filter: ->
         count = 0
         for idx in @getSubs()
-#            console.log "#{idx.getLinkTitle()}, #{idx.getHostname()}, #{idx.getUserName()}"
+            console.log "#{idx.getLinkTitle()}, #{idx.getHostname()}, #{idx.getUserName()}"
             if @fHostname.match idx.getHostname()
                 @addEL idx
                 idx.toggleCollapse()

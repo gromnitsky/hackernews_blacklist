@@ -9,7 +9,7 @@ class Manager
         'lib/content.js'
         ]
     
-    @permissions = ["^https?://news.ycombinator.com/(x\\?fnid=.+|newest|ask|jobs)?$",
+    @permissions = ["^https?://news.ycombinator.com/(x\\?fnid=.+|newest|ask|jobs|news)?$",
         "^file://.+/hackernews_blacklist/test/data/news\\.ycombinator\\.com/index\\.html$"]
 
     @isUrlValid: (url) ->
