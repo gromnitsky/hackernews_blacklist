@@ -1,22 +1,33 @@
 {
-  "files": [
-    "icons/128.png",
-    "icons/48.png"
-  ],
-  "name": "foobar",
-  "version": "0.0.1",
-  "license": {
-    "type": "MIT",
-    "url": "http://www.opensource.org/licenses/mit-license.php"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/gromnitsky/hackernews_blacklist"
-  },
-  "dependencies": {
-    "mocha": "~1.5.0",
-    "zombie": "~1.4.1",
-    "coffee-script": "~1.3.3",
-    "jade": "~0.27.5"
-  }
+	"files": [
+		"icons/128.png",
+		"icons/19.png",
+
+		"lib/background.js",
+		"lib/content.js",
+		"lib/defaults.js",
+		"lib/extstorage.js",
+		"lib/filter.js",
+		"lib/mixins.js",
+		"lib/options.html",
+		"lib/options.js",
+
+		"manifest.json"
+	],
+	"name": "hackernews_blacklist",
+	"version": "0.0.1",
+	"license": {
+		"type": "MIT",
+		"url": "http://www.opensource.org/licenses/mit-license.php"
+	},
+	"repository": {
+		"type": "git",
+		"url": "http://github.com/gromnitsky/hackernews_blacklist"
+	},
+	"dependencies": {
+		"mocha": "~1.5.0",
+		"zombie": "~1.4.1",
+		"coffee-script": "~1.3.3",
+		"jade": "~0.27.5"
+	}
 }

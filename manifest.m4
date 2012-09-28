@@ -1,6 +1,6 @@
 {
-	"name": "hackernews_blacklist",
-	"version": "0.0.1",
+	"name": "Hacker News Blacklist",
+	"version": "syscmd(`json < package.json version | tr -d \\n')",
 	"manifest_version": 2,
 	"description": "Collapse uninteresting links via title, host name or user name filters.",
 	"icons": {

@@ -1,5 +1,12 @@
 CS := coffee
 MOCHA := node_modules/.bin/mocha
+JSONTOOL := json
+M4 = gm4
+
+INFO := package.json
+NAME := $(shell $(JSONTOOL) name < $(INFO))
+VER := $(shell $(JSONTOOL) version < $(INFO))
+ZIP := $(NAME)-$(VER).zip
 
 OPTS :=
 out := lib
@@ -18,17 +25,27 @@ node_modules: package.json
 test: compile
 	$(MOCHA) --compilers coffee:coffee-script -u tdd $(OPTS)
 
-compile: node_modules
+manifest_clean:
+	rm -f manifest.json
+
+manifest.json: manifest.m4
+	$(M4) $< > $@
+
+compile: node_modules manifest.json
 	$(MAKE) -C src
 
-clean:
+clean: manifest_clean
 	$(MAKE) -C src clean
 
 clobber: clean
 	rm -rf node_modules
 
+zip_clean:
 
-.PHONY: test-data-get test compile clean clobber
+zip: $(INFO) zip_clean compile
+	zip $(ZIP) `$(JSONTOOL) files < $< | $(JSONTOOL) -a`
+
+.PHONY: test-data-get test compile manifest_clean clean clobber zip zip_clean
 
 # Debug. Use 'gmake p-obj' to print $(obj) variable.
 p-%:
