@@ -3,4 +3,5 @@ lib
 *.zip
 *.crx
 manifest.json
+*.pem
 

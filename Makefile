@@ -7,6 +7,8 @@ INFO := package.json
 NAME := $(shell $(JSONTOOL) name < $(INFO))
 VER := $(shell $(JSONTOOL) version < $(INFO))
 ZIP := $(NAME)-$(VER).zip
+CRX := $(NAME)-$(VER).crx
+PRIVATE_KEY := private.pem
 
 OPTS :=
 out := lib
@@ -34,18 +36,31 @@ manifest.json: manifest.m4
 compile: node_modules manifest.json
 	$(MAKE) -C src
 
-clean: manifest_clean
+clean: manifest_clean zip_clean crx_clean
 	$(MAKE) -C src clean
 
 clobber: clean
 	rm -rf node_modules
 
 zip_clean:
+	rm -f $(ZIP)
 
 zip: $(INFO) zip_clean compile
 	zip $(ZIP) `$(JSONTOOL) files < $< | $(JSONTOOL) -a`
 
-.PHONY: test-data-get test compile manifest_clean clean clobber zip zip_clean
+id:
+	@openssl rsa -pubout -outform DER < $(PRIVATE_KEY) 2>/dev/null \
+		| openssl dgst -sha256 | \
+		cut -f2 -d' ' | cut -c 1-32 | tr '0-9a-f' 'a-p'
+
+crx_clean:
+	rm -f $(CRX)
+
+crx: crx_clean zip
+	./zip2crx.sh $(ZIP) $(PRIVATE_KEY)
+
+.PHONY: test-data-get test compile manifest_clean clean clobber \
+	zip zip_clean crx crx_clean
 
 # Debug. Use 'gmake p-obj' to print $(obj) variable.
 p-%:

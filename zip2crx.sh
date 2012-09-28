@@ -10,7 +10,7 @@
 zip=$1
 key=$2
 
-name=$(basename "$1")
+name=$(basename "$zip" .zip)
 crx="$name.crx"
 pub="$name.pub"
 sig="$name.sig"
