@@ -6,20 +6,34 @@ root = exports ? this
 class root.Conf
     @defaults =
         'Filters':
-            'hostname' : ['huffingtonpost.com']
+            'hostname' : [
+                'huffingtonpost.com'
+                'www.apple.com'
+                'www.marco.org'
+                ]
             'username' : []
             'linktitle-bl' : [
                 '\\bApple\\b'
-                '\\bIOS\\b'
+                '\\bIOS(\\d+)?\\b'
                 'Iphone'
                 '\\bIp[ao]d'
                 '\\bMac(book)?\\b'
                 '\\b(Mac\\s+)?OS(\\s+)?X\\b'
-                'Python'
                 '\\bRetina\\b'
+                '\\bIcloud'
+                'Python'
+                'Django'
+                'Pycon'
+                '\\bPatent'
                 'Typography'
+                'Legislation'
+                'Goverment'
+                'Instagram'
+                '\\bVim\\b'
+                'Pinterest'
+                'A/B\\sTest'
                 ]
-            'linktitle-wl' : ['ruby']
+            'linktitle-wl' : ['ruby', 'rails']
 
     # Load defauls into localStorage unless localStorage are not filled
     # with user settings.
