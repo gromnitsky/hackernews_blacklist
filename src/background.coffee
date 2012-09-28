@@ -1,7 +1,5 @@
 # A perfect name, xoxo.
 class Manager
-    @tab = null
-
     @contentScripts = [
         'lib/mixins.js'
         'lib/filter.js'
@@ -18,7 +16,6 @@ class Manager
 
     @onUpdatedCallback: (tabId, changeInfo, tab) ->
         return unless changeInfo.status != 'complete'
-        Manager.tab = tabId # save this for later use outside of this callback
 
         if Manager.isUrlValid(tab.url)
             chrome.pageAction.show tabId
@@ -41,7 +38,7 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
             sendRes ExtStorage.GetGroup req.data.group
         when 'stat'
             chrome.pageAction.setTitle
-                'tabId': Manager.tab
+                'tabId': sender.tab.id
                 'title': "#{req.data.filtered} links filtered"
         else
             new Error("unknown message name: #{req.msg}")

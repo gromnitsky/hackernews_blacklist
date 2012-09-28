@@ -27,26 +27,26 @@ html
       #hostname
         h2 Hostname
         form
-          | Black-list (exact match)
+          | Blacklist (exact match)
           br
           textarea(name='hostname', cols='32', rows='5')
 
       #username
         h2 User Name
         form
-          | Black-list (exact match)
+          | Blacklist (exact match)
           br
           textarea(name='username', cols='32', rows='5')
 
     #linktitle
       h2 Link Title
       form#linktitle-bl
-        | Black-list (regexp)
+        | Blacklist (regexp)
         br
         textarea(name='linktitle-bl', cols='32', rows='5')
 
       form#linktitle-wl
-        | White-list (regexp)
+        | Whitelist (regexp)
         br
         textarea(name='linktitle-wl', cols='32', rows='5')
 
