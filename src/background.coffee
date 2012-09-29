@@ -1,8 +1,6 @@
 # A perfect name, xoxo.
 class Manager
     @contentScripts = [
-        'vendor/md5.js'
-        
         'lib/mixins.js'
         'lib/filter.js'
         'lib/extstorage.js'
