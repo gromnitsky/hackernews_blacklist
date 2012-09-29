@@ -1,3 +1,21 @@
+root = exports ? this
+crypt = require?('../vendor/md5') || root
+
+class TextAreaState
+    # src is a dom textarea object
+    constructor: (@src) ->
+        @state = null
+        @src.addEventListener 'mouseover', =>
+            @setState()
+        , false
+
+    setState: ->
+        @state = crypt.md5 @src.value
+
+    isModified: ->
+        console.log "#{@state} == #{crypt.md5 @src.value}"
+        !(@state == crypt.md5 @src.value)
+
 class Options
     constructor: ->
         @btnSave = document.querySelector "[id='save']"
@@ -9,6 +27,8 @@ class Options
 
         @filters = [@taHostname, @taUsername, @taLinktitleBl, @taLinktitleWl]
         @gui = [@btnDefaults, @btnSave].concat @filters
+
+        idx.mystate = new TextAreaState(idx) for idx in @filters
 
     # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->
@@ -45,6 +65,9 @@ class Options
         for idx in @filters
             idx.addEventListener 'change', =>
                 @btnSave.disabled = false
+            , false
+            idx.addEventListener 'mouseout', (e) =>
+                @btnSave.disabled = false if e.target.mystate.isModified()
             , false
 
     saveSettings: ->
