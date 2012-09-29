@@ -56,7 +56,7 @@ class root.Sub
             @rank.style.cursor = '-webkit-zoom-in'
 
 class root.HN
-    @warningThreshold = 10
+    @warningThreshold = 15
     
     constructor: (@settings) ->
         @home = document.querySelector '.pagetop a'
