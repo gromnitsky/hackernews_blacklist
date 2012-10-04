@@ -41,3 +41,8 @@ suite 'Filter', ->
         assert.equal true, @fr.match 'array!'
         @fr.blackSet ''
         assert.equal false, @fr.match 'list'
+
+    test 'invalid regexp', ->
+        @fr.blackSet 'ok\ninvalid)'
+        @fr.quiet = true
+        assert.equal false, @fr.match 'invalid input'

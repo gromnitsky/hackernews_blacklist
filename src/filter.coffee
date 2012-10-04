@@ -10,7 +10,7 @@ root.parseRawData = (str) ->
         r.push v if v.length != 0
     r
 
-FilterInterface = 
+FilterInterface =
     whiteSet: (str) ->
         @whitelist = @listSet str
 
@@ -24,13 +24,19 @@ FilterInterface =
         @listGet @blacklist
 
     match: (val) ->
-        return false if @useWhite && @matchInList(val, @whitelist)
-        @matchInList val, @blacklist
+        try
+            return false if @useWhite && @matchInList(val, @whitelist)
+            @matchInList val, @blacklist
+        catch e
+            console.error "match error: #{e.message}" unless @quiet
+            return false
 
 class root.FilterRegexp extends mixin.Module
     @include FilterInterface
-    
+
     constructor: (@useWhite = true) ->
+        @quiet = false
+    
         @blacklist = []
         @whitelist = []
 
@@ -50,6 +56,8 @@ class root.FilterExact extends mixin.Module
     @include FilterInterface
     
     constructor: (@useWhite = true) ->
+        @quiet = false
+    
         @blacklist = {}
         @whitelist = {}
 
