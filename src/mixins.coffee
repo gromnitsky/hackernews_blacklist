@@ -1,20 +1,9 @@
+# https://github.com/jashkenas/coffee-script/issues/218#issuecomment-146909
+
 root = exports ? this
 
-moduleKeywords = ['extended', 'included']
+root.extend = (obj, mixin) ->
+    obj[name] = method for name, method of mixin
 
-class root.Module
-    @extend: (obj) ->
-        for key, value of obj when key not in moduleKeywords
-            @[key] = value
-
-        obj.extended?.apply(@)
-        this
-
-    @include: (obj) ->
-        for key, value of obj when key not in moduleKeywords
-            # Assign properties to the prototype
-            @::[key] = value
-
-        obj.included?.apply(@)
-        this
-
+root.include = (klass, mixin) ->
+    root.extend klass.prototype, mixin

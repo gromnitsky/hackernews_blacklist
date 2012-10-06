@@ -31,9 +31,7 @@ FilterInterface =
             console.error "match error: #{e.message}" unless @quiet
             return false
 
-class root.FilterRegexp extends mixin.Module
-    @include FilterInterface
-
+class root.FilterRegexp
     constructor: (@useWhite = true) ->
         @quiet = false
     
@@ -52,9 +50,9 @@ class root.FilterRegexp extends mixin.Module
     listGet: (list) ->
         list.join "\n"
 
-class root.FilterExact extends mixin.Module
-    @include FilterInterface
-    
+mixin.include root.FilterRegexp, FilterInterface
+
+class root.FilterExact
     constructor: (@useWhite = true) ->
         @quiet = false
     
@@ -73,3 +71,5 @@ class root.FilterExact extends mixin.Module
         r = []
         r.push key for key, val of list
         r.join "\n"
+
+mixin.include root.FilterExact, FilterInterface
