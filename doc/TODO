@@ -20,10 +20,10 @@ Every BL is a (big) string where entries are separated by newlines.
 * 0.0.1
 
 - [X] black list
+- [X] collapse threads
 
 * 0.1.x
 
-- [ ] collapse threads
 - [ ] collapse read comments
 
 * later

@@ -18,17 +18,24 @@ class root.Comment
         throw new Error 'node is not an image' unless @identNode?.nodeName == "IMG"
         
         @ident = @identNode.width
+
         # dude...
-        @header = @identNode.parentNode.parentNode.querySelector('span[class="comhead"]')
-        throw new Error 'cannot extract comment header' unless @header
-        @body = @header.parentNode.parentNode.querySelector('span[class="comment"]')
-        throw new Error 'cannot extract comment body' unless @body
+        @header = @identNode.parentNode.parentNode.querySelector 'span[class="comhead"]'
+        throw new Error "cannot extract comment's header" unless @header
+        @headerText = @header.innerText # visual debug
+        
+        link = (@header.querySelector 'a[href^="item?id="]') || (@header.querySelector 'a[href*="ycombinator.com/item?id="]')
+        @messageID = (link.href.match /id=(\d+)/)[1] if link
+        throw new Error "cannot extract comment's messageID for #{@headerText}" unless link
+
+        @body = @header.parentNode.parentNode.querySelector 'span[class="comment"]'
+        throw new Error "cannot extract comment's body" unless @body
+
 
         @makeButton()
-        @addEL()
 
     makeButton: ->
-        return if @button # don't make it twice
+        throw new Error 'button already exist' if @button # don't make it twice
 
         @button = document.createElement 'span'
         @button.className = Comment.buttonClass
@@ -42,37 +49,26 @@ class root.Comment
         console.log 'new button'
 
     buttonOpen: ->
-        return unless @button
+        throw new Error "button doesn't exist" unless @button
         @button.innerText = Comment.buttonOpenLabel
         @button.style.cursor = '-webkit-zoom-out'
         
     buttonClose: ->
-        return unless @button
+        throw new Error "button doesn't exist" unless @button
         @button.innerText = Comment.buttonCloseLabel
         @button.style.cursor = '-webkit-zoom-in'
 
-    addEL: ->
-        return unless @button
+    isOpen: ->
+        throw new Error "button doesn't exist" unless @button
+        @button.innerText == Comment.buttonOpenLabel
 
-        @button.addEventListener 'click', =>
-            @toggleCollapseWithChilds()
-        , false
-
-    toggleCollapseWithChilds: ->
-        # FIXME
-        @toggleCollapse()
-
-    toggleCollapse: ->
-        return unless @button
-
-        if @button.innerText == Comment.buttonOpenLabel
-            # collapse it
-            @bodyHide()
-            @buttonClose()
-        else
-            # expand it
-            @bodyHide false
-            @buttonOpen()
+    close: ->
+        @bodyHide()
+        @buttonClose()
+        
+    open: ->
+        @bodyHide false
+        @buttonOpen()
 
     # Show if !hide.
     #
@@ -88,12 +84,38 @@ class root.Comment
         else
             @body.style.display = state
         
-    isRoot: ->
-        @ident == 0
 
+class Thread
+    constructor: (@comments) ->
+        @addEL(index, idx) for idx, index in @comments
+
+    addEL: (index, comment) ->
+        throw new Error 'comment w/o a button' unless comment.button
+
+        comment.button.addEventListener 'click', =>
+            # collect children
+            children = [comment]
+            idx = index + 1
+            
+            ident = comment.ident
+            while @comments[idx]?.ident > ident
+                console.log @comments[idx]
+                children.push @comments[idx]
+                idx += 1
+
+            console.log "comment has #{children.length-1} children"
+            # collapse or expand comment and all its children
+            if comment.isOpen()
+                idx.close() for idx in children
+            else
+                idx.open() for idx in children
+            
+        , false
+    
 
 # Main
 images = document.querySelectorAll('td > img[height="1"]')
 new Error '0 comments?' unless images.length > 0
 
-new Comment(idx) for idx in images
+comments = (new Comment(idx) for idx in images)
+new Thread(comments)
