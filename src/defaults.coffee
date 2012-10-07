@@ -10,6 +10,8 @@ class root.Conf
                 'huffingtonpost.com'
                 'www.apple.com'
                 'www.marco.org'
+                'www.codinghorror.com'
+                'www.slate.com'
                 ]
             'username' : []
             'linktitle-bl' : [
@@ -21,6 +23,7 @@ class root.Conf
                 '\\b(Mac\\s+)?OS(\\s+)?X\\b'
                 '\\bRetina\\b'
                 '\\bIcloud'
+                '\\bItunes'
                 'Python'
                 'Django'
                 'Pycon'
@@ -32,6 +35,11 @@ class root.Conf
                 '\\bVim\\b'
                 'Pinterest'
                 'A/B\\sTest'
+                'Steve?\\s+Jobs'
+                'Pirate'
+                'Torrent'
+                'App\\.net'
+                '\\bAsp\\.net'
                 ]
             'linktitle-wl' : ['ruby', 'rails']
 
