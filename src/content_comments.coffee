@@ -2,8 +2,8 @@ root = exports ? this
 
 class root.Comment
     @buttonClass = 'hnbl_ToggleButton'
-    @buttonOpen = '[-] '
-    @buttonClose = '[+] '
+    @buttonOpenLabel = '[-] '
+    @buttonCloseLabel = '[+] '
     
     # identNode is a dom node that contains <img> with a width attribute
     # that designates an ident as an indicator of child relation of a
@@ -32,21 +32,61 @@ class root.Comment
 
         @button = document.createElement 'span'
         @button.className = Comment.buttonClass
-        @button.style.cursor = '-webkit-zoom-out'
 
-        t = document.createTextNode Comment.buttonOpen
+        t = document.createTextNode '?'
         @button.appendChild t
+        @buttonOpen()
 
         # insert a button
         @header.insertBefore @button, @header.firstChild
         console.log 'new button'
 
+    buttonOpen: ->
+        return unless @button
+        @button.innerText = Comment.buttonOpenLabel
+        @button.style.cursor = '-webkit-zoom-out'
+        
+    buttonClose: ->
+        return unless @button
+        @button.innerText = Comment.buttonCloseLabel
+        @button.style.cursor = '-webkit-zoom-in'
+
     addEL: ->
         return unless @button
 
-        @button.addEventListener 'click', ->
-            console.log 'yo'
+        @button.addEventListener 'click', =>
+            @toggleCollapseWithChilds()
         , false
+
+    toggleCollapseWithChilds: ->
+        # FIXME
+        @toggleCollapse()
+
+    toggleCollapse: ->
+        return unless @button
+
+        if @button.innerText == Comment.buttonOpenLabel
+            # collapse it
+            @bodyHide()
+            @buttonClose()
+        else
+            # expand it
+            @bodyHide false
+            @buttonOpen()
+
+    # Show if !hide.
+    #
+    # For 1 paragraph comments, a 'reply' link is a next sibling to
+    # @body. All praise to pg!
+    bodyHide: (hide = true) ->
+        state = if hide then "none" else ""
+
+        reply = @body.nextSibling
+        if reply?.nodeName == "P"
+            @body.style.display = state
+            reply.style.display = state
+        else
+            @body.style.display = state
         
     isRoot: ->
         @ident == 0
