@@ -6,7 +6,8 @@
 		"vendor/md5.js",
 
 		"lib/background.js",
-		"lib/content.js",
+		"lib/content_subs.js",
+		"lib/content_comments.js",
 		"lib/defaults.js",
 		"lib/extstorage.js",
 		"lib/filter.js",
