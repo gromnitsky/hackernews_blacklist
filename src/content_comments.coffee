@@ -3,8 +3,8 @@ msg = require?('./message') || root
 
 class root.Cmnt
     @buttonClass = 'hnbl_ToggleButton'
-    @buttonOpenLabel = '[-] '
-    @buttonCloseLabel = '[+] '
+    @buttonOpenLabel = '[-]'
+    @buttonCloseLabel = '[+]'
 
     # identNode is a dom node that contains <img> with a width attribute
     # that designates an ident as an indicator of child relation of a
@@ -48,7 +48,9 @@ class root.Cmnt
         @buttonOpen()
 
         # insert a button
-        @header.insertBefore @button, @header.firstChild
+        node = @header.firstChild
+        @header.insertBefore @button, node
+        @header.insertBefore (document.createTextNode ' '), node
         console.log 'cmnt: new button'
 
     buttonOpen: ->
@@ -206,10 +208,127 @@ class root.Memory
                 console.log "memory: no #{mid}"
                 callback false
 
+
+class root.CCursor
+    constructor: (@comments) ->
+        # indices
+        @prev = null
+        @current = null
+
+        # set cursor at first comment
+        @moveTo 42
+
+    setAt: (commentIndex) ->
+        comment = @comments[commentIndex]
+        new Error 'ccursor: invalid commentIndex' unless comment?.button
+
+        prev = @comments[@prev]
+        @markAsSeen prev if prev?
+        @markAsCurrent comment
+
+        @current = commentIndex
+
+    getCurrentComment: ->
+        @current = 0 unless @current?
+        @comments[@current]
+
+    markAsSeen: (comment) ->
+        new Error 'ccursor: invalid comment' unless comment?.button
+
+        comment.button.style.color = 'white'
+        comment.button.style.background = '#ff00ff'
+
+    markAsCurrent: (comment) ->
+        new Error 'ccursor: invalid comment' unless comment?.button
+
+        comment.button.style.color = 'white'
+        comment.button.style.background = '#ff6600'
+
+    # step is -1 or 1
+    moveTo: (step) ->
+        step = 1 unless step?
+#        console.log "cursor: current=#{@current}, prev=#{@prev}"
+        @prev = @current
+
+        if @current? then @current += step else @current = 0
+
+        @current = 0 if @current >= @comments.length
+        @current = @comments.length-1 if @current < 0
+
+#        console.log "cursor: (fix) current=#{@current}, prev=#{@prev}"
+        @setAt @current
+
+    findExpanded: (direction) ->
+        if @current? then start = @current else start = 0
+        direction = 1 unless direction?
+
+        itmax = @comments.length-1
+        itcur = 0
+        pos = start + direction
+
+        while itcur < itmax
+            console.log "pos=#{pos}, start=#{start}, itcur=#{itcur}"
+            pos = 0 if pos >= @comments.length
+            pos = @comments.length-1 if pos < 0
+
+            if @comments[pos]?.isOpen()
+                @prev = start
+                console.log "cursor: findExpanded: prev=#{@prev}"
+                @setAt pos
+                return
+            else
+                console.log "cursor: #{pos} is collapsed"
+
+            pos += direction
+            itcur += 1
+
+        console.log 'cursor: BEEP, no expanded comments found'
+
+    toggle: ->
+        comment = @getCurrentComment()
+        if comment.isOpen() then comment.close() else comment.open()
+
+
+class root.Keyboard
+    @ignoredElements = ['INPUT', 'TEXTAREA']
+    @keymap = {
+        '74': ['moveTo', -1] # 'j' prev comment
+        '75' :  ['moveTo', 1] # 'k' next
+        '188': ['findExpanded', -1, true] # ',' prev unread comment
+        '190': ['findExpanded', 1, true] # '.' next unread
+        '76':  ['toggle'] # 'l' collapse/expand current comment
+    }
+
+    constructor: (@cursor) ->
+        @addEL()
+
+    addEL: ->
+        document.body.addEventListener 'keydown', (event) =>
+            return unless @isValidElement event?.target
+            @keycode2command event.keyCode
+        , false
+
+    isValidElement: (element) ->
+        return false if Keyboard.ignoredElements.indexOf(element?.nodeName) != -1
+        true
+
+    keycode2command: (keycode) ->
+        key = keycode?.toString()
+        if key of Keyboard.keymap
+            method = Keyboard.keymap[key][0]
+            args = Keyboard.keymap[key][1..-1]
+            console.log "keyboard: #{Keyboard.keymap[key]}"
+
+            @cursor[method].apply(@cursor, args)
+        else
+            console.error "keyboard: keycode #{key} isn't assosiated with a command"
+
+
 # Main
 images = document.querySelectorAll('td > img[height="1"]')
 new Error '0 comments?' unless images.length > 0
 
 comments = (new Cmnt(idx) for idx in images)
+new Keyboard (new CCursor(comments))
 new Memory (memory) ->
     new Thread(comments, memory)
