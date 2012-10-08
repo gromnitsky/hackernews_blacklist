@@ -19,16 +19,14 @@ Every BL is a (big) string where entries are separated by newlines.
 
 * 0.0.1
 
-- [X] black list
+- [X] black lists
 - [X] collapse threads
-
-* 0.1.x
-
-- [ ] collapse read comments
+- [X] collapse read comments
+- [X] keyboard shortcuts
+- [ ] backup BLs to json file, restore from it
 
 * later
 
 - [ ] popup window like in g+
-- [ ] keyboard shortcuts (hjkl, 'mark as read', collapse, etc)
 - [ ] white list: highlight white-listed users
 - [ ] inline reply
