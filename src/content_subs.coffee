@@ -1,20 +1,11 @@
 root = exports ? this
-
-class Message
-    constructor: (@name) ->
-
-    encode: (hash) ->
-        'msg': @name
-        'data': hash
-
-    @Creat: (name, hash) ->
-        (new Message(name)).encode hash
+msg = require?('./message') || root
 
 extStorageMsgGet = (group, name) ->
-    Message.Creat 'extStorage.get', {'group': group, 'name': name}
+    msg.Message.Creat 'extStorage.get', {'group': group, 'name': name}
 
 extStorageMsgGetGroup = (group) ->
-    Message.Creat 'extStorage.getGroup', {'group': group}
+    msg.Message.Creat 'extStorage.getGroup', {'group': group}
 
 class root.Sub
     # rank -- a dom element (tr) that represents a sub 'anchor'
@@ -31,7 +22,7 @@ class root.Sub
     getHostname: ->
         # bwaa! no need for uri parsing!
         @getLink().hostname
-                
+
     getUserName: ->
         @row2.querySelector('a')?.innerText || ''
 
@@ -57,7 +48,7 @@ class root.Sub
 
 class root.HN
     @warningThreshold = 15
-    
+
     constructor: (@settings) ->
         @home = document.querySelector '.pagetop a'
 
@@ -103,9 +94,9 @@ class root.HN
                 idx.rank.title = 'Link title'
                 continue
 
-        @warning count if count >= HN.warningThreshold
+        @warning count if count >= root.HN.warningThreshold
         # ask background.js to update page icon title
-        chrome.extension.sendMessage Message.Creat('stat', {'filtered': count})
+        chrome.extension.sendMessage msg.Message.Creat('statSubs', {'filtered': count})
 
     warning: (linksFiltered) ->
         t = [
@@ -121,7 +112,6 @@ class root.HN
             "Get up your sorry ass, dude."
             "In good old days HN wasn't so bad."
             "Has somebody died again?"
-            ""
             ]
         @home.innerText = "#{linksFiltered} filtered links? #{t[Math.floor Math.random()*(t.length)]}"
 
@@ -129,7 +119,7 @@ class root.HN
         element.rank.addEventListener 'click', ->
             element.toggleCollapse()
         , false
-        
+
 
 # Main
 chrome.extension.sendMessage extStorageMsgGetGroup('Filters'), (res) ->

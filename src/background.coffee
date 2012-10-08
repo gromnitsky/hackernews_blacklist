@@ -20,7 +20,7 @@ class InjectorSubs
         @scripts = [
             'lib/mixins.js'
             'lib/filter.js'
-            'lib/extstorage.js'
+            'lib/message.js'
             'lib/content_subs.js'
             ]
     
@@ -32,6 +32,7 @@ include InjectorSubs, InjectorInterface
 class InjectorComments
     constructor: ->
         @scripts = [
+            'lib/message.js'
             'lib/content_comments.js'
             ]
     
@@ -58,10 +59,14 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
             sendRes ExtStorage.Get req.data.group, req.data.name
         when 'extStorage.getGroup'
             sendRes ExtStorage.GetGroup req.data.group
-        when 'stat'
+        when 'statSubs'
             chrome.pageAction.setTitle
-                'tabId': sender.tab.id
-                'title': "#{req.data.filtered} submissions filtered"
+                tabId: sender.tab.id
+                title: "#{req.data.filtered} submissions filtered"
+        when 'statComments'
+            chrome.pageAction.setTitle
+                tabId: sender.tab.id
+                title: "#{req.data.total-req.data.collapsed} new, #{req.data.collapsed} read, #{req.data.total} total"
         else
             new Error("unknown message name: #{req.msg}")
 

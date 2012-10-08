@@ -1,4 +1,5 @@
 root = exports ? this
+msg = require?('./message') || root
 
 class root.Cmnt
     @buttonClass = 'hnbl_ToggleButton'
@@ -48,7 +49,7 @@ class root.Cmnt
 
         # insert a button
         @header.insertBefore @button, @header.firstChild
-        console.log 'new button'
+        console.log 'cmnt: new button'
 
     buttonOpen: ->
         throw new Error "button doesn't exist" unless @button
@@ -89,11 +90,13 @@ class root.Cmnt
 
 class root.Thread
     constructor: (@comments, @memory) ->
-        console.error "memory isn't initialized" unless @memory
+        console.error "thread: memory isn't initialized" unless @memory
+
+        @collapsed = 0
 
         for idx, index in @comments
             @addEL(index, idx)
-            @collapse idx
+            @collapse index, idx
 
     addEL: (index, comment) ->
         throw new Error 'comment w/o a button' unless comment.button
@@ -105,11 +108,11 @@ class root.Thread
 
             ident = comment.ident
             while @comments[idx]?.ident > ident
-                console.log @comments[idx]
+#                console.log @comments[idx]
                 children.push @comments[idx]
                 idx += 1
 
-            console.log "comment has #{children.length-1} children"
+            console.log "thread: comment #{comment.messageID} has #{children.length-1} children"
             # collapse or expand comment and all its children
             if comment.isOpen()
                 idx.close() for idx in children
@@ -120,11 +123,26 @@ class root.Thread
 
     # Collapse comment if it is in indexdb. Collapse exactly 1 comment,
     # don't touch its children.
-    collapse: (comment) ->
+    collapse: (currentIndex, comment) ->
         return unless @memory
 
         @memory.exist comment.messageID, (exists) =>
-            if exists then comment.close() else @memorize comment
+            if exists
+                comment.close()
+                @collapsed += 1
+            else
+                @memorize comment
+
+            @updateTitle currentIndex
+
+    # Update icon title via sending a message to bg.js.
+    updateTitle: (currentIndex) ->
+        if currentIndex == @comments.length-1
+            chrome.extension.sendMessage msg.Message.Creat('statComments', {
+                collapsed: @collapsed
+                total: @comments.length
+            })
+
 
     # add comment to indexdb
     memorize: (comment) ->
@@ -185,7 +203,7 @@ class root.Memory
                 console.log "memory: #{mid} exists: #{req.result.username}"
                 callback true
             else
-                console.log "memory: no #{mid} exist"
+                console.log "memory: no #{mid}"
                 callback false
 
 # Main
