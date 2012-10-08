@@ -90,15 +90,24 @@ class root.Cmnt
             @body.style.display = state
 
 
+class CollapseEvent
+    # Raises when a collapse attempt completes (successful or not)
+    oncomplete: ->
+
+
 class root.Thread
-    constructor: (@comments, @memory) ->
+    constructor: (@comments, @memory, @cursor) ->
         console.error "thread: memory isn't initialized" unless @memory
 
         @collapsed = 0
 
         for idx, index in @comments
             @addEL(index, idx)
-            @collapse index, idx
+
+            req = @collapse index, idx
+            req.oncomplete = (currentIndex, comment) =>
+#                console.log "thread: #{currentIndex} #{comment.messageID} done collapsing"
+                @updateTitle currentIndex
 
     addEL: (index, comment) ->
         throw new Error 'comment w/o a button' unless comment.button
@@ -110,7 +119,6 @@ class root.Thread
 
             ident = comment.ident
             while @comments[idx]?.ident > ident
-#                console.log @comments[idx]
                 children.push @comments[idx]
                 idx += 1
 
@@ -121,6 +129,8 @@ class root.Thread
             else
                 idx.open() for idx in children
 
+            # select clicked button
+            @cursor.moveTo index
         , false
 
     # Collapse comment if it is in indexdb. Collapse exactly 1 comment,
@@ -128,14 +138,19 @@ class root.Thread
     collapse: (currentIndex, comment) ->
         return unless @memory
 
+        collapse_event = new CollapseEvent()
+
         @memory.exist comment.messageID, (exists) =>
             if exists
                 comment.close()
                 @collapsed += 1
+                collapse_event.oncomplete currentIndex, comment
             else
                 @memorize comment
+                # FIXME: not quite, but safe for our purpose
+                collapse_event.oncomplete currentIndex, comment
 
-            @updateTitle currentIndex
+        collapse_event
 
     # Update icon title via sending a message to bg.js.
     updateTitle: (currentIndex) ->
@@ -216,7 +231,7 @@ class root.CCursor
         @current = null
 
         # set cursor at first comment
-        @moveTo 42
+        @move 42
 
     setAt: (commentIndex) ->
         comment = @comments[commentIndex]
@@ -227,6 +242,11 @@ class root.CCursor
         @markAsCurrent comment
 
         @current = commentIndex
+
+    # From current point to any valid
+    moveTo: (commentIndex) ->
+        @prev = @current
+        @setAt commentIndex
 
     getCurrentComment: ->
         @current = 0 unless @current?
@@ -245,9 +265,8 @@ class root.CCursor
         comment.button.style.background = '#ff6600'
 
     # step is -1 or 1
-    moveTo: (step) ->
+    move: (step) ->
         step = 1 unless step?
-#        console.log "cursor: current=#{@current}, prev=#{@prev}"
         @prev = @current
 
         if @current? then @current += step else @current = 0
@@ -255,7 +274,6 @@ class root.CCursor
         @current = 0 if @current >= @comments.length
         @current = @comments.length-1 if @current < 0
 
-#        console.log "cursor: (fix) current=#{@current}, prev=#{@prev}"
         @setAt @current
 
     findExpanded: (direction) ->
@@ -267,17 +285,13 @@ class root.CCursor
         pos = start + direction
 
         while itcur < itmax
-            console.log "pos=#{pos}, start=#{start}, itcur=#{itcur}"
             pos = 0 if pos >= @comments.length
             pos = @comments.length-1 if pos < 0
 
             if @comments[pos]?.isOpen()
                 @prev = start
-                console.log "cursor: findExpanded: prev=#{@prev}"
                 @setAt pos
                 return
-            else
-                console.log "cursor: #{pos} is collapsed"
 
             pos += direction
             itcur += 1
@@ -292,11 +306,13 @@ class root.CCursor
 class root.Keyboard
     @ignoredElements = ['INPUT', 'TEXTAREA']
     @keymap = {
-        '74': ['moveTo', -1] # 'j' prev comment
-        '75' :  ['moveTo', 1] # 'k' next
+        '74': ['move', -1] # 'j' prev comment
+        '75' :  ['move', 1] # 'k' next
+        '76' : ['move', 10] # 'l' jump over 10 comments forward
+        '72' : ['move', -10] # 'h' jump over 10 comments backward
         '188': ['findExpanded', -1, true] # ',' prev unread comment
         '190': ['findExpanded', 1, true] # '.' next unread
-        '76':  ['toggle'] # 'l' collapse/expand current comment
+        '222':  ['toggle'] # 'single quote' collapse/expand current comment
     }
 
     constructor: (@cursor) ->
@@ -329,6 +345,7 @@ images = document.querySelectorAll('td > img[height="1"]')
 new Error '0 comments?' unless images.length > 0
 
 comments = (new Cmnt(idx) for idx in images)
-new Keyboard (new CCursor(comments))
+cursor = new CCursor comments
+new Keyboard cursor
 new Memory (memory) ->
-    new Thread(comments, memory)
+    new Thread(comments, memory, cursor)
