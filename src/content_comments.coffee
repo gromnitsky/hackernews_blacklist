@@ -89,6 +89,10 @@ class root.Cmnt
         else
             @body.style.display = state
 
+    scrollIntoView: ->
+        throw new Error "button doesn't exist" unless @button
+        @button.scrollIntoView true
+
 
 class CollapseEvent
     # Raises when a collapse attempt completes (successful or not)
@@ -108,6 +112,7 @@ class root.Thread
             req.oncomplete = (currentIndex, comment) =>
 #                console.log "thread: #{currentIndex} #{comment.messageID} done collapsing"
                 @updateTitle currentIndex
+                @scrollToExpanded currentIndex
 
     addEL: (index, comment) ->
         throw new Error 'comment w/o a button' unless comment.button
@@ -160,6 +165,10 @@ class root.Thread
                 total: @comments.length
             })
 
+    # Scroll to 1st expanded comment, if possible.
+    scrollToExpanded: (currentIndex) ->
+        if currentIndex == @comments.length-1
+            @cursor.findExpanded 1, false
 
     # add comment to indexdb
     memorize: (comment) ->
@@ -264,7 +273,7 @@ class root.CCursor
         comment.button.style.color = 'white'
         comment.button.style.background = '#ff6600'
 
-    # step is -1 or 1
+    # step is -1 or 1, -10 or 10, etc.
     move: (step) ->
         step = 1 unless step?
         @prev = @current
@@ -275,22 +284,26 @@ class root.CCursor
         @current = @comments.length-1 if @current < 0
 
         @setAt @current
+        @comments[@current].scrollIntoView()
 
-    findExpanded: (direction) ->
+    # direction is -1 or 1
+    findExpanded: (direction, start_from_next = true) ->
         if @current? then start = @current else start = 0
         direction = 1 unless direction?
 
         itmax = @comments.length-1
         itcur = 0
-        pos = start + direction
+        if start_from_next then pos = start + direction else pos = start
 
         while itcur < itmax
             pos = 0 if pos >= @comments.length
             pos = @comments.length-1 if pos < 0
 
-            if @comments[pos]?.isOpen()
+            comment = @comments[pos]
+            if comment.isOpen()
                 @prev = start
                 @setAt pos
+                comment.scrollIntoView()
                 return
 
             pos += direction
@@ -342,7 +355,13 @@ class root.Keyboard
 
 # Main
 images = document.querySelectorAll('td > img[height="1"]')
-new Error '0 comments?' unless images.length > 0
+if images.length == 0
+    console.error '0 comments?'
+    chrome.extension.sendMessage msg.Message.Creat('statComments', {
+        collapsed: 0
+        total: images.length
+    })
+    return
 
 comments = (new Cmnt(idx) for idx in images)
 cursor = new CCursor comments
