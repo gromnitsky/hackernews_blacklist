@@ -16,31 +16,31 @@ http://news.ycombinator.com.
   <th>To do this</th>
   </tr>
   <tr>
-  <td>`'`</td>
+  <td><kbd>'</kbd></td>
   <td>Collapse/expand current comment</td>
   </tr>
   <tr>
-  <td>`k`</td>
+  <td><kbd>k</kbd></td>
   <td>Move to the next comment</td>
   </tr>
   <tr>
-  <td>`j`</td>
+  <td><kbd>j</kbd></td>
   <td>Move to the previous comment</td>
   </tr>
   <tr>
-  <td>`l`</td>
+  <td><kbd>l</kbd></td>
   <td>Jump over 10 comments forward</td>
   </tr>
   <tr>
-  <td>`h`</td>
+  <td><kbd>h</kbd></td>
   <td>Jump over 10 comments backward</td>
   </tr>
   <tr>
-  <td>`.`</td>
+  <td><kbd>.</kbd></td>
   <td>Jump to the next expanded comment</td>
   </tr>
   <tr>
-  <td>`,`</td>
+  <td><kbd>,</kbd></td>
   <td>Jump to the previous expanded comment</td>
   </tr>
   </table>
