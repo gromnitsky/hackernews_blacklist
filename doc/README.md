@@ -20,6 +20,10 @@ http://news.ycombinator.com.
   <td>Collapse/expand current comment</td>
   </tr>
   <tr>
+  <td><kbd>;</kbd></td>
+  <td>Collapse/expand current sub-thread</td>
+  </tr>
+  <tr>
   <td><kbd>k</kbd></td>
   <td>Move to the next comment</td>
   </tr>

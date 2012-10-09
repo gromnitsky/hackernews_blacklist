@@ -13,8 +13,6 @@ class root.Cmnt
     #
     # The list of identNode's can be obtained via 'td > img[height="1"]'
     # css selector.
-    #
-    # PG, this is a quite idiotic scheme.
     constructor: (@identNode) ->
         throw new Error 'node is not an image' unless @identNode?.nodeName == "IMG"
 
@@ -78,7 +76,7 @@ class root.Cmnt
     # Show if !hide.
     #
     # For 1 paragraph comments, a 'reply' link is a next sibling to
-    # @body. All praise to pg!
+    # @body. All praise pg!
     bodyHide: (hide = true) ->
         state = if hide then "none" else ""
 
@@ -102,6 +100,7 @@ class CollapseEvent
 class root.Forum
     constructor: (@comments, @memory, @cursor) ->
         console.error "forum: memory isn't initialized" unless @memory
+        console.error "forum: cursor isn't initialized" unless @cursor
 
         # statistics
         @collapsed = 0
@@ -119,7 +118,11 @@ class root.Forum
         comment = @comments?[index]
         throw new Error 'comment w/o a button' unless comment?.button
 
-        comment.button.addEventListener 'click', => @subthreadToggle index, false
+        comment.button.addEventListener 'click', =>
+            @subthreadToggle index
+            # select clicked button
+            @cursor.moveTo index
+        , false
 
     # Collapse or expand index comment and all its children.
     subthreadToggle: (index) ->
@@ -132,8 +135,12 @@ class root.Forum
         else
             idx.open() for idx in children
 
-        # select clicked button
-        @cursor.moveTo index
+    commentToggle: ->
+        comment = @cursor.getCurrentComment()
+        if comment.isOpen() then comment.close() else comment.open()
+
+    commentSubtreadToggle: ->
+        @subthreadToggle @cursor?.current
 
     # Return an array with an index comment & all its children.
     subthreadGet: (index) ->
@@ -190,6 +197,8 @@ class root.Forum
     # Add comment to indexeddb.
     memorize: (comment) ->
         return unless @memory
+        throw new Error 'comment w/o a button' unless comment?.button
+
         @memory.add {
             mid: comment.messageID
             username: comment.username
@@ -328,24 +337,23 @@ class root.CCursor
 
         console.log 'cursor: BEEP, no expanded comments found'
 
-    toggle: ->
-        comment = @getCurrentComment()
-        if comment.isOpen() then comment.close() else comment.open()
-
 
 class root.Keyboard
     @ignoredElements = ['INPUT', 'TEXTAREA']
-    @keymap = {
-        '74': ['move', -1] # 'j' prev comment
-        '75' :  ['move', 1] # 'k' next
-        '76' : ['move', 10] # 'l' jump over 10 comments forward
-        '72' : ['move', -10] # 'h' jump over 10 comments backward
-        '188': ['findExpanded', -1, true] # ',' prev unread comment
-        '190': ['findExpanded', 1, true] # '.' next unread
-        '222':  ['toggle'] # 'single quote' collapse/expand current comment
-    }
 
-    constructor: (@cursor) ->
+    constructor: (@forum) ->
+        @keymap = {
+            '74': [@forum.cursor, 'move', -1] # 'j' prev comment
+            '75' :  [@forum.cursor, 'move', 1] # 'k' next
+            '76' : [@forum.cursor, 'move', 10] # 'l' jump over 10 comments forward
+            '72' : [@forum.cursor, 'move', -10] # 'h' jump over 10 comments backward
+            '188': [@forum.cursor, 'findExpanded', -1, true] # ',' prev unread comment
+            '190': [@forum.cursor, 'findExpanded', 1, true] # '.' next unread
+            '222':  [@forum, 'commentToggle'] # 'single quote' collapse/expand current comment
+            '186':  [@forum, 'commentSubtreadToggle'] # ';' collapse/expand current subthread
+            '221':  [@forum, 'findRoot', 1] # '}' jump to next root comment
+            '219':  [@forum, 'findRoot', -1] # '{' jump to prev root comment
+        }
         @addEL()
 
     addEL: ->
@@ -360,12 +368,13 @@ class root.Keyboard
 
     keycode2command: (keycode) ->
         key = keycode?.toString()
-        if key of Keyboard.keymap
-            method = Keyboard.keymap[key][0]
-            args = Keyboard.keymap[key][1..-1]
-            console.log "keyboard: #{Keyboard.keymap[key]}"
+        if key of @keymap
+            object = @keymap[key][0]
+            method = @keymap[key][1]
+            args = @keymap[key][2..-1]
+            console.log "keyboard: #{@keymap[key]}"
 
-            @cursor[method].apply(@cursor, args)
+            object[method].apply(object, args)
         else
             console.error "keyboard: keycode #{key} isn't assosiated with a command"
 
@@ -382,6 +391,6 @@ if images.length == 0
 
 comments = (new Cmnt(idx) for idx in images)
 cursor = new CCursor comments
-new Keyboard cursor
 new Memory (memory) ->
-    new Forum(comments, memory, cursor)
+    forum = new Forum(comments, memory, cursor)
+    new Keyboard forum
