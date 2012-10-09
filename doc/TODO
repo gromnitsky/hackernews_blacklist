@@ -27,6 +27,7 @@ Every BL is a (big) string where entries are separated by newlines.
 - [ ] popup message & progress bar
 - [X] '[' & ']' keys to jump to a next/prev root comment
 - [X] ';' key to collapse a (sub)thread, not just the current comment
+- [ ] record a parent for each comment and its root.
 
 * later
 

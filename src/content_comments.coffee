@@ -260,6 +260,8 @@ class root.Memory
 
 class root.CCursor
     constructor: (@comments) ->
+        throw new Error 'invalid comments array' unless @comments instanceof Array
+
         # indices
         @prev = null
         @current = null
@@ -353,37 +355,47 @@ class root.CCursor
             comment.ident == 0
         , "no other root comments found"
 
+    # direction is -1 or 1
+    findSameLevel: (direction) ->
+        @findAndSet direction, (comment) =>
+            comment.ident == @comments[@current].ident
+        , "no other comments on this level found"
+
 
 class root.Keyboard
     @ignoredElements = ['INPUT', 'TEXTAREA']
 
     constructor: (@forum) ->
         @keymap = {
-            '74': [@forum.cursor, 'move', -1] # 'j' prev comment
-            '75' :  [@forum.cursor, 'move', 1] # 'k' next
-            '76' : [@forum.cursor, 'move', 10] # 'l' jump over 10 comments forward
-            '72' : [@forum.cursor, 'move', -10] # 'h' jump over 10 comments backward
+            '75': [@forum.cursor, 'move', -1] # 'k' prev comment
+            '74': [@forum.cursor, 'move', 1] # 'j' next
+            '76': [@forum.cursor, 'move', 10] # 'l' jump over 10 comments forward
+            '72': [@forum.cursor, 'move', -10] # 'h' jump over 10 comments backward
             '188': [@forum.cursor, 'findExpanded', -1] # ',' prev unread comment
             '190': [@forum.cursor, 'findExpanded', 1] # '.' next unread
-            '222':  [@forum, 'commentToggle'] # 'single quote' collapse/expand current comment
-            '186':  [@forum, 'commentSubtreadToggle'] # ';' collapse/expand current subthread
-            '221':  [@forum.cursor, 'findRoot', 1] # ']' jump to next root comment
-            '219':  [@forum.cursor, 'findRoot', -1] # '[' jump to prev root comment
+            '222': [@forum, 'commentToggle'] # 'single quote' collapse/expand current comment
+            '186': [@forum, 'commentSubtreadToggle'] # ';' collapse/expand current subthread
+            '221': [@forum.cursor, 'findRoot', 1] # ']' jump to next root comment
+            '219': [@forum.cursor, 'findRoot', -1] # '[' jump to prev root comment
+            'S-221': [@forum.cursor, 'findSameLevel', 1] # ']' jump to next comment on the same level
+            'S-219': [@forum.cursor, 'findSameLevel', -1] # '[' jump to prev comment on the same level
         }
         @addEL()
 
     addEL: ->
         document.body.addEventListener 'keydown', (event) =>
             return unless @isValidElement event?.target
-            @keycode2command event.keyCode
+            @keycode2command event.keyCode, event.shiftKey
         , false
 
     isValidElement: (element) ->
         return false if Keyboard.ignoredElements.indexOf(element?.nodeName) != -1
         true
 
-    keycode2command: (keycode) ->
+    keycode2command: (keycode, shift) ->
         key = keycode?.toString()
+        key = "S-#{key}" if shift
+
         if key of @keymap
             object = @keymap[key][0]
             method = @keymap[key][1]

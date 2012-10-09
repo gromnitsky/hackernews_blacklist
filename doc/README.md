@@ -24,11 +24,11 @@ http://news.ycombinator.com.
   <td>Collapse/expand current sub-thread</td>
   </tr>
   <tr>
-  <td><kbd>k</kbd></td>
+  <td><kbd>j</kbd></td>
   <td>Move to the next comment</td>
   </tr>
   <tr>
-  <td><kbd>j</kbd></td>
+  <td><kbd>k</kbd></td>
   <td>Move to the previous comment</td>
   </tr>
   <tr>
@@ -54,6 +54,14 @@ http://news.ycombinator.com.
   <tr>
   <td><kbd>[</kbd></td>
   <td>Jump to the previous root comment</td>
+  </tr>
+  <tr>
+  <td><kbd>}</kbd></td>
+  <td>Jump to the next comment on the same level</td>
+  </tr>
+  <tr>
+  <td><kbd>{</kbd></td>
+  <td>Jump to the previous comment on the same level</td>
   </tr>
   </table>
 
