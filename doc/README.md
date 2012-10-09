@@ -47,6 +47,14 @@ http://news.ycombinator.com.
   <td><kbd>,</kbd></td>
   <td>Jump to the previous expanded comment</td>
   </tr>
+  <tr>
+  <td><kbd>]</kbd></td>
+  <td>Jump to the next root comment</td>
+  </tr>
+  <tr>
+  <td><kbd>[</kbd></td>
+  <td>Jump to the previous root comment</td>
+  </tr>
   </table>
 
 

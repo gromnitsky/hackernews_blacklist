@@ -197,7 +197,6 @@ class root.Forum
     # Add comment to indexeddb.
     memorize: (comment) ->
         return unless @memory
-        throw new Error 'comment w/o a button' unless comment?.button
 
         @memory.add {
             mid: comment.messageID
@@ -313,7 +312,12 @@ class root.CCursor
         @comments[@current].scrollIntoView()
 
     # direction is -1 or 1
-    findExpanded: (direction, start_from_next = true) ->
+    #
+    # condition is a function that take 1 parameter (comment) & returns
+    # true if comment meets some expectations, or false otherwize.
+    #
+    # log_message is a string that will be printed to console.log.
+    findAndSet: (direction, condition, log_message, start_from_next = true) ->
         if @current? then start = @current else start = 0
         direction = 1 unless direction?
 
@@ -326,7 +330,7 @@ class root.CCursor
             pos = @comments.length-1 if pos < 0
 
             comment = @comments[pos]
-            if comment.isOpen()
+            if condition(comment)
                 @prev = start
                 @setAt pos
                 comment.scrollIntoView()
@@ -335,7 +339,19 @@ class root.CCursor
             pos += direction
             itcur += 1
 
-        console.log 'cursor: BEEP, no expanded comments found'
+        console.log "cursor: BEEP, #{log_message}"
+
+    # direction is -1 or 1
+    findExpanded: (direction, start_from_next = true) ->
+        @findAndSet direction, (comment) ->
+            comment.isOpen()
+        , "no expanded comments found", start_from_next
+
+    # direction is -1 or 1
+    findRoot: (direction) ->
+        @findAndSet direction, (comment) ->
+            comment.ident == 0
+        , "no other root comments found"
 
 
 class root.Keyboard
@@ -347,12 +363,12 @@ class root.Keyboard
             '75' :  [@forum.cursor, 'move', 1] # 'k' next
             '76' : [@forum.cursor, 'move', 10] # 'l' jump over 10 comments forward
             '72' : [@forum.cursor, 'move', -10] # 'h' jump over 10 comments backward
-            '188': [@forum.cursor, 'findExpanded', -1, true] # ',' prev unread comment
-            '190': [@forum.cursor, 'findExpanded', 1, true] # '.' next unread
+            '188': [@forum.cursor, 'findExpanded', -1] # ',' prev unread comment
+            '190': [@forum.cursor, 'findExpanded', 1] # '.' next unread
             '222':  [@forum, 'commentToggle'] # 'single quote' collapse/expand current comment
             '186':  [@forum, 'commentSubtreadToggle'] # ';' collapse/expand current subthread
-            '221':  [@forum, 'findRoot', 1] # '}' jump to next root comment
-            '219':  [@forum, 'findRoot', -1] # '{' jump to prev root comment
+            '221':  [@forum.cursor, 'findRoot', 1] # ']' jump to next root comment
+            '219':  [@forum.cursor, 'findRoot', -1] # '[' jump to prev root comment
         }
         @addEL()
 

@@ -25,9 +25,8 @@ Every BL is a (big) string where entries are separated by newlines.
 - [X] keyboard shortcuts
 - [ ] backup BLs to json file, restore from it
 - [ ] popup message & progress bar
-- [ ] '[' & ']' keys to jump to a next/prev root comment
-- [ ] ';' key to collapse a (sub)thread, not just the current comment
-- [ ] refactor content_comments.coffee
+- [X] '[' & ']' keys to jump to a next/prev root comment
+- [X] ';' key to collapse a (sub)thread, not just the current comment
 
 * later
 
