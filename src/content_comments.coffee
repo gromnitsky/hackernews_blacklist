@@ -96,52 +96,69 @@ class root.Cmnt
 
 class CollapseEvent
     # Raises when a collapse attempt completes (successful or not)
-    oncomplete: ->
+    oncomplete: (index) ->
 
 
-class root.Thread
+class root.Forum
     constructor: (@comments, @memory, @cursor) ->
-        console.error "thread: memory isn't initialized" unless @memory
+        console.error "forum: memory isn't initialized" unless @memory
 
+        # statistics
         @collapsed = 0
 
-        for idx, index in @comments
-            @addEL(index, idx)
+        for unused, index in @comments
+            @addEL index
 
-            req = @collapse index, idx
-            req.oncomplete = (currentIndex, comment) =>
-#                console.log "thread: #{currentIndex} #{comment.messageID} done collapsing"
+            req = @collapse index
+            req.oncomplete = (currentIndex) =>
+#                console.log "forum: index #{currentIndex} oncompete"
                 @updateTitle currentIndex
                 @scrollToExpanded currentIndex
 
-    addEL: (index, comment) ->
-        throw new Error 'comment w/o a button' unless comment.button
+    addEL: (index) ->
+        comment = @comments?[index]
+        throw new Error 'comment w/o a button' unless comment?.button
 
-        comment.button.addEventListener 'click', =>
-            # collect children
-            children = [comment]
-            idx = index + 1
+        comment.button.addEventListener 'click', => @subthreadToggle index, false
 
-            ident = comment.ident
-            while @comments[idx]?.ident > ident
-                children.push @comments[idx]
-                idx += 1
+    # Collapse or expand index comment and all its children.
+    subthreadToggle: (index) ->
+        comment = @comments?[index]
+        throw new Error 'comment w/o a button' unless comment?.button
 
-            console.log "thread: comment #{comment.messageID} has #{children.length-1} children"
-            # collapse or expand comment and all its children
-            if comment.isOpen()
-                idx.close() for idx in children
-            else
-                idx.open() for idx in children
+        children = @subthreadGet index
+        if comment.isOpen()
+            idx.close() for idx in children
+        else
+            idx.open() for idx in children
 
-            # select clicked button
-            @cursor.moveTo index
-        , false
+        # select clicked button
+        @cursor.moveTo index
+
+    # Return an array with an index comment & all its children.
+    subthreadGet: (index) ->
+        comment = @comments?[index]
+        throw new Error "invalid index #{index}" unless comment
+
+        # collect children
+        children = [comment]
+        idx = index + 1
+
+        ident = comment.ident
+        while @comments[idx]?.ident > ident
+            children.push @comments[idx]
+            idx += 1
+
+        console.log "forum: #{comment.messageID} children: #{children.length-1}"
+        children
+
 
     # Collapse comment if it is in indexdb. Collapse exactly 1 comment,
     # don't touch its children.
-    collapse: (currentIndex, comment) ->
+    collapse: (index) ->
         return unless @memory
+        comment = @comments?[index]
+        throw new Error 'comment w/o a button' unless comment?.button
 
         collapse_event = new CollapseEvent()
 
@@ -149,28 +166,28 @@ class root.Thread
             if exists
                 comment.close()
                 @collapsed += 1
-                collapse_event.oncomplete currentIndex, comment
             else
                 @memorize comment
-                # FIXME: not quite, but safe for our purpose
-                collapse_event.oncomplete currentIndex, comment
+
+            # this is a bit early because, '@memorize comment' is anync,
+            # but for our porpuses that's irrelevant
+            collapse_event.oncomplete index
 
         collapse_event
 
     # Update icon title via sending a message to bg.js.
-    updateTitle: (currentIndex) ->
-        if currentIndex == @comments.length-1
+    updateTitle: (index) ->
+        if index == @comments.length-1
             chrome.extension.sendMessage msg.Message.Creat('statComments', {
                 collapsed: @collapsed
                 total: @comments.length
             })
 
     # Scroll to 1st expanded comment, if possible.
-    scrollToExpanded: (currentIndex) ->
-        if currentIndex == @comments.length-1
-            @cursor.findExpanded 1, false
+    scrollToExpanded: (index) ->
+        @cursor.findExpanded(1, false) if index == @comments.length-1
 
-    # add comment to indexdb
+    # Add comment to indexeddb.
     memorize: (comment) ->
         return unless @memory
         @memory.add {
@@ -367,4 +384,4 @@ comments = (new Cmnt(idx) for idx in images)
 cursor = new CCursor comments
 new Keyboard cursor
 new Memory (memory) ->
-    new Thread(comments, memory, cursor)
+    new Forum(comments, memory, cursor)
