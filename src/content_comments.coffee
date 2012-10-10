@@ -99,6 +99,7 @@ class CollapseEvent
 
 class root.Forum
     constructor: (@comments, @memory, @cursor) ->
+        throw new Error 'invalid comments array' unless @comments instanceof Array
         console.error "forum: memory isn't initialized" unless @memory
         console.error "forum: cursor isn't initialized" unless @cursor
 
@@ -115,9 +116,7 @@ class root.Forum
                 @scrollToExpanded currentIndex
 
     addEL: (index) ->
-        comment = @comments?[index]
-        throw new Error 'comment w/o a button' unless comment?.button
-
+        comment = @comments[index]
         comment.button.addEventListener 'click', =>
             @subthreadToggle index
             # select clicked button
@@ -126,9 +125,7 @@ class root.Forum
 
     # Collapse or expand index comment and all its children.
     subthreadToggle: (index) ->
-        comment = @comments?[index]
-        throw new Error 'comment w/o a button' unless comment?.button
-
+        comment = @comments[index]
         children = @subthreadGet index
         if comment.isOpen()
             idx.close() for idx in children
@@ -140,7 +137,7 @@ class root.Forum
         if comment.isOpen() then comment.close() else comment.open()
 
     commentSubtreadToggle: ->
-        @subthreadToggle @cursor?.current
+        @subthreadToggle @cursor.current
 
     # Return an array with an index comment & all its children.
     subthreadGet: (index) ->
@@ -164,9 +161,8 @@ class root.Forum
     # don't touch its children.
     collapse: (index) ->
         return unless @memory
-        comment = @comments?[index]
-        throw new Error 'comment w/o a button' unless comment?.button
 
+        comment = @comments[index]
         collapse_event = new CollapseEvent()
 
         @memory.exist comment.messageID, (exists) =>
@@ -211,18 +207,20 @@ class root.Memory
 
     constructor: (callback) ->
         memory = this
-        @nodbCallback = false
-        @db = null
+        @db = null # database connection
 
         db = webkitIndexedDB.open Memory.dbName
-
-        db.onerror = (event) =>
-            console.error 'memory: db error: #{event.target.error}'
-            callback null unless @nodbCallback
-            @nodbCallback = true
+        db.onerror = (event) ->
+            # how to test this?
+            console.error "memory: db error: #{event.target.error}"
+            callback null
 
         db.onsuccess = (event) =>
             @db = event.target.result
+
+            # generic handler for all errors
+            @db.onerror = (event) ->
+                console.error "memory: db error: #{event.target.errorCode}"
 
             if Memory.dbVersion != @db.version
                 console.log "memory: db upgrade required"
