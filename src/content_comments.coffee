@@ -1,11 +1,17 @@
 root = exports ? this
 msg = require?('./message') || root
 
+getSubmission = ->
+    document.querySelector('td.subtext a[href^="item"]').href.match(/id=(\d+)/)[1]
+
 class root.Cmnt
     @buttonClass = 'hnbl_ToggleButton'
     @buttonOpenLabel = '[-]'
     @buttonCloseLabel = '[+]'
 
+    # submission is a id for this comment that represents its belonging
+    # to a group.
+    #
     # identNode is a dom node that contains <img> with a width attribute
     # that designates an ident as an indicator of child relation of a
     # comment.  If width == 0 the comment is a 'root' comment. There can be
@@ -13,7 +19,8 @@ class root.Cmnt
     #
     # The list of identNode's can be obtained via 'td > img[height="1"]'
     # css selector.
-    constructor: (@identNode) ->
+    constructor: (@submission, @identNode) ->
+        throw new Error 'invalid submission' unless @submission
         throw new Error 'node is not an image' unless @identNode?.nodeName == "IMG"
 
         @ident = @identNode.width
@@ -117,10 +124,17 @@ class root.Forum
 
     addEL: (index) ->
         comment = @comments[index]
-        comment.button.addEventListener 'click', =>
-            @subthreadToggle index
-            # select clicked button
-            @cursor.moveTo index
+        comment.button.addEventListener 'click', (event) =>
+            if event.ctrlKey
+                # just select a clicked button
+                @cursor.moveTo index
+            else if event.altKey
+                # just toggle without moving a cursor
+                @subthreadToggle index
+            else
+                @subthreadToggle index
+                # and select a clicked button
+                @cursor.moveTo index
         , false
 
     # Collapse or expand index comment and all its children.
@@ -406,6 +420,9 @@ class root.Keyboard
 
 
 # Main
+
+sub_id = getSubmission()
+throw new Error 'cannot get a submission id for this page' unless sub_id
 images = document.querySelectorAll('td > img[height="1"]')
 if images.length == 0
     console.error '0 comments?'
@@ -415,7 +432,7 @@ if images.length == 0
     })
     return
 
-comments = (new Cmnt(idx) for idx in images)
+comments = (new Cmnt(sub_id, idx) for idx in images)
 cursor = new CCursor comments
 new Memory (memory) ->
     forum = new Forum(comments, memory, cursor)

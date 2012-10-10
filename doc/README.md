@@ -65,6 +65,27 @@ http://news.ycombinator.com.
   </tr>
   </table>
 
+* Mouse clicks on `[-]` & `[+]`:
+
+  <table border="1">
+  <tr>
+  <th>Click with</th>
+  <th>To do this</th>
+  </tr>
+  <tr>
+  <td><kbd>Button1</kbd></td>
+  <td>Collapse/expand sub-thread</td>
+  </tr>
+  <tr>
+  <td><kbd>Alt-Button1</kbd></td>
+  <td>Collapse/expand current sub-thread w/o moving a cursor</td>
+  </tr>
+  <tr>
+  <td><kbd>Ctrl-Button1</kbd></td>
+  <td>Move the cursor</td>
+  </tr>
+  </table>
+
 
 ## Build requirements:
 
