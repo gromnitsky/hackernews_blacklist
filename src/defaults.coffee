@@ -12,7 +12,9 @@ class root.Conf
                 'www.marco.org'
                 'www.codinghorror.com'
                 'www.slate.com'
-                ]
+                'joel.is'
+                'daringfireball.net'
+            ]
             'username' : []
             'linktitle-bl' : [
                 '\\bApple\\b'
@@ -31,6 +33,7 @@ class root.Conf
                 'Typography'
                 'Legislation'
                 'Goverment'
+                'Court\b'
                 'Instagram'
                 '\\bVim\\b'
                 'Pinterest'
@@ -40,7 +43,9 @@ class root.Conf
                 'Torrent'
                 'App\\.net'
                 '\\bAsp\\.net'
-                ]
+                'Nokia'
+                '\bFlash'
+            ]
             'linktitle-wl' : ['ruby', 'rails']
 
     # Load defauls into localStorage unless localStorage are not filled
