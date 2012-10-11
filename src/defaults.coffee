@@ -14,6 +14,7 @@ class root.Conf
                 'www.slate.com'
                 'joel.is'
                 'daringfireball.net'
+                'www.kalzumeus.com'
             ]
             'username' : []
             'linktitle-bl' : [
@@ -33,7 +34,7 @@ class root.Conf
                 'Typography'
                 'Legislation'
                 'Goverment'
-                'Court\b'
+                'Court\\b'
                 'Instagram'
                 '\\bVim\\b'
                 'Pinterest'
@@ -44,7 +45,8 @@ class root.Conf
                 'App\\.net'
                 '\\bAsp\\.net'
                 'Nokia'
-                '\bFlash'
+                '\\bFlash'
+                'meetup'
             ]
             'linktitle-wl' : ['ruby', 'rails']
 
