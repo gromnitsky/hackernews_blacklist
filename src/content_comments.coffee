@@ -224,6 +224,7 @@ class root.Forum
         @memory.add {
             mid: comment.messageID
             username: comment.username
+            submission: comment.submission
         }, nextCallback
 
 
@@ -255,6 +256,7 @@ class root.Memory
                 setVrequest.onsuccess = (event) =>
                     obj_store = @db.createObjectStore Memory.dbStoreComments, {keyPath: 'mid'}
                     obj_store.createIndex 'username', 'username', {unique: false}
+                    obj_store.createIndex 'submission', 'submission', {unique: false}
 
                     event.target.transaction.oncomplete = (event) ->
                         console.log "memory: db upgrade completed: #{Memory.dbName} v. #{Memory.dbVersion}"
