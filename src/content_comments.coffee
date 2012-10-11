@@ -1,6 +1,12 @@
 root = exports ? this
 msg = require?('./message') || root
 
+class CmntIgnoreError extends Error
+    constructor: (msg) ->
+        @name = @constructor.name
+        @message = "cmnt: #{msg}"
+        Error.captureStackTrace this, @name
+
 getSubmission = ->
     document.querySelector('td.subtext a[href^="item"]').href.match(/id=(\d+)/)[1]
 
@@ -28,7 +34,12 @@ class root.Cmnt
         # dude...
         @header = @identNode.parentNode.parentNode.querySelector 'span[class="comhead"]'
         throw new Error "cannot extract comment's header" unless @header
-        @headerText = @header.innerText # visual debug
+        @headerText = @header.innerText
+
+        @body = @header.parentNode.parentNode.querySelector 'span[class="comment"]'
+        throw new Error "cannot extract comment's body" unless @body
+        if @body.innerText == '[deleted]' && @headerText == ""
+            throw new CmntIgnoreError "deleted comment"
 
         link = (@header.querySelector 'a[href^="item?id="]') || (@header.querySelector 'a[href*="ycombinator.com/item?id="]')
         @messageID = (link.href.match /id=(\d+)/)[1] if link
@@ -36,9 +47,6 @@ class root.Cmnt
 
         @username = (@header.querySelector 'a')?.innerText
         throw new Error "cannot extract comment's username for #{@headerText}" unless @username
-
-        @body = @header.parentNode.parentNode.querySelector 'span[class="comment"]'
-        throw new Error "cannot extract comment's body" unless @body
 
         @makeButton()
 
@@ -438,7 +446,18 @@ if images.length == 0
     })
     return
 
-comments = (new Cmnt(sub_id, idx) for idx in images)
+# grab comments
+comments = []
+for idx, index in images
+    try
+        comments.push new Cmnt(sub_id, idx)
+    catch e
+        if e instanceof CmntIgnoreError
+            console.log "Ignoring comment #{index}: #{e.message}"
+        else
+            throw e
+
+# make gui
 cursor = new CCursor comments
 new Memory (memory) ->
     forum = new Forum(comments, memory, cursor)
