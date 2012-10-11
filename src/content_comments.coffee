@@ -99,11 +99,6 @@ class root.Cmnt
         @button.scrollIntoView true
 
 
-class CollapseEvent
-    # Raises when a collapse attempt completes (successful or not)
-    oncomplete: (index) ->
-
-
 class root.Forum
     constructor: (@comments, @memory, @cursor) ->
         throw new Error 'invalid comments array' unless @comments instanceof Array
@@ -117,10 +112,10 @@ class root.Forum
             @addEL index
 
             req = @collapse index
-            req.oncomplete = (currentIndex) =>
-#                console.log "forum: index #{currentIndex} oncompete"
-                @updateTitle currentIndex
-                @scrollToExpanded currentIndex
+            req.addEventListener 'complete', (event) =>
+#                console.log "forum: collapse oncomplete: index=#{event.detail.index}, collapsed=#{event.detail.collapsed}"
+                @updateTitle event.detail.index
+                @scrollToExpanded event.detail.index
 
     addEL: (index) ->
         comment = @comments[index]
@@ -177,18 +172,30 @@ class root.Forum
         return unless @memory
 
         comment = @comments[index]
-        collapse_event = new CollapseEvent()
+        req = comment.button # object for event firing
 
         @memory.exist comment.messageID, (exists) =>
             if exists
                 comment.close()
                 @collapsed += 1
-                collapse_event.oncomplete index
+                event = new CustomEvent 'complete', {
+                    detail: {
+                        index: index
+                        collapsed: true
+                    }
+                }
+                req.dispatchEvent event
             else
                 @memorize comment, (id) ->
-                    collapse_event.oncomplete index
+                    event = new CustomEvent 'complete', {
+                        detail: {
+                            index: index
+                            collapsed: false
+                        }
+                    }
+                    req.dispatchEvent event
 
-        collapse_event
+        req
 
     # Update icon title via sending a message to bg.js.
     updateTitle: (index) ->
