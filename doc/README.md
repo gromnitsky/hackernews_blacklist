@@ -78,7 +78,7 @@ http://news.ycombinator.com.
   </tr>
   <tr>
   <td><kbd>Alt-Button1</kbd></td>
-  <td>Collapse/expand current sub-thread w/o moving a cursor</td>
+  <td>Collapse/expand sub-thread w/o moving a cursor</td>
   </tr>
   <tr>
   <td><kbd>Ctrl-Button1</kbd></td>

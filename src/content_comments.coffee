@@ -183,12 +183,10 @@ class root.Forum
             if exists
                 comment.close()
                 @collapsed += 1
+                collapse_event.oncomplete index
             else
-                @memorize comment
-
-            # this is a bit early because, '@memorize comment' is anync,
-            # but for our porpuses that's irrelevant
-            collapse_event.oncomplete index
+                @memorize comment, (id) ->
+                    collapse_event.oncomplete index
 
         collapse_event
 
@@ -205,13 +203,13 @@ class root.Forum
         @cursor.findExpanded(1, false) if index == @comments.length-1
 
     # Add comment to indexeddb.
-    memorize: (comment) ->
+    memorize: (comment, nextCallback) ->
         return unless @memory
 
         @memory.add {
             mid: comment.messageID
             username: comment.username
-        }
+        }, nextCallback
 
 
 class root.Memory
@@ -219,7 +217,7 @@ class root.Memory
     @dbVersion = '1'
     @dbStoreComments = 'comments'
 
-    constructor: (callback) ->
+    constructor: (nextCallback) ->
         memory = this
         @db = null # database connection
 
@@ -227,7 +225,7 @@ class root.Memory
         db.onerror = (event) ->
             # how to test this?
             console.error "memory: db error: #{event.target.error}"
-            callback null
+            nextCallback null if nextCallback?
 
         db.onsuccess = (event) =>
             @db = event.target.result
@@ -245,29 +243,30 @@ class root.Memory
 
                     event.target.transaction.oncomplete = (event) ->
                         console.log "memory: db upgrade completed: #{Memory.dbName} v. #{Memory.dbVersion}"
-                        callback memory
+                        nextCallback memory if nextCallback?
             else
                 console.log 'memory: db opened'
-                callback memory
+                nextCallback memory if nextCallback?
 
-    add: (object) ->
+    add: (object, nextCallback) ->
         t = @db.transaction [Memory.dbStoreComments], "readwrite"
         os = t.objectStore Memory.dbStoreComments
         req = os.put object
         req.onsuccess = ->
             console.log "memory: added #{object.mid} (#{object.username})"
+            nextCallback object.mid if nextCallback?
 
-    exist: (mid, callback) ->
+    exist: (mid, nextCallback) ->
         t = @db.transaction [Memory.dbStoreComments], "readonly"
         os = t.objectStore Memory.dbStoreComments
         req = os.get mid
         req.onsuccess = (event) ->
             if event.target.result
                 console.log "memory: #{mid} exists: #{req.result.username}"
-                callback true
+                nextCallback true if nextCallback?
             else
                 console.log "memory: no #{mid}"
-                callback false
+                nextCallback false if nextCallback?
 
 
 class root.CCursor
