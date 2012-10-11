@@ -8,6 +8,9 @@ extStorageMsgGetGroup = (group) ->
     msg.Message.Creat 'extStorage.getGroup', {'group': group}
 
 class root.Sub
+    @RANK_OPEN_LABEL = '[-]'
+    @RANK_CLOSE_LABEL = '[+]'
+
     # rank -- a dom element (tr) that represents a sub 'anchor'
     constructor: (@rank) ->
         @row1 = @rank.parentNode
@@ -26,28 +29,33 @@ class root.Sub
     getUserName: ->
         @row2.querySelector('a')?.innerText || ''
 
-    # replace rank with '[-]' or '[+]' & toggle
-    toggleCollapse: ->
+    toggle: ->
+        if @isOpen() then @close() else @open()
+
+    isOpen: ->
+        @rank.innerText == Sub.RANK_OPEN_LABEL
+
+    hide: (force = true) ->
+        state = if force then "none" else ""
+
         idx = @rank
         row1nodes = (idx while idx = idx.nextSibling)
+        idx.style.display = state for idx in row1nodes
+        @row2.style.display = state
 
-        if @rank.innerText.match /^\[\+]/
-            # expand this item
-            idx.style.display = '' for idx in row1nodes
-            @row2.style.display = ''
+    close: ->
+        @hide()
+        @rank.innerText = Sub.RANK_CLOSE_LABEL
+        @rank.style.cursor = '-webkit-zoom-in'
 
-            @rank.innerText = "[-]"
-            @rank.style.cursor = '-webkit-zoom-out'
-        else
-            # collapse this item
-            idx.style.display = 'none' for idx in row1nodes
-            @row2.style.display = 'none'
+    open: ->
+        @hide false
+        @rank.innerText = Sub.RANK_OPEN_LABEL
+        @rank.style.cursor = '-webkit-zoom-out'
 
-            @rank.innerText = "[+]"
-            @rank.style.cursor = '-webkit-zoom-in'
 
 class root.HN
-    @warningThreshold = 15
+    @WARNING_THRESHOLD = 15
 
     constructor: (@settings) ->
         @home = document.querySelector '.pagetop a'
@@ -63,10 +71,8 @@ class root.HN
 
     # Return an array of Sub objects
     getSubs: ->
-        r = []
         items = document.querySelectorAll("tr td[class='title']:first-child")
-        r.push (new Sub idx) for idx in items
-        r
+        r = (new Sub idx for idx in items)
 
     filter: ->
         count = 0
@@ -75,26 +81,26 @@ class root.HN
 
             if @fHostname.match idx.getHostname()
                 @addEL idx
-                idx.toggleCollapse()
+                idx.close()
                 count += 1
                 idx.rank.title = 'Host name'
                 continue
 
             if @fUserName.match idx.getUserName()
                 @addEL idx
-                idx.toggleCollapse()
+                idx.close()
                 count += 1
                 idx.rank.title = 'User name'
                 continue
 
             if @fLinkTitle.match idx.getLinkTitle()
                 @addEL idx
-                idx.toggleCollapse()
+                idx.close()
                 count += 1
                 idx.rank.title = 'Link title'
                 continue
 
-        @warning count if count >= root.HN.warningThreshold
+        @warning count if count >= HN.WARNING_THRESHOLD
         # ask background.js to update page icon title
         chrome.extension.sendMessage msg.Message.Creat('statSubs', {'filtered': count})
 
@@ -116,8 +122,8 @@ class root.HN
         @home.innerText = "#{linksFiltered} filtered links? #{t[Math.floor Math.random()*(t.length)]}"
 
     addEL: (element) ->
-        element.rank.addEventListener 'click', ->
-            element.toggleCollapse()
+        element.rank.addEventListener 'click', (event) ->
+            element.toggle()
         , false
 
 
