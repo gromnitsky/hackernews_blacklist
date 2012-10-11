@@ -11,9 +11,9 @@ getSubmission = ->
     document.querySelector('td.subtext a[href^="item"]').href.match(/id=(\d+)/)[1]
 
 class root.Cmnt
-    @buttonClass = 'hnbl_ToggleButton'
-    @buttonOpenLabel = '[-]'
-    @buttonCloseLabel = '[+]'
+    @BUTTON_CLASS = 'hnbl_ToggleButton'
+    @BUTTON_OPEN_LABEL = '[-]'
+    @BUTTON_CLOSE_LABEL = '[+]'
 
     # submission is a id for this comment that represents its belonging
     # to a group.
@@ -54,7 +54,7 @@ class root.Cmnt
         throw new Error 'button already exist' if @button # don't make it twice
 
         @button = document.createElement 'span'
-        @button.className = Cmnt.buttonClass
+        @button.className = Cmnt.BUTTON_CLASS
 
         t = document.createTextNode '?'
         @button.appendChild t
@@ -68,17 +68,17 @@ class root.Cmnt
 
     buttonOpen: ->
         throw new Error "button doesn't exist" unless @button
-        @button.innerText = Cmnt.buttonOpenLabel
+        @button.innerText = Cmnt.BUTTON_OPEN_LABEL
         @button.style.cursor = '-webkit-zoom-out'
 
     buttonClose: ->
         throw new Error "button doesn't exist" unless @button
-        @button.innerText = Cmnt.buttonCloseLabel
+        @button.innerText = Cmnt.BUTTON_CLOSE_LABEL
         @button.style.cursor = '-webkit-zoom-in'
 
     isOpen: ->
         throw new Error "button doesn't exist" unless @button
-        @button.innerText == Cmnt.buttonOpenLabel
+        @button.innerText == Cmnt.BUTTON_OPEN_LABEL
 
     close: ->
         @bodyHide()
@@ -229,15 +229,15 @@ class root.Forum
 
 
 class root.Memory
-    @dbName = 'hndl_memory'
-    @dbVersion = '1'
-    @dbStoreComments = 'comments'
+    @DB_NAME = 'hndl_memory'
+    @DB_VERSION = '1'
+    @DB_STORE_COMMENTS = 'comments'
 
     constructor: (nextCallback) ->
         memory = this
         @db = null # database connection
 
-        db = webkitIndexedDB.open Memory.dbName
+        db = webkitIndexedDB.open Memory.DB_NAME
         db.onerror = (event) ->
             # how to test this?
             console.error "memory: db error: #{event.target.error}"
@@ -250,32 +250,32 @@ class root.Memory
             @db.onerror = (event) ->
                 console.error "memory: db error: #{event.target.errorCode}"
 
-            if Memory.dbVersion != @db.version
+            if Memory.DB_VERSION != @db.version
                 console.log "memory: db upgrade required"
-                setVrequest = @db.setVersion(Memory.dbVersion)
+                setVrequest = @db.setVersion(Memory.DB_VERSION)
                 setVrequest.onsuccess = (event) =>
-                    obj_store = @db.createObjectStore Memory.dbStoreComments, {keyPath: 'mid'}
+                    obj_store = @db.createObjectStore Memory.DB_STORE_COMMENTS, {keyPath: 'mid'}
                     obj_store.createIndex 'username', 'username', {unique: false}
                     obj_store.createIndex 'submission', 'submission', {unique: false}
 
                     event.target.transaction.oncomplete = (event) ->
-                        console.log "memory: db upgrade completed: #{Memory.dbName} v. #{Memory.dbVersion}"
+                        console.log "memory: db upgrade completed: #{Memory.DB_NAME} v. #{Memory.DB_VERSION}"
                         nextCallback memory if nextCallback?
             else
                 console.log 'memory: db opened'
                 nextCallback memory if nextCallback?
 
     add: (object, nextCallback) ->
-        t = @db.transaction [Memory.dbStoreComments], "readwrite"
-        os = t.objectStore Memory.dbStoreComments
+        t = @db.transaction [Memory.DB_STORE_COMMENTS], "readwrite"
+        os = t.objectStore Memory.DB_STORE_COMMENTS
         req = os.put object
         req.onsuccess = ->
             console.log "memory: added #{object.mid} (#{object.username})"
             nextCallback object.mid if nextCallback?
 
     exist: (mid, nextCallback) ->
-        t = @db.transaction [Memory.dbStoreComments], "readonly"
-        os = t.objectStore Memory.dbStoreComments
+        t = @db.transaction [Memory.DB_STORE_COMMENTS], "readonly"
+        os = t.objectStore Memory.DB_STORE_COMMENTS
         req = os.get mid
         req.onsuccess = (event) ->
             if event.target.result
@@ -391,7 +391,7 @@ class root.CCursor
 
 
 class root.Keyboard
-    @ignoredElements = ['INPUT', 'TEXTAREA']
+    @IGNORED_ELEMENTS = ['INPUT', 'TEXTAREA']
 
     constructor: (@forum) ->
         @keymap = {
@@ -417,7 +417,7 @@ class root.Keyboard
         , false
 
     isValidElement: (element) ->
-        return false if Keyboard.ignoredElements.indexOf(element?.nodeName) != -1
+        return false if Keyboard.IGNORED_ELEMENTS.indexOf(element?.nodeName) != -1
         true
 
     keycode2command: (keycode, shift) ->
