@@ -17,16 +17,26 @@ class TextAreaState
         !(@state == crypt.md5 @src.value)
 
 class Options
+    @DOWNLOAD_FILENAME = 'hnbl_settings.json'
+
     constructor: ->
         @btnSave = document.querySelector "[id='save']"
         @btnDefaults = document.querySelector "[id='defaults']"
+        @btnDownload = document.querySelector "[id='download']"
+        @btnUpload = document.querySelector "[id='upload']"
+
         @taHostname = document.querySelector '#hostname form textarea'
         @taUsername = document.querySelector '#username form textarea'
         @taLinktitleBl = document.querySelector '#linktitle-bl textarea'
         @taLinktitleWl = document.querySelector '#linktitle-wl textarea'
 
         @filters = [@taHostname, @taUsername, @taLinktitleBl, @taLinktitleWl]
-        @gui = [@btnDefaults, @btnSave].concat @filters
+        @gui = [
+            @btnDefaults
+            @btnSave
+            @btnDownload
+            @btnUpload
+        ].concat @filters
 
         idx.mystate = new TextAreaState(idx) for idx in @filters
 
@@ -42,9 +52,9 @@ class Options
     loadOpt: (element) ->
         val = ExtStorage.Get 'Filters', element.name
         element.value = (val || Conf.defaults['Filters'][element.name]).join "\n"
-        
+
     loadSettings: ->
-        @say 'Loading settings...', =>
+        @say @btnSave, 'Loading settings...', =>
             @loadOpt idx for idx in @filters
 
     guiBind: ->
@@ -70,14 +80,36 @@ class Options
                 @btnSave.disabled = false if e.target.mystate.isModified()
             , false
 
+        # download button
+        @btnDownload.addEventListener 'click', =>
+            @settingsDownload()
+        , false
+
+    settingsDownload: ->
+        @say @btnDownload, 'Pushing...', =>
+            blob = new Blob [@getCurrentSettions()], {type: 'text/plain'}
+            url = webkitURL.createObjectURL blob
+
+            a = document.createElement 'a'
+            a.download = Options.DOWNLOAD_FILENAME
+            a.href = url
+            a.click()
+
+            webkitURL.revokeObjectURL url
+
+    getCurrentSettions: ->
+        o = {}
+        o[idx.name] = parseRawData idx.value for idx in @filters
+        JSON.stringify o
+
     saveSettings: ->
-        @say 'Saving...', =>
+        @say @btnSave, 'Saving...', =>
             for idx in @filters
                 ExtStorage.Set 'Filters', idx.name, (parseRawData idx.value)
 
-    say: (msg, callback) ->
-        orig = @btnSave.innerText
-        @btnSave.innerText = msg
+    say: (element, msg, callback) ->
+        orig = element.innerText
+        element.innerText = msg
 
         @toggleGui true
         try
@@ -86,7 +118,7 @@ class Options
             alert "Error: #{e.message}"
             throw e
         finally
-            @btnSave.innerText = orig
+            element.innerText = orig
             @toggleGui()
 
 
@@ -95,4 +127,3 @@ window.onload = ->
     opt = new Options()
     opt.loadSettings()
     opt.guiBind()
-
