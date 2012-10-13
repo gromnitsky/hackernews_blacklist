@@ -1,4 +1,9 @@
 root = exports ? this
+mixin = require?('mixins') || root
+filter = require?('filter') || root
+storage = require?('extstorage') || root
+defaults = require?('defaults') || root
+
 crypt = require?('../vendor/md5') || root
 
 class MyColors
@@ -39,17 +44,17 @@ class TextAreaState
         @state = crypt.md5 @src.value
 
     isModified: ->
-        console.log "#{@state} == #{crypt.md5 @src.value}"
+#        console.log "#{@state} == #{crypt.md5 @src.value}"
         !(@state == crypt.md5 @src.value)
 
 class Options
-    @DOWNLOAD_FILENAME = 'hnbl_settings.json'
+    @EXPORT_FILENAME = 'hnbl_settings.json'
 
     constructor: ->
         @btnSave = document.querySelector "[id='save']"
         @btnDefaults = document.querySelector "[id='defaults']"
-        @btnDownload = document.querySelector "[id='download']"
-        @btnUpload = document.querySelector "[id='upload']"
+        @btnExport = document.querySelector "[id='export']"
+        @btnImport = document.querySelector "[id='import']"
 
         @taHostname = document.querySelector '#hostname form textarea'
         @taUsername = document.querySelector '#username form textarea'
@@ -60,11 +65,13 @@ class Options
         @gui = [
             @btnDefaults
             @btnSave
-            @btnDownload
-            @btnUpload
+            @btnExport
+            @btnImport
         ].concat @filters
 
         idx.mystate = new TextAreaState(idx) for idx in @filters
+
+        @bodyColors = new MyColors document.body
 
     # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->
@@ -75,25 +82,26 @@ class Options
 
     # Load saved settings for element.
     # Use default values for unmodified settings.
-    loadOpt: (element) ->
-        val = ExtStorage.Get 'Filters', element.name
-        element.value = (val || Conf.defaults['Filters'][element.name]).join "\n"
+    settingsLoadOpt: (element) ->
+        val = storage.ExtStorage.Get 'Filters', element.name
+        element.value = (val || defaults.Conf.defaults['Filters'][element.name]).join "\n"
 
-    loadSettings: ->
+    settingsLoad: ->
         @say @btnSave, 'Loading settings...', =>
-            @loadOpt idx for idx in @filters
+            @settingsLoadOpt idx for idx in @filters
+        @btnSave.disabled = true
 
     guiBind: ->
         # default button
         @btnDefaults.addEventListener 'click', =>
             for idx in @filters
-                idx.value = Conf.defaults['Filters'][idx.name].join "\n"
+                idx.value = defaults.Conf.defaults['Filters'][idx.name].join "\n"
             @btnSave.disabled = false
         , false
 
         # save button
         @btnSave.addEventListener 'click', =>
-            @saveSettings()
+            @settingsSave()
             @btnSave.disabled = true
         , false
 
@@ -106,37 +114,91 @@ class Options
                 @btnSave.disabled = false if e.target.mystate.isModified()
             , false
 
-        # download button
-        @btnDownload.addEventListener 'click', =>
-            @settingsDownload()
+        # export button
+        @btnExport.addEventListener 'click', =>
+            @settingsExport()
         , false
 
-        @btnUpload.addEventListener 'click', =>
-            c = new MyColors document.body
-            c.invert()
+        # annoying import button
+        @btnImport.addEventListener 'click', =>
+            if @btnImport.innerText.match /^Drag/
+                @btnImport.style.display = 'none'
+            else
+                @btnImport.innerText = 'Drag a .json file into this window'
         , false
 
-    settingsDownload: ->
-        @say @btnDownload, 'Pushing...', =>
-            blob = new Blob [@getCurrentSettions()], {type: 'text/plain'}
+        # DnD
+        document.body.addEventListener 'dragenter', (event) =>
+            event.stopPropagation()
+            event.preventDefault()
+            @bodyColors.invert()
+        , false
+
+        document.body.addEventListener 'dragleave', (event) =>
+            event.stopPropagation()
+            event.preventDefault()
+            @bodyColors.invert()
+        , false
+
+        document.body.addEventListener 'drop', (event) =>
+            event.stopPropagation()
+            event.preventDefault()
+            @bodyColors.invert()
+
+            dt = event.dataTransfer
+            if dt?.files.length != 1
+                alert 'You need exactly 1 .json file. Try again.'
+                return
+
+            @settingsImport dt.files[0]
+        , false
+
+    settingsImport: (file) ->
+        return unless file
+
+        exit_now = false
+        reader = new FileReader()
+        reader.onerror = ->
+            alert "Error reading '#{file.name}'"
+            exit_now = true
+
+        reader.onload = (data) =>
+            return if exit_now
+
+            r = null
+            try
+                r = JSON.parse data.target.result
+            catch e
+                alert "Error parsing '#{file.name}': #{e.message}"
+                return
+
+#            console.log r
+            @say @btnImport, 'Loading settings...', =>
+                idx.value = (r[idx.name]?.join "\n" || "") for idx in @filters
+
+        reader.readAsText file
+
+    settingsExport: ->
+        @say @btnExport, 'Pushing...', =>
+            blob = new Blob [@settingsGetCurrentAsString()], {type: 'text/plain'}
             url = webkitURL.createObjectURL blob
 
             a = document.createElement 'a'
-            a.download = Options.DOWNLOAD_FILENAME
+            a.download = Options.EXPORT_FILENAME
             a.href = url
             a.click()
 
             webkitURL.revokeObjectURL url
 
-    getCurrentSettions: ->
+    settingsGetCurrentAsString: ->
         o = {}
-        o[idx.name] = parseRawData idx.value for idx in @filters
+        o[idx.name] = filter.parseRawData idx.value for idx in @filters
         JSON.stringify o
 
-    saveSettings: ->
+    settingsSave: ->
         @say @btnSave, 'Saving...', =>
             for idx in @filters
-                ExtStorage.Set 'Filters', idx.name, (parseRawData idx.value)
+                storage.ExtStorage.Set 'Filters', idx.name, (filter.parseRawData idx.value)
 
     say: (element, msg, callback) ->
         orig = element.innerText
@@ -156,5 +218,5 @@ class Options
 # main
 window.onload = ->
     opt = new Options()
-    opt.loadSettings()
+    opt.settingsLoad()
     opt.guiBind()

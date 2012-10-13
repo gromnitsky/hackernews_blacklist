@@ -61,10 +61,14 @@ html
       hr
       button#save Save
       button#defaults Defaults
-      button#download Export to file
-      button#upload Load from file
+      button#export Export
+      button#import Import
 
       #help
+        p
+          | Until you hit <samp>Save</samp>, options are untouched. This
+          | includes <samp>Defaults</samp> & import. <samp>Export</samp>
+          | exports current values that may not necessarily be saved yet.
         p
           | Every list is a string where entries are separated by newlines.
           | Regexp-based lists are slower that exact match lists.

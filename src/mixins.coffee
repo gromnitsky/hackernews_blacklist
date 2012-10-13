@@ -7,3 +7,8 @@ root.extend = (obj, mixin) ->
 
 root.include = (klass, mixin) ->
     root.extend klass.prototype, mixin
+
+root.fire = (element, eventName) ->
+    event = document.createEvent "HTMLEvents"
+    event.initEvent eventName, true, true
+    element.dispatchEvent event
