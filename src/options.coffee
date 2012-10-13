@@ -1,6 +1,32 @@
 root = exports ? this
 crypt = require?('../vendor/md5') || root
 
+class MyColors
+    constructor: (@element) ->
+
+    _getInvertedValue: (css) ->
+        rgb = (window.getComputedStyle @element)
+            .getPropertyCSSValue(css).getRGBColorValue()
+        color = {}
+        for idx in ['red', 'green', 'blue']
+            color[idx] = 255 - rgb[idx].getFloatValue CSSPrimitiveValue.CSS_NUMBER
+        color
+
+    get: ->
+        {
+            b: @_getInvertedValue 'background-color'
+            f: @_getInvertedValue 'color'
+        }
+
+    toRGBA: (color) ->
+        "rgba(#{color.red}, #{color.green}, #{color.blue}, 1)"
+
+    invert: ->
+        cp = @get()
+        @element.style.backgroundColor = @toRGBA cp.b
+        @element.style.color = @toRGBA cp.f
+
+
 class TextAreaState
     # src is a dom textarea object
     constructor: (@src) ->
@@ -83,6 +109,11 @@ class Options
         # download button
         @btnDownload.addEventListener 'click', =>
             @settingsDownload()
+        , false
+
+        @btnUpload.addEventListener 'click', =>
+            c = new MyColors document.body
+            c.invert()
         , false
 
     settingsDownload: ->
