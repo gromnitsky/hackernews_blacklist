@@ -19,7 +19,7 @@ $(out)/%.js: %.coffee
 
 $(out)/%.html: %.jade
 	@mkdir -p `dirname $@`
-	$(JADE) -P < $< > $@
+	$(JADE) -o `node -e "d = require('../lib/defaults'); o = {}; o.locals = d.Conf.defaults.Favorites; console.log(JSON.stringify(o))"` -P < $< > $@
 
 compile: $(js) $(html)
 

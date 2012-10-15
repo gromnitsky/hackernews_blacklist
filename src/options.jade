@@ -13,73 +13,172 @@ html
 
     style(type='text/css')
       body {
-        background-color: white;
+        /* background-color: white; */
         color: black;
       }
 
-      #linktitle-bl, #hostname {
+      #lists {
+        /* background-color: yellow; */
+        float: left;
+        margin-right: 15px;
+        width: 60%;
+      }
+      #favorites {
+        /* background-color: gray; */
+        float: left;
+      }
+      #lists, #favorites {
+        display: table;
+      }
+
+      #hostname, #linktitle-bl {
         float: left;
         padding-right: 10px;
       }
-      #linktitle-wl, #username {
+      #username, #linktitle-wl, #footer {
         float: left;
       }
-      #linktitle, #blacks {
+      #row1, #row2, #row3 {
         display: table;
+      }
+      #row1 {
+        /* background-color: blue; */
+      }
+      #row2 {
+        /* background-color: teal; */
+      }
+      #row3 {
+        /* background-color: green; */
+        margin-top: 25px;
       }
 
   body
 
-    #blacks
-      #hostname
-        h2 Hostname
-        form
-          | Blacklist (exact match)
+    #lists
+      #row1
+        #hostname
+          h2 Hostname
+          form
+            | Blacklist (exact match)
+            br
+            textarea(name='hostname', cols='32', rows='5')
+
+        #username
+          h2 User Name
+          form
+            | Blacklist (exact match)
+            br
+            textarea(name='username', cols='32', rows='5')
+
+      #row2
+        form#linktitle-bl
+          h2 Link Title
+          | Blacklist (regexp)
           br
-          textarea(name='hostname', cols='32', rows='5')
+          textarea(name='linktitle-bl', cols='32', rows='5')
 
-      #username
-        h2 User Name
-        form
-          | Blacklist (exact match)
+        form#linktitle-wl
+          h2 &#0160;
+          | Whitelist (regexp)
           br
-          textarea(name='username', cols='32', rows='5')
+          textarea(name='linktitle-wl', cols='32', rows='5')
 
-    #linktitle
-      h2 Link Title
-      form#linktitle-bl
-        | Blacklist (regexp)
-        br
-        textarea(name='linktitle-bl', cols='32', rows='5')
+      #row3
+        #footer
+          button#save Save
+          button#defaults Defaults
+          button#export Export
+          button#import Import
 
-      form#linktitle-wl
-        | Whitelist (regexp)
-        br
-        textarea(name='linktitle-wl', cols='32', rows='5')
+          #help
+            p
+              | Until you hit <samp>Save</samp>, options are untouched. This
+              | includes <samp>Defaults</samp> & import. <samp>Export</samp>
+              | exports current values that may not necessarily be saved yet.
+            p
+              | Every list is a string where entries are separated by newlines.
+              | Regexp-based lists are slower that exact match lists.
+              | Regexp lists are case insensitive, exact match lists are.
+            p
+              | Hostname list has nothing to do with domain names listed in
+              | brackets on HN page. To get actual values:
 
-    #footer
-      hr
-      button#save Save
-      button#defaults Defaults
-      button#export Export
-      button#import Import
+              ol
+                li Press F12 after HN page is loaded.
+                li Click on 'Console' tab.
+                li
+                  | There must be several lines of text. Every line is
+                  | separated by comma. You need the 2nd field.
 
-      #help
-        p
-          | Until you hit <samp>Save</samp>, options are untouched. This
-          | includes <samp>Defaults</samp> & import. <samp>Export</samp>
-          | exports current values that may not necessarily be saved yet.
-        p
-          | Every list is a string where entries are separated by newlines.
-          | Regexp-based lists are slower that exact match lists.
-          | Regexp lists are case insensitive, exact match lists are.
-        p
-          | Hostname list has nothing to do with domain names listed in
-          | brackets on HN page. To get actual values:
-
-          ol
-            li Press F12 after HN page is loaded.
-            li Click on 'Console' tab.
-            li
-              | There must be several lines of text. Every line is
-              | separated by comma. You need the 2nd field.
+    #favorites
+      h2 Favorites in Color
+      | Whitelist (exact match)
+      form
+        table(border='1', cellpadding='5', cellspacing='0')
+          tr
+            th: | &#8715;
+            th: | User name
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')
+          tr
+            td: | fuchsia
+            td
+              input#q(name='foo')

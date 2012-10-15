@@ -50,6 +50,27 @@ class root.Conf
             ]
             'linktitle-wl' : ['ruby', 'rails']
 
+        'Favorites': {
+            black: 'BrendanEich'
+            gray: 'wycats'
+            white: 'edw519'
+            maroon: 'jgrahamc'
+            red: 'pg'
+            purple: null
+            fuchsia: null
+            green: null
+            lime: null
+            olive: null
+            yellow: null
+            orange: null
+            navy: null
+            blue: null
+            teal: null
+            aqua: null
+            
+            silver: null # we're using this to paint Filters.username
+        }
+
     # Load defauls into localStorage unless localStorage are not filled
     # with user settings.
     @loadSettings: ->
