@@ -56,25 +56,30 @@ class root.Conf
             white: 'edw519'
             maroon: 'jgrahamc'
             red: 'pg'
-            purple: null
-            fuchsia: null
-            green: null
-            lime: null
-            olive: null
-            yellow: null
-            orange: null
-            navy: null
-            blue: null
-            teal: null
-            aqua: null
+            purple: ''
+            fuchsia: ''
+            green: ''
+            lime: ''
+            olive: ''
+            yellow: ''
+            orange: ''
+            navy: ''
+            blue: ''
+            teal: ''
+            aqua: ''
             
-            silver: null # we're using this to paint Filters.username
+            silver: '' # we're using this to paint Filters.username
         }
 
     # Load defauls into localStorage unless localStorage are not filled
     # with user settings.
     @loadSettings: ->
-        for key, val of Conf.defaults['Filters']
-            ls = ExtStorage.Get 'Filters', key
-            ExtStorage.Set 'Filters', key, val unless ls
-        
+        for g_name of Conf.defaults
+            for key, val of Conf.defaults[g_name]
+                ls = ExtStorage.Get g_name, key
+                ExtStorage.Set g_name, key, val unless ls
+
+    @rFavorites: ->
+        r = {}
+        r[val] = key for key, val of Conf.defaults.Favorites
+        r

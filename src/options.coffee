@@ -7,33 +7,43 @@ defaults = require?('defaults') || root
 crypt = require?('../vendor/md5') || root
 
 class MyColors
-    constructor: (@element) ->
-
-    _getInvertedValue: (css) ->
-        rgb = (window.getComputedStyle @element)
+    @getInvertedValue: (element, css) ->
+        rgb = (window.getComputedStyle element)
             .getPropertyCSSValue(css).getRGBColorValue()
         color = {}
         for idx in ['red', 'green', 'blue']
             color[idx] = 255 - rgb[idx].getFloatValue CSSPrimitiveValue.CSS_NUMBER
         color
 
-    get: ->
+    @getWhite: ->
         {
-            b: @_getInvertedValue 'background-color'
-            f: @_getInvertedValue 'color'
+            red: 255
+            green: 255
+            blue: 255
         }
 
-    toRGBA: (color) ->
+    @getBlack: ->
+        {
+            red: 0
+            green: 0
+            blue: 0
+        }
+
+    @getContrastValue: (element, css) ->
+        c = MyColors.getInvertedValue element, css
+        yiq = ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
+        if yiq >= 128 then MyColors.getWhite() else MyColors.getBlack()
+
+    @toRGBA: (color) ->
         "rgba(#{color.red}, #{color.green}, #{color.blue}, 1)"
 
-    invert: ->
-        cp = @get()
-        @element.style.backgroundColor = @toRGBA cp.b
-        @element.style.color = @toRGBA cp.f
+    @invertBody: (element) ->
+        element.style.backgroundColor = MyColors.toRGBA (MyColors.getInvertedValue element, 'background-color')
+        element.style.color = MyColors.toRGBA (MyColors.getInvertedValue element, 'color')
 
 
 class TextAreaState
-    # src is a dom textarea object
+    # src is a dom textarea/input object
     constructor: (@src) ->
         @state = null
         @src.addEventListener 'mouseover', =>
@@ -46,6 +56,7 @@ class TextAreaState
     isModified: ->
 #        console.log "#{@state} == #{crypt.md5 @src.value}"
         !(@state == crypt.md5 @src.value)
+
 
 class Options
     @EXPORT_FILENAME = 'hnbl_settings.json'
@@ -61,17 +72,25 @@ class Options
         @taLinktitleBl = document.querySelector '#linktitle-bl textarea'
         @taLinktitleWl = document.querySelector '#linktitle-wl textarea'
 
+        @favorites = Array.prototype.slice.call(document.querySelectorAll '.usercolor')
+
         @filters = [@taHostname, @taUsername, @taLinktitleBl, @taLinktitleWl]
         @gui = [
             @btnDefaults
             @btnSave
             @btnExport
             @btnImport
-        ].concat @filters
+        ].concat(@filters).concat @favorites
 
-        idx.mystate = new TextAreaState(idx) for idx in @filters
+        # paint color boxes
+        @paintColorBox idx for idx in document.querySelectorAll '.colorbox'
 
-        @bodyColors = new MyColors document.body
+    paintColorBox: (colorbox) ->
+        colorbox.style.background = colorbox.innerText
+
+        rgb = MyColors.getContrastValue colorbox, 'background-color'
+        colorbox.style.color = MyColors.toRGBA rgb
+        colorbox.style.border = "1px solid #{MyColors.toRGBA rgb}"
 
     # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->
@@ -82,20 +101,29 @@ class Options
 
     # Load saved settings for element.
     # Use default values for unmodified settings.
-    settingsLoadOpt: (element) ->
+    settingsLoadFilterOpt: (element) ->
         val = storage.ExtStorage.Get 'Filters', element.name
         element.value = (val || defaults.Conf.defaults['Filters'][element.name]).join "\n"
 
+    settingsLoadFavoriteOpt: (element) ->
+        val = storage.ExtStorage.Get 'Favorites', element.name
+        element.value = val || defaults.Conf.defaults['Favorites'][element.name]
+
     settingsLoad: ->
         @say @btnSave, 'Loading settings...', =>
-            @settingsLoadOpt idx for idx in @filters
+            @settingsLoadFilterOpt idx for idx in @filters
+            @settingsLoadFavoriteOpt idx for idx in @favorites
         @btnSave.disabled = true
 
     guiBind: ->
+        idx.mystate = new TextAreaState(idx) for idx in @filters.concat @favorites
+
         # default button
         @btnDefaults.addEventListener 'click', =>
             for idx in @filters
                 idx.value = defaults.Conf.defaults['Filters'][idx.name].join "\n"
+            for idx in @favorites
+                idx.value = defaults.Conf.defaults['Favorites'][idx.name]
             @btnSave.disabled = false
         , false
 
@@ -105,8 +133,8 @@ class Options
             @btnSave.disabled = true
         , false
 
-        # all lists
-        for idx in @filters
+        # all text input fields
+        for idx in @filters.concat @favorites
             idx.addEventListener 'change', =>
                 @btnSave.disabled = false
             , false
@@ -131,19 +159,19 @@ class Options
         document.body.addEventListener 'dragenter', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            @bodyColors.invert()
+            MyColors.invertBody document.body
         , false
 
         document.body.addEventListener 'dragleave', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            @bodyColors.invert()
+            MyColors.invertBody document.body
         , false
 
         document.body.addEventListener 'drop', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            @bodyColors.invert()
+            MyColors.invertBody document.body
 
             dt = event.dataTransfer
             if dt?.files.length != 1
@@ -172,9 +200,10 @@ class Options
                 alert "Error parsing '#{file.name}': #{e.message}"
                 return
 
-#            console.log r
+            console.log r
             @say @btnImport, 'Loading settings...', =>
-                idx.value = (r[idx.name]?.join "\n" || "") for idx in @filters
+                idx.value = (r?.Filters[idx.name]?.join "\n" || "") for idx in @filters
+                idx.value = (r?.Favorites[idx.name] || "") for idx in @favorites
 
         reader.readAsText file
 
@@ -191,14 +220,20 @@ class Options
             webkitURL.revokeObjectURL url
 
     settingsGetCurrentAsString: ->
-        o = {}
-        o[idx.name] = filter.parseRawData idx.value for idx in @filters
+        o = {
+            'Filters' : {}
+            'Favorites' : {}
+        }
+        o.Filters[idx.name] = filter.parseRawData idx.value for idx in @filters
+        o.Favorites[idx.name] = idx.value.trim() for idx in @favorites
         JSON.stringify o
 
     settingsSave: ->
         @say @btnSave, 'Saving...', =>
             for idx in @filters
                 storage.ExtStorage.Set 'Filters', idx.name, (filter.parseRawData idx.value)
+            for idx in @favorites
+                storage.ExtStorage.Set 'Favorites', idx.name, idx.value.trim()
 
     say: (element, msg, callback) ->
         orig = element.innerText
