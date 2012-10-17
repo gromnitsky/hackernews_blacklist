@@ -109,28 +109,114 @@ class root.Cmnt
         @button.scrollIntoView true
 
 
+class root.FavCon
+    @WIN_WIDTH = 200
+
+    constructor: (favorites, @memory, @cursor) ->
+        @users = {}
+        @setFavorites favorites
+
+        chrome.extension.sendMessage fub.Message.Creat('commentsGetContentsHTML', {}), (res) =>
+            console.log 'favcon: got html'
+            div = document.createElement 'div'
+            document.body.appendChild div
+            div.innerHTML = res.html
+
+            @win = document.querySelector '#hnbl_favorites'
+            @win.style.display = 'none'
+            @win.style.left = "#{window.innerWidth - FavCon.WIN_WIDTH - 50}px"
+
+            @btnClose = document.querySelector '#hnbl_favoritesClose'
+            @table = document.querySelector '#hnbl_favoritesUsers'
+
+            @guiBind()
+
+    setFavorites: (hash) ->
+        @favorites = fub.val2key hash
+
+    size: ->
+        (Object.keys @users).length
+
+    incr: (name) ->
+        val = @users[name]
+        @users[name] = if fub.isNum val then ++val else 1
+
+    guiBind: ->
+        @btnClose.addEventListener 'click', (event) =>
+            @toggle()
+        , false
+
+    fill: ->
+        @addRow key, val for key, val of @users
+
+    addRow: (name, n) ->
+        row = document.createElement 'tr'
+
+        username = document.createElement 'td'
+        colorbox = document.createElement 'span'
+        colorbox.style.display = 'block'
+        colorbox.style.cursor = 'pointer'
+        colorbox.appendChild (document.createTextNode name)
+        colorbox.addEventListener 'click', (event) =>
+            @cursor.findAndSet 1, (comment) ->
+                comment.username == name
+            , "no other #{name}'s comment found"
+        , false
+        username.appendChild colorbox
+
+        unread = @makeTD @getUnread()
+        unread.style.cursor = 'pointer'
+        unread.addEventListener 'click', (event) =>
+            @cursor.findAndSet 1, (comment) ->
+                comment.username == name && comment.isOpen()
+            , "no other expanded #{name}'s comment found"
+        , false
+
+        row.appendChild idx for idx in [username, unread, @makeTD n]
+        @table.appendChild row
+        fub.Colour.paintBox colorbox, @favorites[name]
+
+    makeTD: (val) ->
+        e = document.createElement 'td'
+        e.appendChild (document.createTextNode val)
+        e
+
+    getUnread: (name) ->
+        return '?' unless @memory
+        # TODO
+        '??'
+
+    toggle: ->
+        if @size() == 0
+            console.log 'favcon: no favorite users here'
+            return
+        @win.style.display = if @win.style.display == '' then 'none' else ''
+
+
 class root.Forum
     @COLLAPSE_STATUS = {
         unmodified: 'not collapsed'
         read: 'collapsed due to read'
         blacklist: 'collapsed due to blacklist'
     }
-    
+
     constructor: (@comments, @memory, @cursor) ->
         throw new Error 'invalid comments array' unless @comments instanceof Array
         console.error "forum: memory isn't initialized" unless @memory
         console.error "forum: cursor isn't initialized" unless @cursor
 
+        @favcon = new FavCon {}, @memory, @cursor
+
         # statistics
         @collapsed = 0
-        # on this page
-        @favorites = []
 
         chrome.extension.sendMessage fub.Message.extStorageGetAll(), (res) =>
 #            console.log res
             f = new filter.FilterExact false
             f.blackSet res.Filters.username.join "\n"
-            
+
+            @favcon.setFavorites res.Favorites
+
             for unused, index in @comments
                 @addEL index
 
@@ -140,7 +226,7 @@ class root.Forum
                     console.log "forum: collapse oncomplete: index=#{event.detail.index}, status=#{event.detail.status}"
                     @updateTitle event.detail.index
                     @scrollToExpanded event.detail.index
-                    @contentsInit event.detail.index
+                    @favconFill event.detail.index
 
     paint: (index, favorites, filter) ->
         comment = @comments[index]
@@ -152,7 +238,7 @@ class root.Forum
         else
             return unless color = fav[comment.username]
             fub.Colour.paintBox comment.usernameElement, color
-            @favorites.push comment.username
+            @favcon.incr comment.username
 
         console.log "forum: paint: #{comment.username} in #{color}"
 
@@ -231,7 +317,7 @@ class root.Forum
                         comment.close()
                         @collapsed += 1
                         status = Forum.COLLAPSE_STATUS.blacklist
-                    
+
                     event = new CustomEvent 'complete', {
                         detail: {
                             index: index
@@ -255,32 +341,10 @@ class root.Forum
         @cursor.findExpanded(1, false) if index == @comments.length-1
 
     # Scroll to 1st expanded comment, if possible.
-    contentsInit: (index) ->
-        return unless index == @comments.length-1 && @favorites.length > 0
-        chrome.extension.sendMessage fub.Message.Creat('commentsGetContentsHTML', {}), (res) =>
-            console.log 'forum: contentsInit: html'
-            div = document.createElement 'div'
-            document.body.appendChild div
-            div.innerHTML = res.html
-
-            contents = document.querySelector '#hnbl_favorites'
-            width = 200
-            contents.style.left = "#{window.innerWidth - width - 50}px"
-
-            (document.querySelector '#hnbl_favoritesClose').addEventListener 'click', =>
-                @contentsToggle()
-            , false
-
-    contentsToggle: ->
-        if @favorites.length == 0
-            console.log 'forum: no favorite users here'
-            return
-        
-        contents = document.querySelector '#hnbl_favorites'
-        if contents.style.display == 'none'
-            contents.style.display = ''
-        else
-            contents.style.display = 'none'
+    favconFill: (index) ->
+        return unless index == @comments.length-1 && @favcon.size() > 0
+        @favcon.fill()
+        @favcon.toggle()
 
     # Add comment to indexeddb.
     memorize: (comment, nextCallback) ->
@@ -478,7 +542,7 @@ class root.Keyboard
             '219': [@forum.cursor, 'findRoot', -1] # '[' jump to prev root comment
             'S-221': [@forum.cursor, 'findSameLevel', 1] # ']' jump to next comment on the same level
             'S-219': [@forum.cursor, 'findSameLevel', -1] # '[' jump to prev comment on the same level
-            '67': [@forum, 'contentsToggle'] # 'c' show/hide favorites
+            '67': [@forum.favcon, 'toggle'] # 'c' show/hide favorites
         }
         @addEL()
 

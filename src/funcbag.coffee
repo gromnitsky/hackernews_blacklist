@@ -20,6 +20,8 @@ root.val2key = (hash) ->
     r[val] = key for key, val of hash
     r
 
+root.isNum = (n) -> !isNaN(parseFloat n) && isFinite n
+
 # Message builder for content scripts.
 #
 # Example:
