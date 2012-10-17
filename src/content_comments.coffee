@@ -39,7 +39,7 @@ class root.Cmnt
 
         @body = @header.parentNode.parentNode.querySelector 'span[class="comment"]'
         throw new Error "cannot extract comment's body" unless @body
-        if @body.innerText == '[deleted]' && @headerText == ""
+        if @body.innerText.match(/^\[(deleted|dead)\]$/) && @headerText == ""
             throw new CmntIgnoreError "deleted comment"
 
         link = (@header.querySelector 'a[href^="item?id="]') || (@header.querySelector 'a[href*="ycombinator.com/item?id="]')
@@ -66,7 +66,8 @@ class root.Cmnt
         node = @header.firstChild
         @header.insertBefore @button, node
         @header.insertBefore (document.createTextNode ' '), node
-        console.log 'cmnt: new button'
+#        console.log "cmnt: new button #{@headerText}"
+        console.log "cmnt: new button"
 
     buttonOpen: ->
         throw new Error "button doesn't exist" unless @button
@@ -104,7 +105,7 @@ class root.Cmnt
         else
             @body.style.display = state
 
-    scrollIntoView: ->
+    scroll: ->
         throw new Error "button doesn't exist" unless @button
         @button.scrollIntoView true
 
@@ -124,12 +125,15 @@ class root.FavCon
 
             @win = document.querySelector '#hnbl_favorites'
             @win.style.display = 'none'
-            @win.style.left = "#{window.innerWidth - FavCon.WIN_WIDTH - 50}px"
+            @setWinPos()
 
             @btnClose = document.querySelector '#hnbl_favoritesClose'
             @table = document.querySelector '#hnbl_favoritesUsers'
 
             @guiBind()
+
+    setWinPos: ->
+        @win.style.left = "#{window.innerWidth - FavCon.WIN_WIDTH - 50}px"
 
     setFavorites: (hash) ->
         @favorites = fub.val2key hash
@@ -146,10 +150,17 @@ class root.FavCon
             @toggle()
         , false
 
+        # recalculate window position
+        window.addEventListener 'resize', (event) =>
+            @setWinPos()
+        , false
+
     fill: ->
         @addRow key, val for key, val of @users
 
     addRow: (name, comments) ->
+        return unless name && comments
+        
         row = document.createElement 'tr'
 
         username = document.createElement 'td'
@@ -164,7 +175,7 @@ class root.FavCon
         , false
         username.appendChild colorbox
 
-        unread = @makeTD @getUnread name
+        unread = @makeTD (@getUnread name)
         unread.style.cursor = 'pointer'
         unread.addEventListener 'click', (event) =>
             @cursor.findAndSet 1, (comment) ->
@@ -341,7 +352,7 @@ class root.Forum
     scrollToExpanded: (index) ->
         @cursor.findExpanded(1, false) if index == @comments.length-1
 
-    # Scroll to 1st expanded comment, if possible.
+    # Add favorites to a favcon window
     favconFill: (index) ->
         return unless index == @comments.length-1 && @favcon.size() > 0
         @favcon.fill()
@@ -469,7 +480,7 @@ class root.CCursor
         @current = @comments.length-1 if @current < 0
 
         @setAt @current
-        @comments[@current].scrollIntoView()
+        @comments[@current].scroll()
 
     # direction is -1 or 1
     #
@@ -493,7 +504,7 @@ class root.CCursor
             if condition(comment)
                 @prev = start
                 @setAt pos
-                comment.scrollIntoView()
+                comment.scroll()
                 return
 
             pos += direction
