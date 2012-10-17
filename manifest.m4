@@ -7,7 +7,7 @@
 		"128": "icons/128.png"
 	},
 	"background": { "scripts": [
-		"lib/mixins.js",
+		"lib/funcbag.js",
 		"lib/extstorage.js",
 		"lib/defaults.js",
 		"lib/background.js"

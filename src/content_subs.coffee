@@ -1,11 +1,11 @@
 root = exports ? this
-msg = require?('./message') || root
+fub = require?('./funcbag') || root
 
 extStorageMsgGet = (group, name) ->
-    msg.Message.Creat 'extStorage.get', {'group': group, 'name': name}
+    fub.Message.Creat 'extStorage.get', {'group': group, 'name': name}
 
 extStorageMsgGetGroup = (group) ->
-    msg.Message.Creat 'extStorage.getGroup', {'group': group}
+    fub.Message.Creat 'extStorage.getGroup', {'group': group}
 
 class root.Sub
     @RANK_OPEN_LABEL = '[-]'
@@ -102,7 +102,7 @@ class root.HN
 
         @warning count if count >= HN.WARNING_THRESHOLD
         # ask background.js to update page icon title
-        chrome.extension.sendMessage msg.Message.Creat('statSubs', {'filtered': count})
+        chrome.extension.sendMessage fub.Message.Creat('statSubs', {'filtered': count})
 
     warning: (linksFiltered) ->
         t = [

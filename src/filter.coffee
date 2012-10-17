@@ -1,5 +1,5 @@
 root = exports ? this
-mixin = require?('./mixins') || root
+fub = require?('./funcbag') || root
 
 # Return an array from a string str.
 root.parseRawData = (str) ->
@@ -50,7 +50,7 @@ class root.FilterRegexp
     listGet: (list) ->
         list.join "\n"
 
-mixin.include root.FilterRegexp, FilterInterface
+fub.include root.FilterRegexp, FilterInterface
 
 class root.FilterExact
     constructor: (@useWhite = true) ->
@@ -72,4 +72,4 @@ class root.FilterExact
         r.push key for key, val of list
         r.join "\n"
 
-mixin.include root.FilterExact, FilterInterface
+fub.include root.FilterExact, FilterInterface

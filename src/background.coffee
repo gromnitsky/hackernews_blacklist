@@ -18,9 +18,8 @@ InjectorInterface =
 class InjectorSubs
     constructor: ->
         @scripts = [
-            'lib/mixins.js'
+            'lib/funcbag.js'
             'lib/filter.js'
-            'lib/message.js'
             'lib/content_subs.js'
             ]
     
@@ -32,7 +31,7 @@ include InjectorSubs, InjectorInterface
 class InjectorComments
     constructor: ->
         @scripts = [
-            'lib/message.js'
+            'lib/funcbag.js'
             'lib/content_comments.js'
             ]
     

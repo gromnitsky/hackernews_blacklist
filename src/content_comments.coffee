@@ -1,5 +1,5 @@
 root = exports ? this
-msg = require?('./message') || root
+fub = require?('./funcbag') || root
 
 class CmntIgnoreError extends Error
     constructor: (msg) ->
@@ -208,7 +208,7 @@ class root.Forum
     # Update icon title via sending a message to bg.js.
     updateTitle: (index) ->
         if index == @comments.length-1
-            chrome.extension.sendMessage msg.Message.Creat('statComments', {
+            chrome.extension.sendMessage fub.Message.Creat('statComments', {
                 collapsed: @collapsed
                 total: @comments.length
             })
@@ -442,7 +442,7 @@ throw new Error 'cannot get a submission id for this page' unless sub_id
 images = document.querySelectorAll('td > img[height="1"]')
 if images.length == 0
     console.error '0 comments?'
-    chrome.extension.sendMessage msg.Message.Creat('statComments', {
+    chrome.extension.sendMessage fub.Message.Creat('statComments', {
         collapsed: 0
         total: images.length
     })

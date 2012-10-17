@@ -1,47 +1,10 @@
 root = exports ? this
-mixin = require?('mixins') || root
+fub = require?('funcbag') || root
 filter = require?('filter') || root
 storage = require?('extstorage') || root
 defaults = require?('defaults') || root
 
 crypt = require?('../vendor/md5') || root
-
-class MyColors
-    @getInvertedValue: (element, css) ->
-        rgb = (window.getComputedStyle element)
-            .getPropertyCSSValue(css).getRGBColorValue()
-        color = {}
-        for idx in ['red', 'green', 'blue']
-            color[idx] = 255 - rgb[idx].getFloatValue CSSPrimitiveValue.CSS_NUMBER
-        color
-
-    @getWhite: ->
-        {
-            red: 255
-            green: 255
-            blue: 255
-        }
-
-    @getBlack: ->
-        {
-            red: 0
-            green: 0
-            blue: 0
-        }
-
-    @getContrastValue: (element, css) ->
-        c = MyColors.getInvertedValue element, css
-        yiq = ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
-#        console.log "#{element.innerText} #{yiq}"
-        if yiq >= 127 then MyColors.getWhite() else MyColors.getBlack()
-
-    @toRGBA: (color) ->
-        "rgba(#{color.red}, #{color.green}, #{color.blue}, 1)"
-
-    @invertBody: (element) ->
-        element.style.backgroundColor = MyColors.toRGBA (MyColors.getInvertedValue element, 'background-color')
-        element.style.color = MyColors.toRGBA (MyColors.getInvertedValue element, 'color')
-
 
 class TextAreaState
     # src is a dom textarea/input object
@@ -89,9 +52,9 @@ class Options
     paintColorBox: (colorbox) ->
         colorbox.style.background = colorbox.innerText
 
-        rgb = MyColors.getContrastValue colorbox, 'background-color'
-        colorbox.style.color = MyColors.toRGBA rgb
-        colorbox.style.border = "1px solid #{MyColors.toRGBA rgb}"
+        rgb = fub.Colour.getContrastValue colorbox, 'background-color'
+        colorbox.style.color = fub.Colour.toRGBA rgb
+        colorbox.style.border = "1px solid #{fub.Colour.toRGBA rgb}"
 
     # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->
@@ -160,19 +123,19 @@ class Options
         document.body.addEventListener 'dragenter', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            MyColors.invertBody document.body
+            fub.Colour.invertBody document.body
         , false
 
         document.body.addEventListener 'dragleave', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            MyColors.invertBody document.body
+            fub.Colour.invertBody document.body
         , false
 
         document.body.addEventListener 'drop', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            MyColors.invertBody document.body
+            fub.Colour.invertBody document.body
 
             dt = event.dataTransfer
             if dt?.files.length != 1
