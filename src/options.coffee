@@ -32,7 +32,8 @@ class MyColors
     @getContrastValue: (element, css) ->
         c = MyColors.getInvertedValue element, css
         yiq = ((c.red * 299) + (c.green * 587) + (c.blue * 114)) / 1000;
-        if yiq >= 128 then MyColors.getWhite() else MyColors.getBlack()
+#        console.log "#{element.innerText} #{yiq}"
+        if yiq >= 127 then MyColors.getWhite() else MyColors.getBlack()
 
     @toRGBA: (color) ->
         "rgba(#{color.red}, #{color.green}, #{color.blue}, 1)"
@@ -73,14 +74,14 @@ class Options
         @taLinktitleWl = document.querySelector '#linktitle-wl textarea'
 
         @favorites = Array.prototype.slice.call(document.querySelectorAll '.usercolor')
-
         @filters = [@taHostname, @taUsername, @taLinktitleBl, @taLinktitleWl]
+        @input = @filters.concat @favorites
         @gui = [
             @btnDefaults
             @btnSave
             @btnExport
             @btnImport
-        ].concat(@filters).concat @favorites
+        ].concat @input
 
         # paint color boxes
         @paintColorBox idx for idx in document.querySelectorAll '.colorbox'
@@ -116,7 +117,7 @@ class Options
         @btnSave.disabled = true
 
     guiBind: ->
-        idx.mystate = new TextAreaState(idx) for idx in @filters.concat @favorites
+        idx.mystate = new TextAreaState(idx) for idx in @input
 
         # default button
         @btnDefaults.addEventListener 'click', =>
@@ -134,7 +135,7 @@ class Options
         , false
 
         # all text input fields
-        for idx in @filters.concat @favorites
+        for idx in @input
             idx.addEventListener 'change', =>
                 @btnSave.disabled = false
             , false
