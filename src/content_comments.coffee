@@ -422,6 +422,12 @@ class root.CCursor
             comment.ident == @comments[@current].ident
         , "no other comments on this level found"
 
+    # direction is -1 or 1
+    findSameUsername: (direction) ->
+        @findAndSet direction, (comment) =>
+            comment.username == @comments[@current].username
+        , "no other comments of this user found"
+
 
 class root.Keyboard
     @IGNORED_ELEMENTS = ['INPUT', 'TEXTAREA']
@@ -430,8 +436,8 @@ class root.Keyboard
         @keymap = {
             '75': [@forum.cursor, 'move', -1] # 'k' prev comment
             '74': [@forum.cursor, 'move', 1] # 'j' next
-            '76': [@forum.cursor, 'move', 10] # 'l' jump over 10 comments forward
-            '72': [@forum.cursor, 'move', -10] # 'h' jump over 10 comments backward
+            '76': [@forum.cursor, 'findSameUsername', 1] # 'l' jump to current user's next comment
+            '72': [@forum.cursor, 'findSameUsername', -1] # 'h' jump to current user's prev comment
             '188': [@forum.cursor, 'findExpanded', -1] # ',' prev unread comment
             '190': [@forum.cursor, 'findExpanded', 1] # '.' next unread
             '222': [@forum, 'commentToggle'] # 'single quote' collapse/expand current comment

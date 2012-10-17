@@ -33,11 +33,11 @@ http://news.ycombinator.com.
   </tr>
   <tr>
   <td><kbd>l</kbd></td>
-  <td>Jump over 10 comments forward</td>
+  <td>Jump to next user's comment</td>
   </tr>
   <tr>
   <td><kbd>h</kbd></td>
-  <td>Jump over 10 comments backward</td>
+  <td>Jump to previous user's comment</td>
   </tr>
   <tr>
   <td><kbd>.</kbd></td>
