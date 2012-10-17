@@ -47,6 +47,12 @@ analyze_uri = (tabId, changeInfo, tab) ->
     comments = new InjectorComments()
     comments.onUpdatedCallback tabId, changeInfo, tab
 
+readFile = (file) ->
+    r = new XMLHttpRequest()
+    r.open "GET", file, false
+    r.send null
+    r.responseText
+
 # listen for any changes to the url of any tab
 chrome.tabs.onUpdated.addListener analyze_uri
 
@@ -71,6 +77,12 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
             chrome.pageAction.setTitle
                 tabId: sender.tab.id
                 title: "#{req.data.total-req.data.collapsed} new, #{req.data.collapsed} read, #{req.data.total} total"
+        when 'commentsGetContentsHTML'
+            # send raw html
+            file = 'lib/content_comments_contents.html'
+            html = readFile file
+            sendRes {html: html}
+            console.log "bg: html send: #{file}"
         else
             new Error("unknown message name: #{req.msg}")
 

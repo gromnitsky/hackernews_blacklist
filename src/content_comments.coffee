@@ -123,6 +123,8 @@ class root.Forum
 
         # statistics
         @collapsed = 0
+        # on this page
+        @favorites = []
 
         chrome.extension.sendMessage fub.Message.extStorageGetAll(), (res) =>
 #            console.log res
@@ -138,6 +140,7 @@ class root.Forum
                     console.log "forum: collapse oncomplete: index=#{event.detail.index}, status=#{event.detail.status}"
                     @updateTitle event.detail.index
                     @scrollToExpanded event.detail.index
+                    @contentsInit event.detail.index
 
     paint: (index, favorites, filter) ->
         comment = @comments[index]
@@ -149,6 +152,7 @@ class root.Forum
         else
             return unless color = fav[comment.username]
             fub.Colour.paintBox comment.usernameElement, color
+            @favorites.push comment.username
 
         console.log "forum: paint: #{comment.username} in #{color}"
 
@@ -249,6 +253,34 @@ class root.Forum
     # Scroll to 1st expanded comment, if possible.
     scrollToExpanded: (index) ->
         @cursor.findExpanded(1, false) if index == @comments.length-1
+
+    # Scroll to 1st expanded comment, if possible.
+    contentsInit: (index) ->
+        return unless index == @comments.length-1 && @favorites.length > 0
+        chrome.extension.sendMessage fub.Message.Creat('commentsGetContentsHTML', {}), (res) =>
+            console.log 'forum: contentsInit: html'
+            div = document.createElement 'div'
+            document.body.appendChild div
+            div.innerHTML = res.html
+
+            contents = document.querySelector '#hnbl_favorites'
+            width = 200
+            contents.style.left = "#{window.innerWidth - width - 50}px"
+
+            (document.querySelector '#hnbl_favoritesClose').addEventListener 'click', =>
+                @contentsToggle()
+            , false
+
+    contentsToggle: ->
+        if @favorites.length == 0
+            console.log 'forum: no favorite users here'
+            return
+        
+        contents = document.querySelector '#hnbl_favorites'
+        if contents.style.display == 'none'
+            contents.style.display = ''
+        else
+            contents.style.display = 'none'
 
     # Add comment to indexeddb.
     memorize: (comment, nextCallback) ->
@@ -446,6 +478,7 @@ class root.Keyboard
             '219': [@forum.cursor, 'findRoot', -1] # '[' jump to prev root comment
             'S-221': [@forum.cursor, 'findSameLevel', 1] # ']' jump to next comment on the same level
             'S-219': [@forum.cursor, 'findSameLevel', -1] # '[' jump to prev comment on the same level
+            '67': [@forum, 'contentsToggle'] # 'c' show/hide favorites
         }
         @addEL()
 

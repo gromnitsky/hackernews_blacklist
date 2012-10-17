@@ -1,0 +1,43 @@
+style(type='text/css')
+  #hnbl_favorites {
+    color: black;
+    position: fixed;
+    padding: 10px;
+    background: -webkit-linear-gradient(bottom, #E8E8E8 0%, #F2F2F1 50%);
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    top: 10px;
+    width: 200px;
+
+    /* values that will be modified in the content script */
+    left: 0px;
+    /* display: none; */
+  }
+
+  #hnbl_favoritesClose {
+    cursor: crosshair;
+    color: #828282;
+  }
+  
+  #hnbl_favoritesUsers {
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+  }
+  #hnbl_favoritesUsers th, #hnbl_favoritesUsers td {
+    border: 1px solid black;
+    padding: 3px;
+    color: black;
+  }
+
+div#hnbl_favorites
+  span#hnbl_favoritesClose &#8855;
+  | &#0160;&#0160;&#0160;&#0160;&#0160;&#0160;
+  b Favorites
+
+  br
+  br
+  table#hnbl_favoritesUsers
+    tr
+      td foo
+      td 1
+      td 2
