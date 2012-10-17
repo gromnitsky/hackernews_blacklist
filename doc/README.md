@@ -8,6 +8,27 @@ http://news.ycombinator.com.
 * __Collapse uninteresting links__ via title, host name or user name filters.
 * Collapse/expand comments.
 * __Automatically collapse all read comments__ & jump to 1st unread one.
+* Navigation window with favorite users. 2nd column shows a number of
+  'new' user's comments, 3rd column shows a total number of comments.
+
+  <table border="1">
+  <tr>
+  <th>Click with</th>
+  <th>On column</th>
+  <th>To do this</th>
+  </tr>
+  <tr>
+  <td><kbd>Button1</kbd></td>
+  <td>1</td>
+  <td>Jump to next user's comment</td>
+  </tr>
+  <tr>
+  <td><kbd>Button1</kbd></td>
+  <td>2</td>
+  <td>Jump to the next expanded user's comment</td>
+  </tr>
+  </table>
+
 * Keyboard navigation in comments pages.
 
   <table border="1">
@@ -33,11 +54,11 @@ http://news.ycombinator.com.
   </tr>
   <tr>
   <td><kbd>l</kbd></td>
-  <td>Jump to next user's comment</td>
+  <td>Jump to the next user's comment</td>
   </tr>
   <tr>
   <td><kbd>h</kbd></td>
-  <td>Jump to previous user's comment</td>
+  <td>Jump to the previous user's comment</td>
   </tr>
   <tr>
   <td><kbd>.</kbd></td>
@@ -62,6 +83,10 @@ http://news.ycombinator.com.
   <tr>
   <td><kbd>{</kbd></td>
   <td>Jump to the previous comment on the same level</td>
+  </tr>
+  <tr>
+  <td><kbd>c</kbd></td>
+  <td>Show/hide favorites window</td>
   </tr>
   </table>
 

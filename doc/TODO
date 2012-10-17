@@ -23,14 +23,15 @@ Every BL is a (big) string where entries are separated by newlines.
 - [X] collapse threads
 - [X] collapse read comments
 - [X] keyboard shortcuts
-- [ ] backup BLs to json file, restore from it
-- [ ] popup message & progress bar
+- [X] backup BLs to json file, restore from it
+- [X] popup message
 - [X] '[' & ']' keys to jump to a next/prev root comment
 - [X] ';' key to collapse a (sub)thread, not just the current comment
-- [ ] record a parent for each comment and its root.
+- [ ] show number of unread comments in content_subs for all submissions
+- [X] white list: highlight white-listed users
 
 * later
 
+- [ ] record a parent for each comment and its root.
 - [ ] popup window like in g+
-- [ ] white list: highlight white-listed users
 - [ ] inline reply
