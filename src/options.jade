@@ -132,7 +132,7 @@ html
             th: | &#8715;
             th: | User name
           - for (var key in locals)
-            - if (key === 'silver') continue
+            - if (key.charAt(0) === '#') continue
             tr
               td
                 span.colorbox= key

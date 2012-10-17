@@ -68,7 +68,7 @@ class root.Conf
             teal: ''
             aqua: ''
             
-            silver: '' # we're using this to paint Filters.username
+            '#dedede': '@' # we're using this to paint Filters.username
         }
 
     # Load defauls into localStorage unless localStorage are not filled
@@ -78,8 +78,3 @@ class root.Conf
             for key, val of Conf.defaults[g_name]
                 ls = ExtStorage.Get g_name, key
                 ExtStorage.Set g_name, key, val unless ls
-
-    @rFavorites: ->
-        r = {}
-        r[val] = key for key, val of Conf.defaults.Favorites
-        r

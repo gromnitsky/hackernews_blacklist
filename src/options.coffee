@@ -47,14 +47,8 @@ class Options
         ].concat @input
 
         # paint color boxes
-        @paintColorBox idx for idx in document.querySelectorAll '.colorbox'
-
-    paintColorBox: (colorbox) ->
-        colorbox.style.background = colorbox.innerText
-
-        rgb = fub.Colour.getContrastValue colorbox, 'background-color'
-        colorbox.style.color = fub.Colour.toRGBA rgb
-        colorbox.style.border = "1px solid #{fub.Colour.toRGBA rgb}"
+        for idx in document.querySelectorAll '.colorbox'
+            fub.Colour.paintBox idx, idx.innerText
 
     # 'toggleGui true' forces to disable gui elements
     toggleGui: (to = null) ->

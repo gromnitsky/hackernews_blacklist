@@ -15,6 +15,11 @@ root.fire = (element, eventName) ->
     element.dispatchEvent event
 
 
+root.val2key = (hash) ->
+    r = {}
+    r[val] = key for key, val of hash
+    r
+
 # Message builder for content scripts.
 #
 # Example:
@@ -81,3 +86,15 @@ class root.Colour
         element.style.backgroundColor = Colour.toRGBA (Colour.getInvertedValue element, 'background-color')
         element.style.color = Colour.toRGBA (Colour.getInvertedValue element, 'color')
 
+    @paintBox: (element, color) ->
+        element.style.padding = '0px 3px 0px 3px'
+        element.style.background = color
+
+        rgb = Colour.getContrastValue element, 'background-color'
+        element.style.color = Colour.toRGBA rgb
+        element.style.border = "1px solid #{Colour.toRGBA rgb}"
+
+    @paintBoxIn: (element, fgcolor) ->
+        element.style.padding = '0px 3px 0px 3px'
+        element.style.color = fgcolor
+        element.style.border = "1px solid #{fgcolor}"

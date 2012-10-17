@@ -46,7 +46,8 @@ class root.Cmnt
         @messageID = (link.href.match /id=(\d+)/)[1] if link
         throw new Error "cannot extract comment's messageID for #{@headerText}" unless link
 
-        @username = (@header.querySelector 'a')?.innerText
+        @usernameElement = @header.querySelector 'a'
+        @username = @usernameElement?.innerText
         throw new Error "cannot extract comment's username for #{@headerText}" unless @username
 
         @makeButton()
@@ -131,15 +132,25 @@ class root.Forum
             for unused, index in @comments
                 @addEL index
 
-                @paint index, res.Favorites
+                @paint index, res.Favorites, f
                 req = @collapse index, f
                 req.addEventListener 'complete', (event) =>
                     console.log "forum: collapse oncomplete: index=#{event.detail.index}, status=#{event.detail.status}"
                     @updateTitle event.detail.index
                     @scrollToExpanded event.detail.index
 
-    paint: (index, favorites) ->
-        # TODO
+    paint: (index, favorites, filter) ->
+        comment = @comments[index]
+        fav = fub.val2key favorites
+
+        color = fav['@']
+        if filter.match comment.username
+            fub.Colour.paintBoxIn comment.usernameElement, color
+        else
+            return unless color = fav[comment.username]
+            fub.Colour.paintBox comment.usernameElement, color
+
+        console.log "forum: paint: #{comment.username} in #{color}"
 
     addEL: (index) ->
         comment = @comments[index]
