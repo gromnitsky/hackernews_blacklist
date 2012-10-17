@@ -32,6 +32,7 @@ class InjectorComments
     constructor: ->
         @scripts = [
             'lib/funcbag.js'
+            'lib/filter.js'
             'lib/content_comments.js'
             ]
     
@@ -58,6 +59,10 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
             sendRes ExtStorage.Get req.data.group, req.data.name
         when 'extStorage.getGroup'
             sendRes ExtStorage.GetGroup req.data.group
+        when 'extStorage.getAll'
+            filters = ExtStorage.GetGroup 'Filters'
+            favorites = ExtStorage.GetGroup 'Favorites'
+            sendRes {Filters: filters, Favorites: favorites}
         when 'statSubs'
             chrome.pageAction.setTitle
                 tabId: sender.tab.id

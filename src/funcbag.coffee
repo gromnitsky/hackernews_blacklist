@@ -34,6 +34,15 @@ class root.Message
     @Creat: (name, hash) ->
         (new Message(name)).encode hash
 
+    @extStorageGet = (group, name) ->
+        Message.Creat 'extStorage.get', {'group': group, 'name': name}
+
+    @extStorageGetGroup = (group) ->
+        Message.Creat 'extStorage.getGroup', {'group': group}
+
+    @extStorageGetAll = (group) ->
+        Message.Creat 'extStorage.getAll', {}
+
 
 # All functions operate with a simple color object as getWhite().
 class root.Colour

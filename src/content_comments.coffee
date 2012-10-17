@@ -1,5 +1,6 @@
 root = exports ? this
 fub = require?('./funcbag') || root
+filter = require?('filter') || root
 
 class CmntIgnoreError extends Error
     constructor: (msg) ->
@@ -108,6 +109,12 @@ class root.Cmnt
 
 
 class root.Forum
+    @COLLAPSE_STATUS = {
+        unmodified: 'not collapsed'
+        read: 'collapsed due to read'
+        blacklist: 'collapsed due to blacklist'
+    }
+    
     constructor: (@comments, @memory, @cursor) ->
         throw new Error 'invalid comments array' unless @comments instanceof Array
         console.error "forum: memory isn't initialized" unless @memory
@@ -116,14 +123,23 @@ class root.Forum
         # statistics
         @collapsed = 0
 
-        for unused, index in @comments
-            @addEL index
+        chrome.extension.sendMessage fub.Message.extStorageGetAll(), (res) =>
+#            console.log res
+            f = new filter.FilterExact false
+            f.blackSet res.Filters.username.join "\n"
+            
+            for unused, index in @comments
+                @addEL index
 
-            req = @collapse index
-            req.addEventListener 'complete', (event) =>
-#                console.log "forum: collapse oncomplete: index=#{event.detail.index}, collapsed=#{event.detail.collapsed}"
-                @updateTitle event.detail.index
-                @scrollToExpanded event.detail.index
+                @paint index, res.Favorites
+                req = @collapse index, f
+                req.addEventListener 'complete', (event) =>
+                    console.log "forum: collapse oncomplete: index=#{event.detail.index}, status=#{event.detail.status}"
+                    @updateTitle event.detail.index
+                    @scrollToExpanded event.detail.index
+
+    paint: (index, favorites) ->
+        # TODO
 
     addEL: (index) ->
         comment = @comments[index]
@@ -176,7 +192,7 @@ class root.Forum
 
     # Collapse comment if it is in indexdb. Collapse exactly 1 comment,
     # don't touch its children.
-    collapse: (index) ->
+    collapse: (index, filter) ->
         return unless @memory
 
         comment = @comments[index]
@@ -189,16 +205,22 @@ class root.Forum
                 event = new CustomEvent 'complete', {
                     detail: {
                         index: index
-                        collapsed: true
+                        status: Forum.COLLAPSE_STATUS.read
                     }
                 }
                 req.dispatchEvent event
             else
                 @memorize comment, (id) ->
+                    status = Forum.COLLAPSE_STATUS.unmodified
+                    if filter.match comment.username
+                        comment.close()
+                        @collapsed += 1
+                        status = Forum.COLLAPSE_STATUS.blacklist
+                    
                     event = new CustomEvent 'complete', {
                         detail: {
                             index: index
-                            collapsed: false
+                            status: status
                         }
                     }
                     req.dispatchEvent event

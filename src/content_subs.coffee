@@ -1,12 +1,6 @@
 root = exports ? this
 fub = require?('./funcbag') || root
 
-extStorageMsgGet = (group, name) ->
-    fub.Message.Creat 'extStorage.get', {'group': group, 'name': name}
-
-extStorageMsgGetGroup = (group) ->
-    fub.Message.Creat 'extStorage.getGroup', {'group': group}
-
 class root.Sub
     @RANK_OPEN_LABEL = '[-]'
     @RANK_CLOSE_LABEL = '[+]'
@@ -128,7 +122,7 @@ class root.HN
 
 
 # Main
-chrome.extension.sendMessage extStorageMsgGetGroup('Filters'), (res) ->
+chrome.extension.sendMessage fub.Message.extStorageGetGroup('Filters'), (res) ->
 #    console.log res
     hn = new HN res
     hn.filter()
