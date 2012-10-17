@@ -112,7 +112,7 @@ class root.Cmnt
 class root.FavCon
     @WIN_WIDTH = 200
 
-    constructor: (favorites, @memory, @cursor) ->
+    constructor: (favorites, @comments, @cursor) ->
         @users = {}
         @setFavorites favorites
 
@@ -137,9 +137,9 @@ class root.FavCon
     size: ->
         (Object.keys @users).length
 
-    incr: (name) ->
-        val = @users[name]
-        @users[name] = if fub.isNum val then ++val else 1
+    usersUpdate: (name, index) ->
+        @users[name] = [] unless @users[name]
+        @users[name].push index
 
     guiBind: ->
         @btnClose.addEventListener 'click', (event) =>
@@ -149,7 +149,7 @@ class root.FavCon
     fill: ->
         @addRow key, val for key, val of @users
 
-    addRow: (name, n) ->
+    addRow: (name, comments) ->
         row = document.createElement 'tr'
 
         username = document.createElement 'td'
@@ -164,7 +164,7 @@ class root.FavCon
         , false
         username.appendChild colorbox
 
-        unread = @makeTD @getUnread()
+        unread = @makeTD @getUnread name
         unread.style.cursor = 'pointer'
         unread.addEventListener 'click', (event) =>
             @cursor.findAndSet 1, (comment) ->
@@ -172,7 +172,7 @@ class root.FavCon
             , "no other expanded #{name}'s comment found"
         , false
 
-        row.appendChild idx for idx in [username, unread, @makeTD n]
+        row.appendChild idx for idx in [username, unread, @makeTD comments.length]
         @table.appendChild row
         fub.Colour.paintBox colorbox, @favorites[name]
 
@@ -182,9 +182,11 @@ class root.FavCon
         e
 
     getUnread: (name) ->
-        return '?' unless @memory
-        # TODO
-        '??'
+        return 0 unless @users[name]
+        
+        r = 0
+        ++r for idx in @users[name] when @comments[idx].isOpen()
+        r
 
     toggle: ->
         if @size() == 0
@@ -205,7 +207,7 @@ class root.Forum
         console.error "forum: memory isn't initialized" unless @memory
         console.error "forum: cursor isn't initialized" unless @cursor
 
-        @favcon = new FavCon {}, @memory, @cursor
+        @favcon = new FavCon {}, @comments, @cursor
 
         # statistics
         @collapsed = 0
@@ -220,7 +222,7 @@ class root.Forum
             for unused, index in @comments
                 @addEL index
 
-                @paint index, res.Favorites, f
+                @paint index, f
                 req = @collapse index, f
                 req.addEventListener 'complete', (event) =>
                     console.log "forum: collapse oncomplete: index=#{event.detail.index}, status=#{event.detail.status}"
@@ -228,17 +230,16 @@ class root.Forum
                     @scrollToExpanded event.detail.index
                     @favconFill event.detail.index
 
-    paint: (index, favorites, filter) ->
+    paint: (index, filter) ->
         comment = @comments[index]
-        fav = fub.val2key favorites
 
-        color = fav['@']
+        color = @favcon.favorites['@']
         if filter.match comment.username
             fub.Colour.paintBoxIn comment.usernameElement, color
         else
-            return unless color = fav[comment.username]
+            return unless color = @favcon.favorites[comment.username]
             fub.Colour.paintBox comment.usernameElement, color
-            @favcon.incr comment.username
+            @favcon.usersUpdate comment.username, index
 
         console.log "forum: paint: #{comment.username} in #{color}"
 
