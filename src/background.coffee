@@ -9,11 +9,11 @@ InjectorInterface =
         if @isUrlValid(tab.url)
             chrome.pageAction.show tabId
             
+            print_info = (t) -> console.log "bg: script injected #{t}"
+
             # inject scripts
             for idx in @scripts
-                console.log "bg: injecting #{idx}"
-                chrome.tabs.executeScript tabId, {file: idx}, ->
-                    console.log "bg: script injected"
+                chrome.tabs.executeScript tabId, {file: idx}, print_info(idx)
         
 class InjectorSubs
     constructor: ->
@@ -47,7 +47,8 @@ analyze_uri = (tabId, changeInfo, tab) ->
     comments = new InjectorComments()
     comments.onUpdatedCallback tabId, changeInfo, tab
 
-readFile = (file) ->
+# Return file contents. Plain sync version.
+read_file = (file) ->
     r = new XMLHttpRequest()
     r.open "GET", file, false
     r.send null
@@ -80,7 +81,7 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
         when 'commentsGetContentsHTML'
             # send raw html
             file = 'lib/content_comments_contents.html'
-            html = readFile file
+            html = read_file file
             sendRes {html: html}
             console.log "bg: html send: #{file}"
         else
