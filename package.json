@@ -6,13 +6,13 @@
 		"vendor/md5.js",
 
 		"lib/background.js",
+		"lib/content_comments_contents.html",
 		"lib/content_comments.js",
 		"lib/content_subs.js",
 		"lib/defaults.js",
 		"lib/extstorage.js",
 		"lib/filter.js",
-		"lib/message.js",
-		"lib/mixins.js",
+		"lib/funcbag.js",
 		"lib/options.html",
 		"lib/options.js",
 
