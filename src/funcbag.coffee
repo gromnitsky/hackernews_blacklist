@@ -1,37 +1,35 @@
-root = exports ? this
-
 # https://github.com/jashkenas/coffee-script/issues/218#issuecomment-146909
-root.extend = (obj, mixin) ->
+exports.extend = (obj, mixin) ->
     obj[name] = method for name, method of mixin
 
-root.include = (klass, mixin) ->
-    root.extend klass.prototype, mixin
+exports.include = (klass, mixin) ->
+    exports.extend klass.prototype, mixin
 
 
 # Dispatch any DOM event on element.
-root.fire = (element, eventName) ->
+exports.fire = (element, eventName) ->
     event = document.createEvent "HTMLEvents"
     event.initEvent eventName, true, true
     element.dispatchEvent event
 
 
-root.val2key = (hash) ->
+exports.val2key = (hash) ->
     r = {}
     r[val] = key for key, val of hash
     r
 
-root.isNum = (n) -> !isNaN(parseFloat n) && isFinite n
+exports.isNum = (n) -> !isNaN(parseFloat n) && isFinite n
 
 # Message builder for content scripts.
 #
 # Example:
 #
-# root = exports ? this
-# fub = require?('./funcbag') || root
+# exports = exports ? this
+# fub = require?('./funcbag') || exports
 # chrome.extension.sendMessage fub.Message.Creat('statSubs', {'filtered': count})
 #
 # Btw, 'Creat' is not a typo.
-class root.Message
+class exports.Message
     constructor: (@name) ->
 
     encode: (hash) ->
@@ -52,7 +50,7 @@ class root.Message
 
 
 # All functions operate with a simple color object as getWhite().
-class root.Colour
+class exports.Colour
     @getInvertedValue: (element, css) ->
         rgb = (window.getComputedStyle element)
             .getPropertyCSSValue(css).getRGBColorValue()

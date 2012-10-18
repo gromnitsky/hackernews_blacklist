@@ -7,9 +7,6 @@
 		"128": "icons/128.png"
 	},
 	"background": { "scripts": [
-		"lib/funcbag.js",
-		"lib/extstorage.js",
-		"lib/defaults.js",
 		"lib/background.js"
 	] },
 	"page_action": {

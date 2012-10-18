@@ -1,9 +1,9 @@
-root = exports ? this
-
 # Default settings for background.js, where they go into localStorage &
 # for options.html, where they serve 'Defaults' button.
 
-class root.Conf
+es = require './extstorage'
+
+class exports.Conf
     @defaults =
         'Filters':
             'hostname' : [
@@ -76,5 +76,5 @@ class root.Conf
     @loadSettings: ->
         for g_name of Conf.defaults
             for key, val of Conf.defaults[g_name]
-                ls = ExtStorage.Get g_name, key
-                ExtStorage.Set g_name, key, val unless ls
+                ls = es.ExtStorage.Get g_name, key
+                es.ExtStorage.Set g_name, key, val unless ls

@@ -1,10 +1,9 @@
-root = exports ? this
-fub = require?('funcbag') || root
-filter = require?('filter') || root
-storage = require?('extstorage') || root
-defaults = require?('defaults') || root
+fub = require './funcbag'
+filter = require './filter'
+storage = require './extstorage'
+defaults = require './defaults'
 
-crypt = require?('../vendor/md5') || root
+crypt = require '../vendor/md5'
 
 class TextAreaState
     # src is a dom textarea/input object

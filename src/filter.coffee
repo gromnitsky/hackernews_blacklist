@@ -1,8 +1,7 @@
-root = exports ? this
-fub = require?('./funcbag') || root
+fub = require './funcbag'
 
 # Return an array from a string str.
-root.parseRawData = (str) ->
+exports.parseRawData = (str) ->
     arr = str.split "\n"
     r = []
     for idx in arr
@@ -31,7 +30,7 @@ FilterInterface =
             console.error "match error: #{e.message}" unless @quiet
             return false
 
-class root.FilterRegexp
+class exports.FilterRegexp
     constructor: (@useWhite = true) ->
         @quiet = false
     
@@ -45,14 +44,14 @@ class root.FilterRegexp
         false
 
     listSet: (str) ->
-        root.parseRawData str
+        exports.parseRawData str
 
     listGet: (list) ->
         list.join "\n"
 
-fub.include root.FilterRegexp, FilterInterface
+fub.include exports.FilterRegexp, FilterInterface
 
-class root.FilterExact
+class exports.FilterExact
     constructor: (@useWhite = true) ->
         @quiet = false
     
@@ -64,7 +63,7 @@ class root.FilterExact
 
     listSet: (str) ->
         r = {}
-        r[idx] = 1 for idx in (root.parseRawData str)
+        r[idx] = 1 for idx in (exports.parseRawData str)
         r
 
     listGet: (list) ->
@@ -72,4 +71,4 @@ class root.FilterExact
         r.push key for key, val of list
         r.join "\n"
 
-fub.include root.FilterExact, FilterInterface
+fub.include exports.FilterExact, FilterInterface

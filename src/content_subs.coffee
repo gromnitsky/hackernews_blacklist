@@ -1,7 +1,7 @@
-root = exports ? this
-fub = require?('./funcbag') || root
+fub = require './funcbag'
+filter = require './filter'
 
-class root.Sub
+class Sub
     @RANK_OPEN_LABEL = '[-]'
     @RANK_CLOSE_LABEL = '[+]'
 
@@ -48,15 +48,15 @@ class root.Sub
         @rank.style.cursor = '-webkit-zoom-out'
 
 
-class root.HN
+class HN
     @WARNING_THRESHOLD = 15
 
     constructor: (@settings) ->
         @home = document.querySelector '.pagetop a'
 
-        @fHostname = new FilterExact false
-        @fUserName = new FilterExact false
-        @fLinkTitle = new FilterRegexp()
+        @fHostname = new filter.FilterExact false
+        @fUserName = new filter.FilterExact false
+        @fLinkTitle = new filter.FilterRegexp()
 
         @fHostname.blackSet @settings['hostname'].join "\n"
         @fUserName.blackSet @settings['username'].join "\n"
@@ -112,7 +112,7 @@ class root.HN
             "Get up your sorry ass, dude."
             "In good old days HN wasn't so bad."
             "Has somebody died again?"
-            ]
+        ]
         @home.innerText = "#{linksFiltered} filtered links? #{t[Math.floor Math.random()*(t.length)]}"
 
     addEL: (element) ->
@@ -123,6 +123,5 @@ class root.HN
 
 # Main
 chrome.extension.sendMessage fub.Message.extStorageGetGroup('Filters'), (res) ->
-#    console.log res
     hn = new HN res
     hn.filter()

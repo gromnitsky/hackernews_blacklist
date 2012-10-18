@@ -1,6 +1,5 @@
-root = exports ? this
-fub = require?('./funcbag') || root
-filter = require?('filter') || root
+fub = require './funcbag'
+filter = require './filter'
 
 class CmntIgnoreError extends Error
     constructor: (msg) ->
@@ -11,7 +10,7 @@ class CmntIgnoreError extends Error
 getSubmission = ->
     document.querySelector('td.subtext a[href^="item"]').href.match(/id=(\d+)/)[1]
 
-class root.Cmnt
+class Cmnt
     @BUTTON_CLASS = 'hnbl_ToggleButton'
     @BUTTON_OPEN_LABEL = '[-]'
     @BUTTON_CLOSE_LABEL = '[+]'
@@ -110,7 +109,7 @@ class root.Cmnt
         @button.scrollIntoView true
 
 
-class root.FavCon
+class FavCon
     @WIN_WIDTH = 200
 
     constructor: (favorites, @comments, @cursor) ->
@@ -206,7 +205,7 @@ class root.FavCon
         @win.style.display = if @win.style.display == '' then 'none' else ''
 
 
-class root.Forum
+class Forum
     @COLLAPSE_STATUS = {
         unmodified: 'not collapsed'
         read: 'collapsed due to read'
@@ -369,7 +368,7 @@ class root.Forum
         }, nextCallback
 
 
-class root.Memory
+class Memory
     @DB_NAME = 'hndl_memory'
     @DB_VERSION = '1'
     @DB_STORE_COMMENTS = 'comments'
@@ -427,7 +426,7 @@ class root.Memory
                 nextCallback false if nextCallback?
 
 
-class root.CCursor
+class CCursor
     constructor: (@comments) ->
         throw new Error 'invalid comments array' unless @comments instanceof Array
 
@@ -537,7 +536,7 @@ class root.CCursor
         , "no other comments of this user found"
 
 
-class root.Keyboard
+class Keyboard
     @IGNORED_ELEMENTS = ['INPUT', 'TEXTAREA']
 
     constructor: (@forum) ->

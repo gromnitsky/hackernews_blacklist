@@ -1,6 +1,6 @@
 assert = require 'assert'
 
-filter = require '../lib/filter'
+filter = require '../src/filter'
 
 suite 'Filter', ->
     setup ->

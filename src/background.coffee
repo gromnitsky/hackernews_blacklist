@@ -1,3 +1,7 @@
+es = require './extstorage'
+fub = require './funcbag'
+defaults = require './defaults'
+
 InjectorInterface =
     isUrlValid: (url) ->
         (return true if url.match(idx)) for idx in @permissions
@@ -8,38 +12,34 @@ InjectorInterface =
 
         if @isUrlValid(tab.url)
             chrome.pageAction.show tabId
-            
+
             print_info = (t) -> console.log "bg: script injected #{t}"
 
             # inject scripts
             for idx in @scripts
                 chrome.tabs.executeScript tabId, {file: idx}, print_info(idx)
-        
+
 class InjectorSubs
     constructor: ->
         @scripts = [
-            'lib/funcbag.js'
-            'lib/filter.js'
             'lib/content_subs.js'
             ]
-    
+
         @permissions = ["^https?://news.ycombinator.com/(x\\?fnid=.+|newest|ask|jobs|news)?$",
             "^file://.+/hackernews_blacklist/test/data/news\\.ycombinator\\.com/index\\.html$"]
 
-include InjectorSubs, InjectorInterface
+fub.include InjectorSubs, InjectorInterface
 
 class InjectorComments
     constructor: ->
         @scripts = [
-            'lib/funcbag.js'
-            'lib/filter.js'
             'lib/content_comments.js'
             ]
-    
+
         @permissions = ["^https?://news.ycombinator.com/item\\?id=\\d+$",
             "^file://.+/hackernews_blacklist/test/data/news\\.ycombinator\\.com/item"]
 
-include InjectorComments, InjectorInterface
+fub.include InjectorComments, InjectorInterface
 
 analyze_uri = (tabId, changeInfo, tab) ->
     subs = new InjectorSubs()
@@ -63,12 +63,12 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
 
     switch req.msg
         when 'extStorage.get'
-            sendRes ExtStorage.Get req.data.group, req.data.name
+            sendRes es.ExtStorage.Get req.data.group, req.data.name
         when 'extStorage.getGroup'
-            sendRes ExtStorage.GetGroup req.data.group
+            sendRes es.ExtStorage.GetGroup req.data.group
         when 'extStorage.getAll'
-            filters = ExtStorage.GetGroup 'Filters'
-            favorites = ExtStorage.GetGroup 'Favorites'
+            filters = es.ExtStorage.GetGroup 'Filters'
+            favorites = es.ExtStorage.GetGroup 'Favorites'
             sendRes {Filters: filters, Favorites: favorites}
         when 'statSubs'
             chrome.pageAction.setTitle
@@ -87,5 +87,5 @@ chrome.extension.onMessage.addListener (req, sender, sendRes) ->
         else
             new Error("unknown message name: #{req.msg}")
 
-Conf.loadSettings()
+defaults.Conf.loadSettings()
 console.log 'bg: loaded'
