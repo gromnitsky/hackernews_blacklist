@@ -1,6 +1,6 @@
 # Hacker News Blacklist
 
-A Chrome 22 (& hopefully newer) extension for
+A Chrome 25 (& hopefully newer) extension for
 http://news.ycombinator.com.
 
 ## Features:
@@ -110,6 +110,18 @@ http://news.ycombinator.com.
   <td>Move the cursor</td>
   </tr>
   </table>
+
+
+## Upgrade from 0.x.x
+
+Chrome 25 finally switched to recent IndexedDB spec & `setVersion()`
+method was removed. To be able to use this extension again, you __must__
+wipe out your previous database by hand:
+
+    $ cd ~/.config/google-chrome/Default/IndexedDB
+    $ rm -rf http_news.ycombinator*
+
+On Windows the directory is `%LOCALAPPDATA%\Google\Chrome\User Data\Default\IndexedDB`.
 
 
 ## Build requirements:

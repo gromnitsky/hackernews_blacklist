@@ -159,7 +159,7 @@ class FavCon
 
     addRow: (name, comments) ->
         return unless name && comments
-        
+
         row = document.createElement 'tr'
 
         username = document.createElement 'td'
@@ -193,7 +193,7 @@ class FavCon
 
     getUnread: (name) ->
         return 0 unless @users[name]
-        
+
         r = 0
         ++r for idx in @users[name] when @comments[idx].isOpen()
         r
@@ -370,40 +370,39 @@ class Forum
 
 class Memory
     @DB_NAME = 'hndl_memory'
-    @DB_VERSION = '1'
+    @DB_VERSION = 1
     @DB_STORE_COMMENTS = 'comments'
 
     constructor: (nextCallback) ->
         memory = this
         @db = null # database connection
 
-        db = webkitIndexedDB.open Memory.DB_NAME
-        db.onerror = (event) ->
+        req = window.indexedDB.open Memory.DB_NAME
+        req.onerror = (event) ->
             # how to test this?
             console.error "memory: db error: #{event.target.error}"
             nextCallback null if nextCallback?
 
-        db.onsuccess = (event) =>
-            @db = event.target.result
+        req.onupgradeneeded = (event) =>
+            @db = req.result
+            console.log "memory: db upgrade required"
+
+            obj_store = @db.createObjectStore Memory.DB_STORE_COMMENTS, {keyPath: 'mid'}
+            obj_store.createIndex 'username', 'username', {unique: false}
+            obj_store.createIndex 'submission', 'submission', {unique: false}
+
+            event.target.transaction.oncomplete = (event) ->
+                console.log "memory: db upgrade completed: #{Memory.DB_NAME} v. #{Memory.DB_VERSION}"
+
+        req.onsuccess = (event) =>
+            @db = req.result
 
             # generic handler for all errors
             @db.onerror = (event) ->
                 console.error "memory: db error: #{event.target.errorCode}"
 
-            if Memory.DB_VERSION != @db.version
-                console.log "memory: db upgrade required"
-                setVrequest = @db.setVersion(Memory.DB_VERSION)
-                setVrequest.onsuccess = (event) =>
-                    obj_store = @db.createObjectStore Memory.DB_STORE_COMMENTS, {keyPath: 'mid'}
-                    obj_store.createIndex 'username', 'username', {unique: false}
-                    obj_store.createIndex 'submission', 'submission', {unique: false}
-
-                    event.target.transaction.oncomplete = (event) ->
-                        console.log "memory: db upgrade completed: #{Memory.DB_NAME} v. #{Memory.DB_VERSION}"
-                        nextCallback memory if nextCallback?
-            else
-                console.log 'memory: db opened'
-                nextCallback memory if nextCallback?
+            console.log 'memory: db opened'
+            nextCallback memory if nextCallback?
 
     add: (object, nextCallback) ->
         t = @db.transaction [Memory.DB_STORE_COMMENTS], "readwrite"
