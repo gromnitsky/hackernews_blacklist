@@ -125,6 +125,11 @@ class Options
             fub.Colour.invertBody document.body
         , false
 
+        document.body.addEventListener 'dragover', (event) =>
+            event.stopPropagation()
+            event.preventDefault()
+        , false
+
         document.body.addEventListener 'drop', (event) =>
             event.stopPropagation()
             event.preventDefault()
