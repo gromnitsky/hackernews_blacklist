@@ -33,7 +33,7 @@ test: compile
 manifest_clean:
 	rm -f manifest.json
 
-manifest.json: manifest.m4
+manifest.json: manifest.m4 package.json
 	$(M4) $< > $@
 
 compile: node_modules manifest.json

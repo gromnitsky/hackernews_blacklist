@@ -16,7 +16,7 @@
 	"permissions": [
 		"*://news.ycombinator.com/*",
 		"file://*/**",
-		
+
 		"tabs"
 	]
 }
