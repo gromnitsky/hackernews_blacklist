@@ -1,6 +1,6 @@
 # Hacker News Blacklist
 
-A Chrome 25 (& hopefully newer) extension for
+A Chrome 27 (& hopefully newer) extension for
 http://news.ycombinator.com.
 
 ## Features:

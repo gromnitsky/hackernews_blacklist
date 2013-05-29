@@ -586,6 +586,7 @@ class Keyboard
 sub_id = getSubmission()
 throw new Error 'cannot get a submission id for this page' unless sub_id
 images = document.querySelectorAll('td > img[height="1"]')
+console.log "images.length = #{images.length}"
 if images.length == 0
     console.error '0 comments?'
     chrome.extension.sendMessage fub.Message.Creat('statComments', {
