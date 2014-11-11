@@ -38,7 +38,7 @@ class Cmnt
 
         @body = @header.parentNode.parentNode.querySelector 'span[class="comment"]'
         throw new Error "cannot extract comment's body" unless @body
-        if @body.innerText.match(/^\[(deleted|dead)\]$/) && @headerText == ""
+        if @body.innerText.match(/^\[(deleted|dead|flagkilled)\]$/) && @headerText == ""
             throw new CmntIgnoreError "deleted comment"
 
         link = (@header.querySelector 'a[href^="item?id="]') || (@header.querySelector 'a[href*="ycombinator.com/item?id="]')
