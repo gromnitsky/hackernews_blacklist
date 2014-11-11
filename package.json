@@ -12,7 +12,7 @@
 		"manifest.json"
 	],
 	"name": "hackernews_blacklist",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"license": {
 		"type": "MIT",
 		"url": "http://www.opensource.org/licenses/mit-license.php"
