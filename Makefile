@@ -19,8 +19,8 @@ test-data-get:
 	(cd test/data && rm -rf * && \
 		wget -E -H -k -K -p \
 			http://news.ycombinator.com \
-			"http://news.ycombinator.com/item?id=4638286" \
-			"http://news.ycombinator.com/item?id=4630057"; \
+			"https://news.ycombinator.com/item?id=4638286" \
+			"https://news.ycombinator.com/item?id=4630057"; \
 	find . -name '*.orig' | xargs rm -f)
 
 node_modules: package.json
