@@ -51,13 +51,21 @@ class exports.Message
 
 # All functions operate with a simple color object as getWhite().
 class exports.Colour
+
+    @str2rgb: (str) ->
+        m = str?.match /(\d{1,3}), *(\d{1,3}), *(\d{1,3})/
+        return null unless m
+        {
+            red: parseInt m[1]
+            green: parseInt m[2]
+            blue: parseInt m[3]
+        }
+
     @getInvertedValue: (element, css) ->
-        rgb = (window.getComputedStyle element)
-            .getPropertyCSSValue(css).getRGBColorValue()
-        color = {}
-        for idx in ['red', 'green', 'blue']
-            color[idx] = 255 - rgb[idx].getFloatValue CSSPrimitiveValue.CSS_NUMBER
-        color
+        rgb = Colour.str2rgb (window.getComputedStyle element).getPropertyValue(css)
+        throw new Error "cannot parse `#{css}` value" unless rgb
+        (rgb[key] = 255 - val) for key,val of rgb
+        rgb
 
     @getWhite: ->
         {
