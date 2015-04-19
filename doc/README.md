@@ -112,14 +112,22 @@ http://news.ycombinator.com.
   </table>
 
 
+## Download & Install
+
+For a latest .crx file look
+[here](http://gromnitsky.users.sourceforge.net/js/chrome/).
+
+Save the file, then open Chrome's extensions page (`Alt-F`
+`More tools->Extensions`) and drag & drop the file into the page.
+
 ## Upgrade from 0.x.x
 
 Chrome 25 finally switched to recent IndexedDB spec & `setVersion()`
 method was removed. To be able to use this extension again, you __must__
 wipe out your previous database by hand:
 
-    $ cd ~/.config/google-chrome/Default/IndexedDB
-    $ rm -rf http_news.ycombinator*
+	$ cd ~/.config/google-chrome/Default/IndexedDB
+	$ rm -rf http_news.ycombinator*
 
 On Windows the directory is `%LOCALAPPDATA%\Google\Chrome\User Data\Default\IndexedDB`.
 
@@ -137,16 +145,16 @@ On Windows the directory is `%LOCALAPPDATA%\Google\Chrome\User Data\Default\Inde
 
 To compile, run
 
-    $ make compile
+	$ make compile
 
 To make a .crx file, you'll need a private RSA key named `private.pem`
 in the same directory where Makefile is. For testing purposes, generate
 it with openssl:
 
-    $ openssl genrsa -out private.pem 1024
+	$ openssl genrsa -out private.pem 1024
 
 and run:
 
-    $ make crx
+	$ make crx
 
 If everything was fine, `hackernews_blacklist-x.y.z.crx` file will appear.
