@@ -113,27 +113,28 @@ class Options
         , false
 
         # DnD
-        document.body.addEventListener 'dragenter', (event) =>
+        holder = document
+        holder.addEventListener 'dragenter', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            fub.Colour.invertBody document.body
+            fub.Colour.invertBody holder.body
         , false
 
-        document.body.addEventListener 'dragleave', (event) =>
+        holder.addEventListener 'dragleave', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            fub.Colour.invertBody document.body
+            fub.Colour.invertBody holder.body
         , false
 
-        document.body.addEventListener 'dragover', (event) =>
+        holder.addEventListener 'dragover', (event) =>
             event.stopPropagation()
             event.preventDefault()
         , false
 
-        document.body.addEventListener 'drop', (event) =>
+        holder.addEventListener 'drop', (event) =>
             event.stopPropagation()
             event.preventDefault()
-            fub.Colour.invertBody document.body
+            fub.Colour.invertBody holder.body
 
             dt = event.dataTransfer
             if dt?.files.length != 1
