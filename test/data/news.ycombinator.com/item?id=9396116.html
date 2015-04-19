@@ -1,0 +1,1957 @@
+<html><head><meta name="referrer" content="origin"><link rel="stylesheet" type="text/css" href="news.css%3FDc4WHhDIHIntiL2Oh45C.css">
+        <link rel="shortcut icon" href="favicon.ico">
+        <script type="text/javascript">
+function hide(id) {
+  var el = document.getElementById(id);
+  if (el) { el.style.visibility = 'hidden'; }
+}
+function vote(node) {
+  var v = node.id.split(/_/);
+  var item = v[1];
+  hide('up_'   + item);
+  hide('down_' + item);
+  var ping = new Image();
+  ping.src = node.href;
+  return false;
+  }
+    </script><title>The Fuck – Correct your previous console command | Hacker News</title></head><body><center><table id="hnmain" op="item" border="0" cellpadding="0"
+             cellspacing="0" width="85%" bgcolor="#f6f6ef">
+        <tr><td bgcolor="#ff6600"><table border="0" cellpadding="0" cellspacing="0" width="100%" style="padding:2px"><tr><td style="width:18px;padding-right:4px"><a href="http://www.ycombinator.com"><img src="y18.gif" width="18" height="18" style="border:1px #ffffff solid;"></a></td>
+                  <td style="line-height:12pt; height:10px;"><span class="pagetop">
+                              <b><a href="https://news.ycombinator.com/news">Hacker News</a></b><img src="s.gif" height="1" width="10"><a href="https://news.ycombinator.com/newest">new</a> | <a href="https://news.ycombinator.com/newcomments">comments</a> | <a href="https://news.ycombinator.com/show">show</a> | <a href="https://news.ycombinator.com/ask">ask</a> | <a href="https://news.ycombinator.com/jobs">jobs</a> | <a href="https://news.ycombinator.com/submit">submit</a></span></td><td style="text-align:right;padding-right:4px;"><span class="pagetop">
+                              <a href="https://news.ycombinator.com/login?goto=item%3Fid%3D9396116">login</a>
+                          </span></td>
+              </tr></table></td></tr>
+<tr style="height:10px"></tr><tr><td><table border="0">
+        <tr>
+            <td><center><a id="up_9396116" href="https://news.ycombinator.com/vote?for=9396116&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="title"><span class="deadmark"></span><a href="https://github.com/nvbn/thefuck">The Fuck – Correct your previous console command</a><span class="sitebit comhead"> (github.com)</span></td></tr><tr><td colspan="1"></td><td class="subtext">
+        <span class="score" id="score_9396116">419 points</span> by <a href="https://news.ycombinator.com/user?id=nvbn">nvbn</a> <a href="item%3Fid=9396116.html">1 day ago</a>                  | <a href="item%3Fid=9396116.html">164 comments</a>                              </td></tr>
+            <tr style="height:10px"></tr><tr><td></td><td><form method="post" action="https://news.ycombinator.com/comment"><input type="hidden" name="parent" value="9396116"><input type="hidden" name="goto" value="item?id=9396116"><input type="hidden" name="hmac" value="db77a13e42565cdad1a443ceb04b51613ccf1c91">
+    <textarea name="text" rows="6" cols="60"
+    style=""
+    placeholder=""></textarea><br><br><input type="submit" value="add comment"></form>
+</td></tr>
+  </table><br><br>
+  <table border="0">  <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396975" href="https://news.ycombinator.com/vote?for=9396975&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=csandreasen">csandreasen</a> <a href="https://news.ycombinator.com/item?id=9396975">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Cool idea.  For those systems where you don&#x27;t have the option of adding a 3rd party tool, it&#x27;s probably worth knowing some of the standard bash shortcuts.  The easy to remember ones are:<p><pre><code>  !^ - the first argument from the previous command
+  !$ - the last argument from the previous command
+  !* - all of the arguments from the previous command
+  !! - the entire previous command
+</code></pre>
+For example:<p><pre><code>  $ apt-get install foo
+  # Crap
+  $ sudo !!</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396975&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397459" href="https://news.ycombinator.com/vote?for=9397459&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=ferrari8608">ferrari8608</a> <a href="https://news.ycombinator.com/item?id=9397459">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;ve been using &quot;sudo !!&quot; (which I pronounce as sudo bangbang in my head) for a while now, mostly with vim for editing stuff in &#x2F;etc. It&#x27;s very nifty.<p>Another nifty tool is vi editing mode. You run &quot;set -o vi&quot;, and now your shell takes vi modal editing commands. That along with Ctrl-r for reverse history search has made life in the shell so much easier. Bash has a ton of little stuff like that built in. Zsh has a few more.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397459&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397679" href="https://news.ycombinator.com/vote?for=9397679&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dogecoinbase">dogecoinbase</a> <a href="https://news.ycombinator.com/item?id=9397679">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Probably my biggest overall timesaver has been:<p><pre><code>   :w !sudo tee %
+</code></pre>
+If you neglected to sudo before making your changes.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397679&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397891" href="https://news.ycombinator.com/vote?for=9397891&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=mattikus">mattikus</a> <a href="https://news.ycombinator.com/item?id=9397891">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;ve had this in my vimrc for years:<p><pre><code>   &quot; Let :w!! gain sudo privileges without closing and reopening vim
+   cmap w!! w !sudo tee % &gt;&#x2F;dev&#x2F;null</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397891&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398565" href="https://news.ycombinator.com/vote?for=9398565&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=mkagenius">mkagenius</a> <a href="https://news.ycombinator.com/item?id=9398565">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Its much more easier to remember when you know how that actually works.
+Here is link explaining how that actually works:<p><a href="http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;2600783&#x2F;how-does-the-vim-write-with-sudo-trick-work" rel="nofollow">http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;2600783&#x2F;how-does-the-vim-...</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398565&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398767" href="https://news.ycombinator.com/vote?for=9398767&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=vram22">vram22</a> <a href="https://news.ycombinator.com/item?id=9398767">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Yes, that vi editing mode of bash is very useful. IIRC it was there in ksh too. Some people might not know that you can use both the insert&#x2F;append mode and the command mode of vi(m) in that vi editing mode of bash, to edit previously entered commands. You just switch between the two modes the same way as you do in the real vi(m), with ESC to go from insert&#x2F;append mode to command mode, and i or a to go from command mode to insert&#x2F;append mode.<p>Also, after you have entered a previous command, to edit it, or any previous command in the history, the first thing you have to do is press ESC (to go to command mode) and then k,  thereby bring the last entered command into view for editing.<p>When editing a command, but in command mode (not insert&#x2F;append mode), you can also press v to open the command in vi(m) in a temporary file, then have the full screen editor at your disposal to edit the command (useful for long scripts including for&#x2F;while loops or long pipelines), and then when you save and exit (:wq or :x followed by Enter), the newly edited command gets executed by bash.<p>Also, this editing technique is useful not only for correcting typos in commands, but for modifying a previous correct command, to change some words in it and then re-issue it.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398767&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397997" href="https://news.ycombinator.com/vote?for=9397997&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jpwright">jpwright</a> <a href="https://news.ycombinator.com/item?id=9397997">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I also use that all the time, and pronounce it as &quot;sudo&quot;, but with more excitement.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397997&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398554" href="https://news.ycombinator.com/vote?for=9398554&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=vehementi">vehementi</a> <a href="https://news.ycombinator.com/item?id=9398554">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">sudo !! is my favorite thing. I named my cat sudo bangbang.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398554&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398700" href="https://news.ycombinator.com/vote?for=9398700&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=okasaki">okasaki</a> <a href="https://news.ycombinator.com/item?id=9398700">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I don&#x27;t see the advantage over pressing up, C-a and typing sudo</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398700&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9399902" href="https://news.ycombinator.com/vote?for=9399902&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=LukeShu">LukeShu</a> <a href="https://news.ycombinator.com/item?id=9399902">23 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Historically: it predates the ability to do interactive line-editing.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399902&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397858" href="https://news.ycombinator.com/vote?for=9397858&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=drone">drone</a> <a href="https://news.ycombinator.com/item?id=9397858">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Let us not forget, also substitution regexs in bash...<p><pre><code>    $ ls -l &#x2F;tmp&#x2F;foo
+    ls: cannot access &#x2F;tmp&#x2F;foo: No such file or directory
+    $ !:s&#x2F;foo&#x2F;bar
+    -rw-rw-r-- 1 user user 0 Apr 17 19:12 &#x2F;tmp&#x2F;bar</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397858&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398165" href="https://news.ycombinator.com/vote?for=9398165&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=tsm">tsm</a> <a href="https://news.ycombinator.com/item?id=9398165">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">And the shorthand:<p><pre><code>    $ ls -l &#x2F;tmp&#x2F;foo
+    ls: cannot access &#x2F;tmp&#x2F;foo: No such file or directory
+    $ ^foo^bar
+    -rw-rw-r-- 1 user user 0 Apr 17 19:12 &#x2F;tmp&#x2F;bar</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398165&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398369" href="https://news.ycombinator.com/vote?for=9398369&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=willthames">willthames</a> <a href="https://news.ycombinator.com/item?id=9398369">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">And the reason for the other approach - global substitution (otherwise the caret approach is simpler)<p><pre><code>    $ ls
+    hello_world hi_there_world
+    $ mv hello_world hello_everyone
+    $ !!:gs&#x2F;hello&#x2F;hi_there
+    mv hi_there_world hi_there_everyone
+    $ ls
+    hi_there_world hi_there_everyone</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398369&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9399051" href="https://news.ycombinator.com/vote?for=9399051&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jorgearturo">jorgearturo</a> <a href="https://news.ycombinator.com/item?id=9399051">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Nice. Now that we&#x27;re getting all stackoverflowy in here, it would be worth mentioning two other handy tips.<p>Preventing typo mistakes with bash autocomplete is even better than correcting mistakes afterwards, it also makes typing so much faster.   
+It works with commands AND it also works for files inside the current working directory.<p>Hint: start typing your command and then hit TAB, voilà!
+Note: if there are more than 1 command&#x2F;file option that starts with the same chars you wrote, hit TAB twice and you will have all the options displayed in front of you, it comes in handy to remember fast instead of browsing documentation.<p>Command example:<p>$ git rem[TAB] ---&gt; $ git remote<p>$ git remote a[TAB] ---&gt; $ git remote add<p>File example:<p>$ git add i[TAB] --&gt; $ git add index.js<p>Multiple options example (TAB twice):<p>$ git r[TAB,TAB]<p>(will give you the options:)<p>rebase         relink         replace        revert
+reflog         remote         request-pull   rm
+release        repack         reset<p>The result is NO TYPOS! ;)<p>--------------------------<p>It would also be worth remembering the unix convention of using $ for regular user prompt and # for super user prompt.<p>In other words:<p>$ &lt;--- if this is your prompt you&#x27;re working on a regular user session.<p># &lt;--- if this is your prompt you&#x27;re working on a super user session and you don&#x27;t need sudo.<p>Again, that is just a convention, your OS&#x2F;distro could be different.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399051&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9399247" href="https://news.ycombinator.com/vote?for=9399247&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=csandreasen">csandreasen</a> <a href="https://news.ycombinator.com/item?id=9399247">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">When I was typing the &#x27;#&#x27; I was thinking &#x27;comment&#x27;, not &#x27;root shell&#x27;; in retrospect I can see how it might have been confusing, especially when my example used &#x27;sudo&#x27;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399247&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9399729" href="https://news.ycombinator.com/vote?for=9399729&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jorgearturo">jorgearturo</a> <a href="https://news.ycombinator.com/item?id=9399729">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I was not criticizing your use of # at all. Using # to comment is perfectly fine I guess. Now that you mentioned it, it might be a bit confusing for newbies, but don&#x27;t worry I don&#x27;t think anyone would try to send the command &#x27;Crap&#x27; over a super user session, although why the hell not? haha</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399729&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397043" href="https://news.ycombinator.com/vote?for=9397043&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=stox">stox</a> <a href="https://news.ycombinator.com/item?id=9397043">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">BTW, all of those commands are from the original BSD c-shell. Bash developers knew a good thing when they saw it.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397043&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9398385" href="https://news.ycombinator.com/vote?for=9398385&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=seanp2k2">seanp2k2</a> <a href="https://news.ycombinator.com/item?id=9398385">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I use $_ all the time, since it&#x27;s the last argument to the previous command [after expansion]. Example would be:<p>atom path&#x2F;to&#x2F;so[tab]&#x2F;fi[tab] [return]
+git diff $_<p>Complete reference: <a href="https:&#x2F;&#x2F;www.gnu.org&#x2F;software&#x2F;bash&#x2F;manual&#x2F;html_node&#x2F;Variable-Index.html" rel="nofollow">https:&#x2F;&#x2F;www.gnu.org&#x2F;software&#x2F;bash&#x2F;manual&#x2F;html_node&#x2F;Variable-...</a><p>See also: <a href="http:&#x2F;&#x2F;wiki.bash-hackers.org&#x2F;syntax&#x2F;shellvars" rel="nofollow">http:&#x2F;&#x2F;wiki.bash-hackers.org&#x2F;syntax&#x2F;shellvars</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398385&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397035" href="https://news.ycombinator.com/vote?for=9397035&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=melling">melling</a> <a href="https://news.ycombinator.com/item?id=9397035">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Typo correction is useful too.<p>^foo^bar<p>git brnch<p>^r^ra<p>This works on all Unix machines</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397035&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397409" href="https://news.ycombinator.com/vote?for=9397409&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=stewartbutler">stewartbutler</a> <a href="https://news.ycombinator.com/item?id=9397409">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">*Works if properly implemented. Had to manually disable this behavior in eshell as it prevented you from running regex with two carets, e.g. &#x27;$ grep -E &#x27;^sometext[^ ]+moretext&#x27;.<p>You can also just run a sed style substitution in most shells, e.g. &#x27;$ !!:s&#x2F;before&#x2F;after&#x2F;&#x27; or &#x27;$ !!:gs&#x2F;x&#x2F;y&#x2F;&#x27;, which is safer IMO.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397409&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398097" href="https://news.ycombinator.com/vote?for=9398097&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=lectrick">lectrick</a> <a href="https://news.ycombinator.com/item?id=9398097">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You know... I&#x27;ve seen this notation on discussion forums (and probably IRC etc.) for years, and had no idea until now that it was a reference to this shell capability lol</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398097&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9398070" href="https://news.ycombinator.com/vote?for=9398070&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=more_corn">more_corn</a> <a href="https://news.ycombinator.com/item?id=9398070">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You can also specify a specific argument number from the previous command with colon notation e.g.
+sudo dpkg -l !:2</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398070&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9401230" href="https://news.ycombinator.com/vote?for=9401230&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=saheel1511">saheel1511</a> <a href="https://news.ycombinator.com/item?id=9401230">18 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">alt-. (Alt-period) is a good shortcut to keep in mind. On first press, it inputs the last arg from the previous command. If you press alt-. again, it inputs the last arg from the previous-to-previous command. And so on.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9401230&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9402934" href="https://news.ycombinator.com/vote?for=9402934&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Zecc">Zecc</a> <a href="https://news.ycombinator.com/item?id=9402934">3 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Huh, I didn&#x27;t know about that. I use Esc+Period to the same effect.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9402934&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9399488" href="https://news.ycombinator.com/vote?for=9399488&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=awalGarg">awalGarg</a> <a href="https://news.ycombinator.com/item?id=9399488">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">I always read `sudo !!` as `suddoooooooooooooooooo... aaargghhh!!!`</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399488&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396598" href="https://news.ycombinator.com/vote?for=9396598&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=c0achmcguirk">c0achmcguirk</a> <a href="https://news.ycombinator.com/item?id=9396598">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">An issue that popped up for a user, kind of funny:<p><a href="https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;1" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;1</a><p><pre><code>  who@where:~$ fuck
+  No fuck given
+  who@where:~$ fuck
+  fsck from util-linux 2.20.1
+  e2fsck 1.42.9 (4-Feb-2014)
+  &#x2F;dev&#x2F;sda6 is mounted.
+
+  WARNING!!!  The filesystem is mounted. If you continue 
+  you ***WILL*** cause ***SEVERE*** filesystem damage.
+
+  Do you really want to continue&lt;n&gt;? no 
+  check aborted.</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396598&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397847" href="https://news.ycombinator.com/vote?for=9397847&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jnetterf">jnetterf</a> <a href="https://news.ycombinator.com/item?id=9397847">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">If you&#x27;re less adventurous, and use fish&#x2F;tmux, you could try something like:<p><pre><code>  # config.fish
+  function fuck
+      thefuck (history | head -n1) | tmux load-buffer -
+      tmux paste-buffer -s \0
+  end
+</code></pre>
+This will paste the command The Fuck suggests without a return so you can audit the corrected command before running it.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397847&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396608" href="https://news.ycombinator.com/vote?for=9396608&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=baby">baby</a> <a href="https://news.ycombinator.com/item?id=9396608">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Yup, is it possible to simulate the &quot;up arrow&quot; but fix it first before injecting it back into the input field of the terminal?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396608&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397448" href="https://news.ycombinator.com/vote?for=9397448&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=eridal">eridal</a> <a href="https://news.ycombinator.com/item?id=9397448">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Yeah, OP here. It really almost gave me a heart attack ;)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397448&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9399914" href="https://news.ycombinator.com/vote?for=9399914&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Bud">Bud</a> <a href="https://news.ycombinator.com/item?id=9399914">23 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">In other words: don&#x27;t go fuck yourself! ;)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399914&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396448" href="https://news.ycombinator.com/vote?for=9396448&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=manojlds">manojlds</a> <a href="https://news.ycombinator.com/item?id=9396448">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Git already has a config to do this:<p><pre><code>  help.autocorrect
+
+  Automatically correct and execute mistyped commands after waiting for the given number of  deciseconds (0.1 sec). 
+
+  If more than one command can be deduced from the entered text, nothing will be executed. If the value of this option is negative, the corrected command will be executed immediately.
+
+  If the value is 0 - the command will be just shown but not executed. This is the default.
+</code></pre>
+<a href="http:&#x2F;&#x2F;git-scm.com&#x2F;docs&#x2F;git-config" rel="nofollow">http:&#x2F;&#x2F;git-scm.com&#x2F;docs&#x2F;git-config</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396448&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396814" href="https://news.ycombinator.com/vote?for=9396814&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nvbn">nvbn</a> <a href="https://news.ycombinator.com/item?id=9396814">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Cool, didn&#x27;t know about that before.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396814&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396255" href="https://news.ycombinator.com/vote?for=9396255&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=hurin">hurin</a> <a href="https://news.ycombinator.com/item?id=9396255">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Not being 100% sure which command this will correct to is dangerous. Also the need for this is largely negated by a shell with autosuggestions.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396255&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396313" href="https://news.ycombinator.com/vote?for=9396313&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=JadeNB">JadeNB</a> <a href="https://news.ycombinator.com/item?id=9396313">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; Not being 100% sure which command this will correct to is dangerous.<p>And yet the concept of the invocation `fuck --dry-run` is surely unappealing.  :-)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396313&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396653" href="https://news.ycombinator.com/vote?for=9396653&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=sz4kerto">sz4kerto</a> <a href="https://news.ycombinator.com/item?id=9396653">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I don&#x27;t often laugh at HN comments, but when I do, I do it hard. :)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396653&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396930" href="https://news.ycombinator.com/vote?for=9396930&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=zak_mc_kracken">zak_mc_kracken</a> <a href="https://news.ycombinator.com/item?id=9396930">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#e6e6e6">You get easily aroused.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396930&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397248" href="https://news.ycombinator.com/vote?for=9397248&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jacob9706">jacob9706</a> <a href="https://news.ycombinator.com/item?id=9397248">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Created a pull request for a `fuck -dry` option.
+Did not test nor store the command so when it is ran again it is recalled, but the base is there for it to be fully implemented.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397248&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397585" href="https://news.ycombinator.com/vote?for=9397585&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=hurin">hurin</a> <a href="https://news.ycombinator.com/item?id=9397585">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#9c9c9c">&#x2F;sigh @hackernews turning into your typical reddit thread.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397585&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396741" href="https://news.ycombinator.com/vote?for=9396741&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=igorgue">igorgue</a> <a href="https://news.ycombinator.com/item?id=9396741">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#e6e6e6">Okay that was hilarious!</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396741&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397124" href="https://news.ycombinator.com/vote?for=9397124&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=chaosfox">chaosfox</a> <a href="https://news.ycombinator.com/item?id=9397124">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#9c9c9c">I think dry-run should be the default.
+Then if you really want to run it without checking the command first you could do:<p><pre><code>    fuck --without-condom</code></pre>
+or maybe<p><pre><code>    fuck --iamfeelinglucky</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397124&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398014" href="https://news.ycombinator.com/vote?for=9398014&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=fnordfnordfnord">fnordfnordfnord</a> <a href="https://news.ycombinator.com/item?id=9398014">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#888888">--bareback?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398014&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397158" href="https://news.ycombinator.com/vote?for=9397158&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jacob9706">jacob9706</a> <a href="https://news.ycombinator.com/item?id=9397158">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#dddddd">Ok. The --without-condom needs to be an option.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397158&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396622" href="https://news.ycombinator.com/vote?for=9396622&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=iLoch">iLoch</a> <a href="https://news.ycombinator.com/item?id=9396622">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#e6e6e6">What if you could fuck with a small D? `fuck -d`</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396622&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396537" href="https://news.ycombinator.com/vote?for=9396537&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Arcsech">Arcsech</a> <a href="https://news.ycombinator.com/item?id=9396537">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I think a good solution to this would be to have it display the command it&#x27;s going to run with a y&#x2F;n prompt.  It would only add one extra keystroke and make the utility a lot safer.  I think I&#x27;ll make a pull request or fork or something that does this this weekend if somebody hasn&#x27;t already by then.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396537&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397147" href="https://news.ycombinator.com/vote?for=9397147&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=DougBTX">DougBTX</a> <a href="https://news.ycombinator.com/item?id=9397147">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">If it defaulted to yes, then running it would be,<p><pre><code>    fuck&lt;return&gt;&lt;return&gt;
+</code></pre>
+which is probably good enough. (Pressing the same key twice is pretty much the same as pressing one key, but pressing two different keys is harder.)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397147&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397657" href="https://news.ycombinator.com/vote?for=9397657&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=vitoreiji">vitoreiji</a> <a href="https://news.ycombinator.com/item?id=9397657">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I used to alias `rm` to `rm -i`, until I realized that I just pressed &lt;return&gt;&lt;y&gt;&lt;return&gt; without thinking.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397657&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396503" href="https://news.ycombinator.com/vote?for=9396503&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=giancarlostoro">giancarlostoro</a> <a href="https://news.ycombinator.com/item?id=9396503">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Or syntax highlighting as found in fish, red if your command will not run, blue otherwise, params in blue. Duno I wish more shells had basic syntax highlighting for input commands.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396503&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398744" href="https://news.ycombinator.com/vote?for=9398744&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=kilotaras">kilotaras</a> <a href="https://news.ycombinator.com/item?id=9398744">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Here&#x27;s one for zsh
+<a href="https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-syntax-highlighting" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;zsh-users&#x2F;zsh-syntax-highlighting</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398744&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396505" href="https://news.ycombinator.com/vote?for=9396505&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Anderkent">Anderkent</a> <a href="https://news.ycombinator.com/item?id=9396505">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;d like it more if it just expanded to the &#x27;correct&#x27; command and required another return to actually run:<p>$ apt-get install foo&lt;return&gt;
+$ fuck&lt;return&gt; -&gt; sudo apt-get install foo&lt;return&gt;<p>zsh does something similar for history commands, I think:<p>$ echo foo
+foo
+$ echo !$&lt;return&gt; -&gt; $ echo foo</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396505&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396340" href="https://news.ycombinator.com/vote?for=9396340&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=danso">danso</a> <a href="https://news.ycombinator.com/item?id=9396340">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Yeah I agree...the appeal of CLI is to tersely do a variety of powerful commands...and the tradeoff is that you have to be exact in your syntax. The seconds saved in not having to retype something is a relatively irrelevant optimization, which isn&#x27;t bad in itself except that it also introduces a significant amount of ambiguity, which can be deadly in CLI work.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396340&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9398020" href="https://news.ycombinator.com/vote?for=9398020&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=fnordfnordfnord">fnordfnordfnord</a> <a href="https://news.ycombinator.com/item?id=9398020">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Good point, maybe don&#x27;t use this for steering satellites or weapon systems.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398020&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396442" href="https://news.ycombinator.com/vote?for=9396442&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=fifthecho">fifthecho</a> <a href="https://news.ycombinator.com/item?id=9396442">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">99 times out of 100, my issue is forgetting to sudo a command, so I just have &#x27;alias fuck=&quot;sudo !!&quot;&#x27; in my ~&#x2F;.bash_profile</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396442&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9398042" href="https://news.ycombinator.com/vote?for=9398042&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=seletskiy">seletskiy</a> <a href="https://news.ycombinator.com/item?id=9398042">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Check it out: <a href="https:&#x2F;&#x2F;github.com&#x2F;seletskiy&#x2F;dotfiles&#x2F;blob&#x2F;master&#x2F;.zsh&#x2F;aliases.sh#L102" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;seletskiy&#x2F;dotfiles&#x2F;blob&#x2F;master&#x2F;.zsh&#x2F;alias...</a><p>Far more easier to press CTRL-T than type `fuck` every time.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398042&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+            <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396430" href="https://news.ycombinator.com/vote?for=9396430&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=camhenlin">camhenlin</a> <a href="https://news.ycombinator.com/item?id=9396430">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I think it&#x27;s a funny little app. I could see it being kind of useful for the author but I think I would personally have trouble using an app that I don&#x27;t actually know what it&#x27;s going to do 100%. I think that you could mitigate this a bit by putting the list of commands it corrects right at the top of the readme.<p>I think most of us have probably been at the point where we were typing something like &quot;I hate you, you god damn computer!&quot; into the terminal or text editor. I see this as a moderately elegant helper in those situations</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396430&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396520" href="https://news.ycombinator.com/vote?for=9396520&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=shampine">shampine</a> <a href="https://news.ycombinator.com/item?id=9396520">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Check out the only issue open: <a href="https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;1" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;1</a><p>I like it, but I have to know every command it modifies&#x2F;checks, I cannot run a blackbox command and hope.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396520&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397540" href="https://news.ycombinator.com/vote?for=9397540&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nacs">nacs</a> <a href="https://news.ycombinator.com/item?id=9397540">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">That issue has an alias you can use:<p><pre><code>    I just added an additional alias for testing. 
+    It simply outputs the command fuck would execute:
+
+    alias tryfuck=&#x27;thefuck $(fc -ln -1)&#x27;</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397540&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396829" href="https://news.ycombinator.com/vote?for=9396829&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nvbn">nvbn</a> <a href="https://news.ycombinator.com/item?id=9396829">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I added info about how it works and what it can do in readme.<p>And yep, it can add sudo to your previous rm -rf &#x2F;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396829&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396479" href="https://news.ycombinator.com/vote?for=9396479&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=libraryatnight">libraryatnight</a> <a href="https://news.ycombinator.com/item?id=9396479">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&#x27;I could see it being kind of useful for the author...&#x27;<p>That was my impression. It reminded me of little custom scripts or functions I&#x27;ve created that help with my day to day work, things I wouldn&#x27;t necessarily give to someone because they were built with myself in mind. I know how they work and exactly what they do.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396479&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397289" href="https://news.ycombinator.com/vote?for=9397289&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dbbolton">dbbolton</a> <a href="https://news.ycombinator.com/item?id=9397289">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Zsh&#x27;s completion system handles most of those examples if enabled:<p><a href="http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Guide&#x2F;zshguide06.html#l162" rel="nofollow">http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Guide&#x2F;zshguide06.html#l162</a><p><a href="http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Doc&#x2F;Release&#x2F;Shell-Grammar.html" rel="nofollow">http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Doc&#x2F;Release&#x2F;Shell-Grammar.html</a><p><a href="http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Doc&#x2F;Release&#x2F;Expansion.html" rel="nofollow">http:&#x2F;&#x2F;zsh.sourceforge.net&#x2F;Doc&#x2F;Release&#x2F;Expansion.html</a><p>It can actually be integrated into history expansion, used at will, configured with a custom prompt, told to ignore certain words and files that annoy you, etc. But if you try to search for &quot;zsh correction&quot;, most posts are related to disabling it entirely.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397289&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397253" href="https://news.ycombinator.com/vote?for=9397253&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=ChristianBundy">ChristianBundy</a> <a href="https://news.ycombinator.com/item?id=9397253">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I wrote a similar Sudo History Invocation Tool to do this: <a href="https:&#x2F;&#x2F;github.com&#x2F;christianbundy&#x2F;shit" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;christianbundy&#x2F;shit</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397253&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397655" href="https://news.ycombinator.com/vote?for=9397655&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dheera">dheera</a> <a href="https://news.ycombinator.com/item?id=9397655">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">What I really want is a wrapper for sudo.
+Whenever I use sudo, if type the password correctly it works instantly; if I mistype the password, it delays for 2 seconds before asking again. Often it&#x27;s faster to Ctrl+C UP ENTER than to wait for that annoying 2 seconds. So it would be nice if a wrapper existed to see if sudo gives access within 0.1 seconds, and if it doesn&#x27;t, assume the password was wrong, kill the sudo process and launch the command again. Automate the Ctrl+C UP ENTER.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397655&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397704" href="https://news.ycombinator.com/vote?for=9397704&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=spectre256">spectre256</a> <a href="https://news.ycombinator.com/item?id=9397704">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I suspect the delay in sudo is configurable: it&#x27;s not there because sudo is actually doing any work checking your password, it&#x27;s there to prevent attackers from trying many many combinations of passwords quickly.<p>If you care about that protection, then you don&#x27;t want to circumvent it, but in the equally reasonable case where you don&#x27;t care, then you can probably just make sudo faster.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397704&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398059" href="https://news.ycombinator.com/vote?for=9398059&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dlgeek">dlgeek</a> <a href="https://news.ycombinator.com/item?id=9398059">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">It actually comes from PAM - man pam_faildelay</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398059&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9399024" href="https://news.ycombinator.com/vote?for=9399024&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dheera">dheera</a> <a href="https://news.ycombinator.com/item?id=9399024">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">How is it offering protection? An attacker could use this scheme as well. If the server doesn&#x27;t let the user through in 0.1 s, abort and retry the connection, circumventing the delay.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399024&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397731" href="https://news.ycombinator.com/vote?for=9397731&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=ferrari8608">ferrari8608</a> <a href="https://news.ycombinator.com/item?id=9397731">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You can limit the amount of retries, so a delay between attempts by default seems a little silly to me.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397731&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398508" href="https://news.ycombinator.com/vote?for=9398508&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=mormegil">mormegil</a> <a href="https://news.ycombinator.com/item?id=9398508">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&quot;In one notorious incident, Warren added a DWIM feature to the command interpreter used at Xerox PARC. One day another hacker there typed delete <i>$ to free up some disk space. (The editor there named backup files by appending $ to the original file name, so he was trying to delete any backup files left over from old editing sessions.) It happened that there weren&#x27;t any editor backup files, so DWIM helpfully reported </i>$ not found, assuming you meant &#x27;delete *&#x27;.&quot;
+See <a href="http:&#x2F;&#x2F;www.catb.org&#x2F;jargon&#x2F;html&#x2F;D&#x2F;DWIM.html" rel="nofollow">http:&#x2F;&#x2F;www.catb.org&#x2F;jargon&#x2F;html&#x2F;D&#x2F;DWIM.html</a> and also <a href="https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;DWIM" rel="nofollow">https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;DWIM</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398508&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396632" href="https://news.ycombinator.com/vote?for=9396632&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=aviraldg">aviraldg</a> <a href="https://news.ycombinator.com/item?id=9396632">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">.. ten seconds until there&#x27;s outrage against the name and a campaign to have it cleaned up. (see: Karma)<p>Very useful though.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396632&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397553" href="https://news.ycombinator.com/vote?for=9397553&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=bane">bane</a> <a href="https://news.ycombinator.com/item?id=9397553">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;ve started to wonder why we&#x27;ve never seen a more IDE-like autocomplete in consoles. I mean, why do I have to use man pages and all sorts of reference guides to remember the parameters for find or grep or whatever, or the order of commands for whatever?<p>There really needs to be better communication between software and the environment it&#x27;s running in.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397553&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397588" href="https://news.ycombinator.com/vote?for=9397588&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Symmetry">Symmetry</a> <a href="https://news.ycombinator.com/item?id=9397588">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I feel like fish gets part of the way there by grabbing stuff from the man pages and displaying descriptions in tab-complete options.  But we&#x27;re still a ways from the anti-Mac user interface[1].  Unless maybe you count Google&#x27;s search bar.<p>[1]<a href="http:&#x2F;&#x2F;www.nngroup.com&#x2F;articles&#x2F;anti-mac-interface&#x2F;" rel="nofollow">http:&#x2F;&#x2F;www.nngroup.com&#x2F;articles&#x2F;anti-mac-interface&#x2F;</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397588&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396491" href="https://news.ycombinator.com/vote?for=9396491&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=kbenson">kbenson</a> <a href="https://news.ycombinator.com/item?id=9396491">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Projects like this always make me think the developer&#x27;s imagination has drastically failed them with respect to the scope of negative consequences that may result from using their tool.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396491&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397626" href="https://news.ycombinator.com/vote?for=9397626&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=tonyhb">tonyhb</a> <a href="https://news.ycombinator.com/item?id=9397626">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Projects like this always make me think the developer&#x27;s imagination is great and they must at least be intelligent enough to criticise their work (with humour).</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397626&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397307" href="https://news.ycombinator.com/vote?for=9397307&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jacob9706">jacob9706</a> <a href="https://news.ycombinator.com/item?id=9397307">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Added the `fuck --dry` option from the comments below, waiting for it to be merged.<p>All it does is print the command to run and prompts for [Y&#x2F;n].</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397307&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396534" href="https://news.ycombinator.com/vote?for=9396534&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=kylecesmat">kylecesmat</a> <a href="https://news.ycombinator.com/item?id=9396534">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Issue #1 is classic.<p>Running &#x27;Fuck&#x27; twice attempts to evaluate the previous &#x27;Fuck&#x27;- and returns &#x27;fsck&#x27; - which tries to forcefully check your mounted drive.<p>I wouldn&#x27;t trust this app for practical use.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396534&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397047" href="https://news.ycombinator.com/vote?for=9397047&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=babuskov">babuskov</a> <a href="https://news.ycombinator.com/item?id=9397047">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You can surely trust that it will &#x27;fuck&#x27; stuff up at some point.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397047&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396802" href="https://news.ycombinator.com/vote?for=9396802&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=cevaris">cevaris</a> <a href="https://news.ycombinator.com/item?id=9396802">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Got to love
+<a href="https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;5" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;nvbn&#x2F;thefuck&#x2F;issues&#x2F;5</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396802&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396696" href="https://news.ycombinator.com/vote?for=9396696&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=whizzkid">whizzkid</a> <a href="https://news.ycombinator.com/item?id=9396696">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I think i will continue using the Fish shell feature instead. It has this awesome feature of autocompleting your command with the bash history of yours.<p>It is safe because it will autocomplete a command that you wrote before.<p>Another cool thing with it is that, it will list the commands that you can run after entering a word. It does this by reading the man page of the command you write.<p>brew &lt;Tab&gt; will list the brew commands for you to use with its explanations.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396696&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398210" href="https://news.ycombinator.com/vote?for=9398210&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=bcheung">bcheung</a> <a href="https://news.ycombinator.com/item?id=9398210">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">The birth of a new metric:<p>alias WTFs=&quot;history | grep fuck | wc -l&quot;</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398210&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397557" href="https://news.ycombinator.com/vote?for=9397557&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=abc_lisper">abc_lisper</a> <a href="https://news.ycombinator.com/item?id=9397557">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I will not let my coworkers see me typing expletives into terminal; much less if it is a woman.<p>It is a nice idea, though. Will use it if it&#x27;s called auto-correct or something.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397557&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397577" href="https://news.ycombinator.com/vote?for=9397577&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=danellis">danellis</a> <a href="https://news.ycombinator.com/item?id=9397577">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;m not sure what difference you think gender makes, unless you think women are delicate flowers that must be sheltered from bad language, but I do agree that it would be better named something more office friendly. I&#x27;d suggest &#x27;argh&#x27;, &#x27;grr&#x27; or &#x27;gah&#x27;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397577&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397625" href="https://news.ycombinator.com/vote?for=9397625&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=genderbar">genderbar</a> <a href="https://news.ycombinator.com/item?id=9397625">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Profanity is (deliberately) uncomfortable to people who are not part of your in-group. Women are more likely to be&#x2F;feel excluded from in-groups in technology workplaces.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397625&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398611" href="https://news.ycombinator.com/vote?for=9398611&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=code_duck">code_duck</a> <a href="https://news.ycombinator.com/item?id=9398611">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">If I specifically don&#x27;t swear around a woman colleague, while I would usually swear around all my male colleagues, isn&#x27;t that exclusionary? Wouldn&#x27;t treating her the same as I treat everyone else be more inclusive?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398611&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397661" href="https://news.ycombinator.com/vote?for=9397661&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=lesmiserable">lesmiserable</a> <a href="https://news.ycombinator.com/item?id=9397661">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Profanity is a wonderful spice of life, it is deliberately uncomfortable to people who take things way too seriously.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397661&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9397746" href="https://news.ycombinator.com/vote?for=9397746&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=genderbar">genderbar</a> <a href="https://news.ycombinator.com/item?id=9397746">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Get back to me after someone you don&#x27;t like or don&#x27;t trust throws you some of that spice.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397746&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="200"></td>
+        <td valign="top"><center><a id="up_9397819" href="https://news.ycombinator.com/vote?for=9397819&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=lesmiserable">lesmiserable</a> <a href="https://news.ycombinator.com/item?id=9397819">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">you mean like being in any public space? I only get to control how I react.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397819&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398410" href="https://news.ycombinator.com/vote?for=9398410&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=danellis">danellis</a> <a href="https://news.ycombinator.com/item?id=9398410">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#737373">&gt; Women are more likely to be&#x2F;feel excluded from in-groups in technology workplaces<p>... because people want to treat them differently, perhaps?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398410&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9398948" href="https://news.ycombinator.com/vote?for=9398948&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=genderbar">genderbar</a> <a href="https://news.ycombinator.com/item?id=9398948">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I get your point, but I think the problem is with in-group behaviour. You are comfortable with swearing if you&#x27;re very comfortable with the group dynamic.<p>But there are plenty of out-groups in technology along plenty of lines, who may privately be uncomfortable in this situation; and gender is only one of those lines.<p>If we pretend there is no problem with gender that needs addressing in this respect, it&#x27;s not that we are excluding women: it&#x27;s that we are excluding every aspect of diversity in technology.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398948&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397633" href="https://news.ycombinator.com/vote?for=9397633&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=towelguy">towelguy</a> <a href="https://news.ycombinator.com/item?id=9397633">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Simply change the alias to something else:<p><pre><code>    alias doh=&#x27;$(thefuck $(fc -ln -1))&#x27;</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397633&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398173" href="https://news.ycombinator.com/vote?for=9398173&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=vectorpush">vectorpush</a> <a href="https://news.ycombinator.com/item?id=9398173">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">pragmatic and in the hacker spirit, but I&#x27;m guessing that the message is more important to the GP than actually using the software.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398173&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396749" href="https://news.ycombinator.com/vote?for=9396749&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=zenojevski">zenojevski</a> <a href="https://news.ycombinator.com/item?id=9396749">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Here&#x27;s an equivalent &quot;alias&quot; for the fish shell:<p><pre><code>    function fuck
+        eval (thefuck (history | head -n1))
+    end</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396749&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396848" href="https://news.ycombinator.com/vote?for=9396848&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nvbn">nvbn</a> <a href="https://news.ycombinator.com/item?id=9396848">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Thanks, added to readme.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396848&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9399113" href="https://news.ycombinator.com/vote?for=9399113&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=_ZeD_">_ZeD_</a> <a href="https://news.ycombinator.com/item?id=9399113">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">it&#x27;s only me to just tap &quot;up&quot; and edit the command?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399113&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398298" href="https://news.ycombinator.com/vote?for=9398298&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=pervycreeper">pervycreeper</a> <a href="https://news.ycombinator.com/item?id=9398298">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;m not quite sure I understand why this is any better than using the up arrow.<p>I thought the cardinal rule of sysadmins was &quot;think before you press enter&quot;. This seems to discourage that mindset.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398298&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396790" href="https://news.ycombinator.com/vote?for=9396790&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jryan49">jryan49</a> <a href="https://news.ycombinator.com/item?id=9396790">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Made an Arch AUR package. First time making VCS package. Might be terrible.<p><a href="https:&#x2F;&#x2F;aur.archlinux.org&#x2F;packages&#x2F;thefuck-git&#x2F;" rel="nofollow">https:&#x2F;&#x2F;aur.archlinux.org&#x2F;packages&#x2F;thefuck-git&#x2F;</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396790&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396443" href="https://news.ycombinator.com/vote?for=9396443&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=agumonkey">agumonkey</a> <a href="https://news.ycombinator.com/item?id=9396443">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">C-o <a href="https:&#x2F;&#x2F;www.google.com&#x2F;search?q=readline+operate+and+get+next" rel="nofollow">https:&#x2F;&#x2F;www.google.com&#x2F;search?q=readline+operate+and+get+nex...</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396443&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398772" href="https://news.ycombinator.com/vote?for=9398772&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=anonbanker">anonbanker</a> <a href="https://news.ycombinator.com/item?id=9398772">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">I&#x27;ve created perl scripts for fuck, shit, and goddamnit. they merely echo an array slice to the terminal, from a list of about 30 phrases. had &#x27;em for about 15 years now.<p><pre><code>  &lt;root@ButtPirate&gt;$ fuck
+  I hope this computer dies of ass cancer.
+</code></pre>
+always makes me feel a little better about life. this app might be more effective, though.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398772&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398095" href="https://news.ycombinator.com/vote?for=9398095&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nullc">nullc</a> <a href="https://news.ycombinator.com/item?id=9398095">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I wonder if the name came from some version of this pithy one-liner:<p>To err is human, to really fuck things up requires a computer.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398095&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396502" href="https://news.ycombinator.com/vote?for=9396502&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=aerovistae">aerovistae</a> <a href="https://news.ycombinator.com/item?id=9396502">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I just keep getting &quot;No host name on command line, aborting.&quot;<p>Also was asked to install &quot;suck.&quot; Not sure why &#x2F; what that is.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396502&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396637" href="https://news.ycombinator.com/vote?for=9396637&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=fapjacks">fapjacks</a> <a href="https://news.ycombinator.com/item?id=9396637">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">One of the issues on the Github reveals that at least one user ended up running &quot;fsck&quot; after typing &quot;fuck&quot; twice. :)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396637&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398714" href="https://news.ycombinator.com/vote?for=9398714&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=cfrs">cfrs</a> <a href="https://news.ycombinator.com/item?id=9398714">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Someone should fork fish and create fuckfish: a shell that fucks automatically</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398714&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397176" href="https://news.ycombinator.com/vote?for=9397176&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=mayneack">mayneack</a> <a href="https://news.ycombinator.com/item?id=9397176">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Mildly related: <a href="http:&#x2F;&#x2F;bropages.org&#x2F;" rel="nofollow">http:&#x2F;&#x2F;bropages.org&#x2F;</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397176&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397537" href="https://news.ycombinator.com/vote?for=9397537&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=LfLxfxxLxfxx">LfLxfxxLxfxx</a> <a href="https://news.ycombinator.com/item?id=9397537">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I was expecting to see in the examples:<p><pre><code>  $ wrongcommand
+  error
+  $ fcuk
+  command not found
+  $ fuck</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397537&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397561" href="https://news.ycombinator.com/vote?for=9397561&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=abc_lisper">abc_lisper</a> <a href="https://news.ycombinator.com/item?id=9397561">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">This.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397561&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397192" href="https://news.ycombinator.com/vote?for=9397192&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=sgtpep">sgtpep</a> <a href="https://news.ycombinator.com/item?id=9397192">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Out of the box bash trick:<p><pre><code>   export EDITOR=vim
+   C-p (or Up)
+   C-x C-e</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397192&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9399618" href="https://news.ycombinator.com/vote?for=9399618&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=foxhop">foxhop</a> <a href="https://news.ycombinator.com/item?id=9399618">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Unix &#x27;fc&#x27; or fix command</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399618&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396541" href="https://news.ycombinator.com/vote?for=9396541&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=alienth">alienth</a> <a href="https://news.ycombinator.com/item?id=9396541">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">For those wanting something safer but similar, see the `fc` shell function.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396541&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398043" href="https://news.ycombinator.com/vote?for=9398043&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=vinceyuan">vinceyuan</a> <a href="https://news.ycombinator.com/item?id=9398043">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Super interesting. I LOLed. But I will not install it.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398043&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396700" href="https://news.ycombinator.com/vote?for=9396700&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=scottmwinters">scottmwinters</a> <a href="https://news.ycombinator.com/item?id=9396700">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">yea, lots of us use shells with suggestive text...that doesn&#x27;t make this less amusing. Now if only someone would make rules for my osx terminal, thatd be great</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396700&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397266" href="https://news.ycombinator.com/vote?for=9397266&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=bharad">bharad</a> <a href="https://news.ycombinator.com/item?id=9397266">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Also, fix command might help<p>$ fc</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397266&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396527" href="https://news.ycombinator.com/vote?for=9396527&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=joeminichino">joeminichino</a> <a href="https://news.ycombinator.com/item?id=9396527">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">Funny, when i make a mistake i exclaim &quot;what the!&quot; instead of &quot;the fuck&quot;. &quot;wot&quot; is my suggestion for a better name.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396527&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396614" href="https://news.ycombinator.com/vote?for=9396614&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=rjuyal">rjuyal</a> <a href="https://news.ycombinator.com/item?id=9396614">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">What the Exclamation mark.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396614&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396722" href="https://news.ycombinator.com/vote?for=9396722&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=soheil">soheil</a> <a href="https://news.ycombinator.com/item?id=9396722">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I praise you for giving us the fuck!</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396722&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9398940" href="https://news.ycombinator.com/vote?for=9398940&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=alfasin">alfasin</a> <a href="https://news.ycombinator.com/item?id=9398940">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">alias fuck=&#x27;sudo $(history -p \!\!)&#x27;</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398940&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9397358" href="https://news.ycombinator.com/vote?for=9397358&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=JulianMorrison">JulianMorrison</a> <a href="https://news.ycombinator.com/item?id=9397358">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">$ rm -rf &#x2F;  oops<p>permission denied<p>$ fuck<p>sudo rm -rf --no-preserve-root &#x2F; oops<p>$ _</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397358&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><img src="s.gif" height="1" width="14"></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  [deleted]              </span>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396302" href="https://news.ycombinator.com/vote?for=9396302&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=JadeNB">JadeNB</a> <a href="https://news.ycombinator.com/item?id=9396302">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">While I agree with what I take to be your overall point, what would have been lost had you replaced your comment with the following, which does not assume anything about the poster&#x27;s motivation?<p><pre><code>    The utility is actually called &quot;The Fuck&quot;, with no asterisk.  Please respect creators by not bowdlerizing the names they have chosen.</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396302&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396465" href="https://news.ycombinator.com/vote?for=9396465&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=anigbrowl">anigbrowl</a> <a href="https://news.ycombinator.com/item?id=9396465">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">True. As the title has been updated and your version is better, I&#x27;m deleting my original comment.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396465&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396562" href="https://news.ycombinator.com/vote?for=9396562&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=JadeNB">JadeNB</a> <a href="https://news.ycombinator.com/item?id=9396562">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;m not sure if this is too much of a de-rail, and I will delete it if it is inappropriate, but I am constantly surprised by and grateful for the civility of HN, where, despite strong opinions, constructive criticism is often accepted and acted upon.  Thank you for being part of that!</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396562&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396179" href="https://news.ycombinator.com/vote?for=9396179&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nvbn">nvbn</a> <a href="https://news.ycombinator.com/item?id=9396179">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">On some resources it&#x27;s not allowed to use `fuck`, so I put `*` automatically.<p>Now title changed to &quot;The Fuck...&quot;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396179&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396382" href="https://news.ycombinator.com/vote?for=9396382&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dr_zoidberg">dr_zoidberg</a> <a href="https://news.ycombinator.com/item?id=9396382">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Also some mobile phones autocorrect to more &quot;politically correct&quot; versions, in which case this would&#x27;ve been replaced to &quot;The Duck...&quot; :P</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396382&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396496" href="https://news.ycombinator.com/vote?for=9396496&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=sixpenrose16">sixpenrose16</a> <a href="https://news.ycombinator.com/item?id=9396496">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">+1 for &quot;The Duck&quot;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396496&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396457" href="https://news.ycombinator.com/vote?for=9396457&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=anigbrowl">anigbrowl</a> <a href="https://news.ycombinator.com/item?id=9396457">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#5a5a5a">Thanks.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396457&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396440" href="https://news.ycombinator.com/vote?for=9396440&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=aabajian">aabajian</a> <a href="https://news.ycombinator.com/item?id=9396440">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;m going to go out on a limb here and suggest that you rename it &quot;The Fix.&quot; Then you could type &quot;fixit&quot; or just &quot;fix&quot;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396440&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396630" href="https://news.ycombinator.com/vote?for=9396630&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=fapjacks">fapjacks</a> <a href="https://news.ycombinator.com/item?id=9396630">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I rather enjoy the abrasive edge of many parts of programming culture and prefer it not be dulled, even when it ends up cutting me.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396630&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396647" href="https://news.ycombinator.com/vote?for=9396647&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=evandena">evandena</a> <a href="https://news.ycombinator.com/item?id=9396647">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">There&#x27;s no way I&#x27;d be comfortable using this at my sterile, overly PC corporate work place.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396647&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396658" href="https://news.ycombinator.com/vote?for=9396658&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=icebraining">icebraining</a> <a href="https://news.ycombinator.com/item?id=9396658">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Then fork and rename it?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396658&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9397151" href="https://news.ycombinator.com/vote?for=9397151&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jawns">jawns</a> <a href="https://news.ycombinator.com/item?id=9397151">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Done: <a href="https:&#x2F;&#x2F;github.com&#x2F;shaungallagher&#x2F;thefudge" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;shaungallagher&#x2F;thefudge</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397151&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9396704" href="https://news.ycombinator.com/vote?for=9396704&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=tcdent">tcdent</a> <a href="https://news.ycombinator.com/item?id=9396704">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You can name the shortcut whatever you want by modifying the alias:<p><pre><code>   alias fuck=&#x27;$(thefuck $(fc -ln -1))&#x27;</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396704&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9397048" href="https://news.ycombinator.com/vote?for=9397048&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=ndarilek">ndarilek</a> <a href="https://news.ycombinator.com/item?id=9397048">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Call it thefork?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397048&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396500" href="https://news.ycombinator.com/vote?for=9396500&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=cpncrunch">cpncrunch</a> <a href="https://news.ycombinator.com/item?id=9396500">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Yes, using the word &quot;fuck&quot; for this just strikes me as a bit immature.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396500&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396513" href="https://news.ycombinator.com/vote?for=9396513&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=jay-saint">jay-saint</a> <a href="https://news.ycombinator.com/item?id=9396513">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">If it was called the fix it never would have made it to page 1</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396513&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396635" href="https://news.ycombinator.com/vote?for=9396635&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=eli">eli</a> <a href="https://news.ycombinator.com/item?id=9396635">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Would make me more likely to recommend it as a serious tool to a colleague though. But then again I&#x27;m a curmudgeon.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396635&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9396895" href="https://news.ycombinator.com/vote?for=9396895&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=cpncrunch">cpncrunch</a> <a href="https://news.ycombinator.com/item?id=9396895">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I get the impression that it&#x27;s more of a joke than a serious tool. It is actually quite funny, but I can&#x27;t imagine anyone using it seriously.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396895&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396665" href="https://news.ycombinator.com/vote?for=9396665&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=spo8">spo8</a> <a href="https://news.ycombinator.com/item?id=9396665">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Also if anyone really cares, they could just fork it and make the change.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396665&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9399043" href="https://news.ycombinator.com/vote?for=9399043&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=michaelmior">michaelmior</a> <a href="https://news.ycombinator.com/item?id=9399043">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">And then update it whenever the upstream changes. And keep track of all any new references which need to be modified. And publish a package if you still want it to be installed easily. And so on.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399043&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396650" href="https://news.ycombinator.com/vote?for=9396650&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=icebraining">icebraining</a> <a href="https://news.ycombinator.com/item?id=9396650">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">American prudishness. There&#x27;s nothing immature in swearing in and of itself.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396650&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396697" href="https://news.ycombinator.com/vote?for=9396697&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=cpncrunch">cpncrunch</a> <a href="https://news.ycombinator.com/item?id=9396697">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I&#x27;m not an American, and I&#x27;m not prude. I use quite a few swearwords regularly. However this just strikes me as an immature thing to do.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396697&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397346" href="https://news.ycombinator.com/vote?for=9397346&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=urda">urda</a> <a href="https://news.ycombinator.com/item?id=9397346">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; American prudishness<p>Sounds like you need a review of: <a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;newsguidelines.html" rel="nofollow">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;newsguidelines.html</a><p>Or perhaps just some common decency ? If you want a tool &#x2F; platform to take off, using the word &#x27;fuck&#x27; is not the way to go.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397346&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9401386" href="https://news.ycombinator.com/vote?for=9401386&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dang">dang</a> <a href="https://news.ycombinator.com/item?id=9401386">17 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Swear words don&#x27;t break the HN guidelines. When we ask for civility we have in mind how people treat one another online. Swear words can be used to treat others badly, but they have plenty of other uses.<p>It&#x27;s not a trivial question, though, and people aren&#x27;t wrong to disagree. Cultural differences make for very different views here. In some (sub-)cultures swear words are uncivil and in others they are innocuous. There&#x27;s no model that satisfies all these norms, so inevitably we have to disappoint some.<p>As a consequence of the above, we don&#x27;t bowdlerize titles either.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9401386&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9398115" href="https://news.ycombinator.com/vote?for=9398115&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=lectrick">lectrick</a> <a href="https://news.ycombinator.com/item?id=9398115">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I too read those guidelines in their entirety and there is nothing there at all about the poignant use of so-called &quot;swear words.&quot;<p>Also:<p><a href="http:&#x2F;&#x2F;thefuckingweather.com&#x2F;" rel="nofollow">http:&#x2F;&#x2F;thefuckingweather.com&#x2F;</a><p><a href="http:&#x2F;&#x2F;www.whatthefuckshouldimakefordinner.com&#x2F;" rel="nofollow">http:&#x2F;&#x2F;www.whatthefuckshouldimakefordinner.com&#x2F;</a><p>etc.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398115&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9397604" href="https://news.ycombinator.com/vote?for=9397604&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Frozenlock">Frozenlock</a> <a href="https://news.ycombinator.com/item?id=9397604">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Which part of the guidelines? I reread the entire thing and didn&#x27;t find where it would apply.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397604&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397020" href="https://news.ycombinator.com/vote?for=9397020&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=smorrow">smorrow</a> <a href="https://news.ycombinator.com/item?id=9397020">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; swearing<p>Most actual instances of the actual word &quot;fuck&quot; aren&#x27;t even swears.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397020&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9398195" href="https://news.ycombinator.com/vote?for=9398195&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=charlesism">charlesism</a> <a href="https://news.ycombinator.com/item?id=9398195">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&quot;When I first opened Tropic of Cancer and saw that it was full of unprintable words, my immediate reaction was a refusal to be impressed.&quot;</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398195&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396900" href="https://news.ycombinator.com/vote?for=9396900&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=mikeash">mikeash</a> <a href="https://news.ycombinator.com/item?id=9396900">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">The whole thing is something of a joke, and the name is just part of that. I don&#x27;t think it&#x27;s meant to be taken very seriously to begin with.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396900&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396739" href="https://news.ycombinator.com/vote?for=9396739&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=tcdent">tcdent</a> <a href="https://news.ycombinator.com/item?id=9396739">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">You must not really be a programmer ;)<p>Late night, vision is starting to blur and you&#x27;ve typed `git push origin master` incorrectly dozens of times already...<p><pre><code>    $ FUCK!!!111ksjdkjsd</code></pre></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396739&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9397735" href="https://news.ycombinator.com/vote?for=9397735&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=ufo">ufo</a> <a href="https://news.ycombinator.com/item?id=9397735">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I know a guy that does all his &quot;printf debugging&quot; using variations of printf(&quot;penis\n&quot;).  As a bonus, its a good incentive to remember to get rid of the printfs when you are done :)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397735&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9399026" href="https://news.ycombinator.com/vote?for=9399026&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=leni536">leni536</a> <a href="https://news.ycombinator.com/item?id=9399026">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I do that too, I think twice before typing &#x27;touch penis&#x27; to create dummy files in my bash scripts though.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9399026&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396912" href="https://news.ycombinator.com/vote?for=9396912&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=gear54rus">gear54rus</a> <a href="https://news.ycombinator.com/item?id=9396912">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I say leave it as is, in those example you can almost hear that intonation you say it (in your head or out loud) when mistyping :)</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396912&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+    <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><img src="s.gif" height="1" width="14"></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  [flagged]              </span>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9401393" href="https://news.ycombinator.com/vote?for=9401393&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dang">dang</a> <a href="https://news.ycombinator.com/item?id=9401393">17 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; Guys, we&#x27;ve spotted the Mormon here<p>This was probably more of a misfired joke than anything ill-intentioned, but still, not ok to post here.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9401393&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9402086" href="https://news.ycombinator.com/vote?for=9402086&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=joshdance">joshdance</a> <a href="https://news.ycombinator.com/item?id=9402086">10 hours ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Dang you are the best moderator I have seen. period. Thanks man.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9402086&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396779" href="https://news.ycombinator.com/vote?for=9396779&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=brento">brento</a> <a href="https://news.ycombinator.com/item?id=9396779">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#9c9c9c">This looks very helpful ... however, could we get a PG version like &quot;The Crap&quot;?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396779&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396806" href="https://news.ycombinator.com/vote?for=9396806&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=sneak">sneak</a> <a href="https://news.ycombinator.com/item?id=9396806">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">People are not materially harmed by short strings, so no.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396806&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397068" href="https://news.ycombinator.com/vote?for=9397068&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=benmcnelly">benmcnelly</a> <a href="https://news.ycombinator.com/item?id=9397068">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">What if they were objects?</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397068&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9397380" href="https://news.ycombinator.com/vote?for=9397380&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Tenobrus">Tenobrus</a> <a href="https://news.ycombinator.com/item?id=9397380">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">Fork it if you care that much.<p>Looks like someone already has, actually: <a href="https:&#x2F;&#x2F;github.com&#x2F;shaungallagher&#x2F;thefudge" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;shaungallagher&#x2F;thefudge</a><p>But seriously, I can&#x27;t some up with a single situation where using &quot;fudge&#x2F;crap&quot; instead of fuck would matter.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397380&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396449" href="https://news.ycombinator.com/vote?for=9396449&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=keslag">keslag</a> <a href="https://news.ycombinator.com/item?id=9396449">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#9c9c9c">Amusing, but I would prefer something that would be able to automatically know what I was meaning to do and just do it without having to be vulgar.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396449&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396492" href="https://news.ycombinator.com/vote?for=9396492&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=gknoy">gknoy</a> <a href="https://news.ycombinator.com/item?id=9396492">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#737373">Agreed. They could even sanitize it a little bit as &#x27;wtf&#x27; or &#x27;oops&#x27;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396492&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9396828" href="https://news.ycombinator.com/vote?for=9396828&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=sneak">sneak</a> <a href="https://news.ycombinator.com/item?id=9396828">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">WTF means the same thing. That is no less vulgar.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396828&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="120"></td>
+        <td valign="top"><center><a id="up_9396842" href="https://news.ycombinator.com/vote?for=9396842&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dragonwriter">dragonwriter</a> <a href="https://news.ycombinator.com/item?id=9396842">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; WTF means the same thing. That is no less vulgar.<p>Vulgarity of expressions is not a function only of what the expression means, but of the acceptability of the expression itself in various social contexts. WTF is, generally, acceptable as not excessively vulgar in social contexts where expanding the last letter of the initialism into its referent would not be, but the reverse isn&#x27;t true; WTF is pretty close, therefore, to strictly less vulgar.<p>This may not seem rational, but then the entire concept of vulgarity is irrational.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396842&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="160"></td>
+        <td valign="top"><center><a id="up_9397457" href="https://news.ycombinator.com/vote?for=9397457&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Crito">Crito</a> <a href="https://news.ycombinator.com/item?id=9397457">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&gt; <i>&quot;WTF is, generally, acceptable as not excessively vulgar in social contexts&quot;</i><p>Which social contexts?  Social contexts where people don&#x27;t know what &quot;WTF&quot; expands to?  It&#x27;s not even a &quot;minced oath&quot;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397457&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="200"></td>
+        <td valign="top"><center><a id="up_9397579" href="https://news.ycombinator.com/vote?for=9397579&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=frenchy">frenchy</a> <a href="https://news.ycombinator.com/item?id=9397579">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&quot;WTF&quot; is less vulgar than &quot;fuck&quot; for roughly the same reason that &quot;the f-word&quot; is less vulgar than &quot;fuck&quot;.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397579&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="240"></td>
+        <td valign="top"><center><a id="up_9397611" href="https://news.ycombinator.com/vote?for=9397611&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Crito">Crito</a> <a href="https://news.ycombinator.com/item?id=9397611">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I don&#x27;t buy it.<p><i>&quot;The f-word&quot;</i> is used exclusively by people being descriptive.  Nobody says <i>&quot;So I was f-wording my spouse...&quot;</i> or stubs their toe and exclaims <i>&quot;oh f-word!&quot;</i>.  It is used when people are reporting what other people said.  That is why it is considered less offensive; it is never properly used.<p>It signals to the easily offended, <i>&quot;I want to convey this information to you, but I am deliberately mangling words so that you know I too disapprove of the terrible word that was unfortunately used by somebody else.&quot;</i><p><i>&quot;WTF&quot;</i> isn&#x27;t used that way.  When people say it, they are <i>using</i> it, not describing somebody&#x27;s usage.  There is zero implication of an apology or empathy with the audience&#x27;s word-phobia.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397611&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="200"></td>
+        <td valign="top"><center><a id="up_9398262" href="https://news.ycombinator.com/vote?for=9398262&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=dllthomas">dllthomas</a> <a href="https://news.ycombinator.com/item?id=9398262">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">It&#x27;s arguably ambiguous as to whether the oath would have been minced, if expanded.  I&#x27;ve certainly heard people say &quot;what the frick&quot; or similar.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398262&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+          <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9398676" href="https://news.ycombinator.com/vote?for=9398676&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=waterhouse">waterhouse</a> <a href="https://news.ycombinator.com/item?id=9398676">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">There&#x27;s already a &quot;wtf&quot; program, available in Macports and probably some other package managers.  It has a database of internet acronyms, and otherwise it seems similar to commands like &quot;apropos&quot; and &quot;whatis&quot;.<p><pre><code>  ~&gt; wtf is imnsho
+  IMNSHO: in my not so humble opinion
+  ~&gt; wtf is cat
+  SVK::Command::Cat(3pm)   - Output the file from depot
+  cat(1)                   - concatenate and print files
+  fc-cat(1)                - read font information cache files
+  git-cat-file(1)          - Provide content or type and size information for repository objects
+  ~&gt; wtf is fuck
+  fuck: nothing appropriate
+</code></pre>
+<a href="http:&#x2F;&#x2F;cvsweb.netbsd.org&#x2F;bsdweb.cgi&#x2F;src&#x2F;games&#x2F;wtf&#x2F;" rel="nofollow">http:&#x2F;&#x2F;cvsweb.netbsd.org&#x2F;bsdweb.cgi&#x2F;src&#x2F;games&#x2F;wtf&#x2F;</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9398676&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="0"></td>
+        <td valign="top"><center><a id="up_9396364" href="https://news.ycombinator.com/vote?for=9396364&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nine_k">nine_k</a> <a href="https://news.ycombinator.com/item?id=9396364">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#9c9c9c">I&#x27;d not use this.<p>It&#x27;s basically a negative, aggressive emotional response, exactly a thing I&#x27;d rather not experience while working.<p>A failure due to not enough privileges might be a signal to rethink what you are doing; a mindless prepending of `sudo` is dangerous. Why not `su root` then?<p>Also, there was that screnshot of `sudo wget` as a response to a 403 error. This is exactly why you should re-examine a failed command instead of swearing around.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396364&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="40"></td>
+        <td valign="top"><center><a id="up_9396865" href="https://news.ycombinator.com/vote?for=9396865&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=Karunamon">Karunamon</a> <a href="https://news.ycombinator.com/item?id=9396865">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">I would, because a lot of commands could be improved by a &quot;do what I mean&quot; option.<p>GNU find is smart enough to tell me that I&#x27;ve placed one of the flags or the find string in the wrong place, but not smart enough to correct the fucking error and do what I meant in the first place. (It knows, it just won&#x27;t do it.)<p>&quot;apt-get&#x2F;yum install&quot; is unusable by anyone but root. Why do I need to waste time re-keying the command? This is annoying enough that I&#x27;ve aliased it[1] on every machine I have access to.<p>I&#x27;d be willing to bet the collective man hours wasted on these worthless &quot;you did it wrong, here&#x27;s how you did it wrong, now go do it right&quot; type messages, expands well into the decades.<p>[1]: <a href="https:&#x2F;&#x2F;github.com&#x2F;Karunamon&#x2F;dotfiles&#x2F;blob&#x2F;1174bbaee047107ea0dc87b1e4286a4445713bb8&#x2F;.bash_profile_linux" rel="nofollow">https:&#x2F;&#x2F;github.com&#x2F;Karunamon&#x2F;dotfiles&#x2F;blob&#x2F;1174bbaee047107ea...</a></font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9396865&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+        <tr><td><table border="0">  <tr>
+          <td><img src="s.gif" height="1" width="80"></td>
+        <td valign="top"><center><a id="up_9397906" href="https://news.ycombinator.com/vote?for=9397906&amp;dir=up&amp;goto=item%3Fid%3D9396116"><div class="votearrow" title="upvote"></div></a></center></td><td class="default"><div style="margin-top:2px; margin-bottom:-10px;"><span class="comhead">
+          <a href="https://news.ycombinator.com/user?id=nine_k">nine_k</a> <a href="https://news.ycombinator.com/item?id=9397906">1 day ago</a> <span class="deadmark"></span>                            </span></div><br><span class="comment">
+                  <font color="#000000">&quot;Do what I mean&quot; is great as long is what you mean is what the computer infers. As everyone who wrote Perl or used MS Word knows, this is not always the case. And when it is not, it&#x27;s often super annoying.<p>How often do you run apt-get install? I bet it&#x27;s not even a daily routine. (If it is, you should have already automated it.) OTOH if you run chmod or chown and it <i>suddenly</i> requires root privileges, it&#x27;s a good idea to think a bit; a disaster may be around the corner.<p>There are different mentalities; some crave for unconstrained aerobatics while others keep reminding to wear a parachute. I wish you all the luck, but I won&#x27;t wish you be my SRE.</font>
+              </span>
+              <p><font size="1">
+                      <u><a href="https://news.ycombinator.com/reply?id=9397906&amp;goto=item%3Fid%3D9396116">reply</a></u>
+                  </font>
+          </td></tr>
+      </table></td></tr>
+      </table><br><br>
+</td></tr><tr><td><img src="s.gif" height="10" width="0"><table width="100%" cellspacing="0" cellpadding="1"><tr><td bgcolor="#ff6600"></td></tr></table><br><center><span class="yclinks">
+                <a href="https://news.ycombinator.com/newsguidelines.html">Guidelines</a>
+        | <a href="https://news.ycombinator.com/newsfaq.html">FAQ</a>
+        | <a href="mailto:hn@ycombinator.com">Support</a>
+        | <a href="https://github.com/HackerNews/API">API</a>
+        | <a href="https://news.ycombinator.com/lists">Lists</a>
+        | <a href="https://news.ycombinator.com/bookmarklet.html">Bookmarklet</a>
+        | <a href="https://news.ycombinator.com/dmca.html">DMCA</a>
+        | <a href="http://www.ycombinator.com/">Y Combinator</a>
+        | <a href="http://www.ycombinator.com/apply/">Apply</a>
+        | <a href="mailto:hn@ycombinator.com">Contact</a></span><br><br>
+                <form method="get" action="https://hn.algolia.com/">Search:
+          <input type="text" name="q" value="" size="17"></form>
+                    </center></td></tr>      </table></center></body></html>
