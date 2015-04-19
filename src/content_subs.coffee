@@ -34,7 +34,7 @@ class Sub
 
         idx = @rank
         row1nodes = (idx while idx = idx.nextSibling)
-        idx.style.display = state for idx in row1nodes
+        idx.style?.display = state for idx in row1nodes
         @row2.style.display = state
 
     close: ->
