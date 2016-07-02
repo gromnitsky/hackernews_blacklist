@@ -1,30 +1,28 @@
 {
-	"files": [
-		"icons/128.png",
-		"icons/19.png",
-		"vendor/md5.js",
-		"lib/background.js",
-		"lib/content_comments_contents.html",
-		"lib/content_comments.js",
-		"lib/content_subs.js",
-		"lib/options.html",
-		"lib/options.js",
-		"manifest.json"
-	],
-	"name": "hackernews_blacklist",
-	"version": "1.0.7",
-	"license": {
-		"type": "MIT",
-		"url": "http://www.opensource.org/licenses/mit-license.php"
-	},
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/gromnitsky/hackernews_blacklist"
-	},
-	"dependencies": {
-		"mocha": "~1.5.0",
-		"coffee-script": "~1.3.3",
-		"jade": "~0.27.5",
-		"browserify": "~1.16.1"
-	}
+    "private": true,
+    "files": [
+	"icons/128.png",
+	"icons/19.png",
+	"vendor/md5.js",
+	"lib/background.js",
+	"lib/content_comments_contents.html",
+	"lib/content_comments.js",
+	"lib/content_subs.js",
+	"lib/options.html",
+	"lib/options.js",
+	"manifest.json"
+    ],
+    "name": "hackernews_blacklist",
+    "version": "1.0.8",
+    "license": "MIT",
+    "repository": {
+	"type": "git",
+	"url": "http://github.com/gromnitsky/hackernews_blacklist"
+    },
+    "dependencies": {
+	"mocha": "~1.5.0",
+	"coffee-script": "~1.3.3",
+	"jade": "~0.27.5",
+	"browserify": "~1.16.1"
+    }
 }

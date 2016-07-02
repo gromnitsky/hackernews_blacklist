@@ -1,7 +1,6 @@
 # Hacker News Blacklist
 
-A Chrome 27 (& hopefully newer) extension for
-http://news.ycombinator.com.
+A Chrome extension for http://news.ycombinator.com.
 
 ## Features:
 
@@ -135,7 +134,7 @@ On Windows the directory is `%LOCALAPPDATA%\Google\Chrome\User Data\Default\Inde
 ## Build requirements:
 
 * CoffeeScript installed via npm in global (`-g`) mode.
-* jsontool in global mode.
+* `json` npm package in global mode.
 * GNU m4 (on Fedora, make a symlink `ln -s /usr/m4 ~/bin/gm4`).
 * xxd utility.
 * GNU make.

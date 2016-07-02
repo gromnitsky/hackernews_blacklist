@@ -25,7 +25,7 @@ class InjectorSubs
       'lib/content_subs.js'
       ]
 
-    @permissions = ["^https?://news.ycombinator.com/(x\\?fnid=.+|newest|ask|jobs|news)?$",
+    @permissions = ["^https?://news.ycombinator.com/((newest|ask|jobs|news)(\\?.+)?)?$",
       "^file://.+/hackernews_blacklist/test/data/news\\.ycombinator\\.com/index\\.html$"]
 
 fub.include InjectorSubs, InjectorInterface
